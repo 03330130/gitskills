@@ -109,6 +109,7 @@ public class MainActivity extends Activity implements OnClickListener{
 	private void stopRecording() {
 		recorder.stop();
 		recorder.release();
+		
 		recorder = null;
     }
     private void initializeAudio() {
