@@ -1,0 +1,136 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    -->
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+
+    <style name="MainTheme" parent="android:Theme.Holo">
+        <item name="android:textColor">@color/auto_text_color</item>
+        <!-- set option menu item background 
+        <item name="android:itemBackground">@drawable/tab_nav_background</item>-->
+        <!-- <item name="android:windowContentOverlay">@null</item> -->
+        <!-- 禁用系统的触摸声音 -->
+        <item name="android:soundEffectsEnabled">false</item>
+        <item name="android:actionBarStyle">@style/MainActionBarTheme</item>
+      
+        
+    </style>
+
+    <style name="MainActionBarTheme" parent="@android:style/Widget.ActionBar">
+        <item name="android:background">@color/black</item>
+    </style>
+
+    <style name="main_text_style">
+        <item name="android:textAppearance">@style/TextSizeLarge</item>
+        <item name="android:ellipsize">marquee</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textColor">@color/auto_text_color</item>
+    </style>
+
+    <style name="TextSizeLarge">
+        <item name="android:textSize">@dimen/textsize_Large</item>
+    </style>
+
+    <style name="main_tab_bottom" parent="MainTheme">
+        <item name="android:textAppearance">@style/TextSizeLarge</item>
+        <item name="android:ellipsize">marquee</item>
+        <item name="android:focusable">true</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingTop">1dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">@dimen/auto_margin</item>
+        <item name="android:button">@null</item>
+        <item name="android:drawableRight">@android:drawable/btn_radio</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:paddingLeft">@dimen/auto_padding_left</item>
+        <item name="android:paddingRight">20dp</item>
+        <item name="android:layout_weight">1.0</item>
+    </style>
+
+    <style name="hogographic_hand_radiogroup" parent="MainTheme">
+        <item name="android:textAppearance">@style/TextSizeLarge</item>
+        <item name="android:ellipsize">marquee</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:button">@null</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:layout_marginTop">@dimen/holo_rbt_marginTop</item>
+        <item name="android:paddingLeft">20dp</item>
+        <item name="android:paddingRight">@dimen/holo_rbt_paddingRight</item>
+    </style>
+
+    <style name="hogographic_strength_radiogroup" parent="MainTheme">
+        <item name="android:textAppearance">@style/TextSizeLarge</item>
+        <item name="android:ellipsize">marquee</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:button">@null</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:layout_marginTop">20dp</item>
+    </style>
+
+    <style name="other_speed_radiogroup" parent="MainTheme">
+        <item name="android:textAppearance">@style/TextSizeLarge</item>
+        <item name="android:ellipsize">marquee</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingLeft">@dimen/other_checkbox_padding_left</item>
+        <item name="android:paddingRight">@dimen/other_checkbox_padding_right</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:button">@null</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <style name="other_imgbutton" parent="MainTheme">
+        <item name="android:textAppearance">@style/TextSizeLarge</item>
+        <item name="android:ellipsize">marquee</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingLeft">60dp</item>
+        <item name="android:paddingRight">25dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <style name="settings_language_radiogroup" parent="MainTheme">
+        <item name="android:textAppearance">?android:attr/textAppearanceSmall</item>
+        <item name="android:ellipsize">marquee</item>
+        <item name="android:gravity">left</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:button">@null</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:drawableBottom">@android:drawable/btn_radio</item>
+    </style>
+
+    <style name="settings_checkbox" parent="MainTheme">
+        <item name="android:textAppearance">@style/TextSizeLarge</item>
+        <item name="android:ellipsize">marquee</item>
+        <item name="android:gravity">center|left</item>
+        <item name="android:paddingLeft">@dimen/setting_service_textview_margin_left</item>
+        <item name="android:paddingRight">20dp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:button">@null</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:drawableRight">@android:drawable/btn_radio</item>
+    </style>
+
+</resources>

@@ -1,0 +1,308 @@
+package com.kangtai.MassageChair;
+
+import com.kangtai.MassageChair.Protocal.DataFrame;
+import com.kangtai.MassageChair.Protocal.RokolUtil;
+import com.kangtai.MassageChair.Protocal.DataFrame.OPERATION;
+
+import android.R.color;
+import android.R.raw;
+import android.app.Activity;
+import android.content.Context;
+import android.graphics.BitmapFactory;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.RadioGroup.OnCheckedChangeListener;
+import android.widget.TextView;
+
+public class FragmentHolographicHandMassage extends Fragment implements
+		OnCheckedChangeListener, OnClickListener {
+
+	private Context mContext;
+	private FrameLayout mLayout_Strength_1, mLayout_Strength_2,
+			mLayout_Strength_3, mLayout_Strength_4;
+	private RadioGroup mLayout_Part;
+	private ImageView mImageStrength_1, mImageStrength_2, mImageStrength_3,
+			mImageStrength_4;
+	private RadioButton mRbtnAll, mRbtnHandShoulder, mRbtnWaist, mRbtnLeg;
+	private TextView mTextStrength_1, mTextStrength_2, mTextStrength_3,
+			mTextStrength_4;
+	private int mClickStrengthCount = 0;
+	private boolean mLowToHingh = true;
+
+	@Override
+	public void onAttach(Activity activity) {
+		super.onAttach(activity);
+		this.mContext = activity;
+	}
+
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		View view = LayoutInflater.from(getActivity()).inflate(
+				R.layout.holographic_hand_massage, null);
+		mLayout_Part = (RadioGroup) view.findViewById(R.id.layout_part);
+		mLayout_Part.setOnCheckedChangeListener(this);
+
+		mLayout_Strength_1 = (FrameLayout) view
+				.findViewById(R.id.layout_strength_1);
+		mLayout_Strength_2 = (FrameLayout) view
+				.findViewById(R.id.layout_strength_2);
+		mLayout_Strength_3 = (FrameLayout) view
+				.findViewById(R.id.layout_strength_3);
+		mLayout_Strength_4 = (FrameLayout) view
+				.findViewById(R.id.layout_strength_4);
+
+		mImageStrength_1 = (ImageView) view.findViewById(R.id.img_strength_1);
+		mImageStrength_2 = (ImageView) view.findViewById(R.id.img_strength_2);
+		mImageStrength_3 = (ImageView) view.findViewById(R.id.img_strength_3);
+		mImageStrength_4 = (ImageView) view.findViewById(R.id.img_strength_4);
+		mRbtnAll = (RadioButton) view.findViewById(R.id.rbtn_all);
+		mRbtnHandShoulder = (RadioButton) view
+				.findViewById(R.id.rbtn_hand_shoulder);
+		mRbtnWaist = (RadioButton) view.findViewById(R.id.rbtn_waist);
+		mRbtnLeg = (RadioButton) view.findViewById(R.id.rbtn_leg_foot);
+
+		mTextStrength_1 = (TextView) view.findViewById(R.id.tv_strength_1);
+		mTextStrength_2 = (TextView) view.findViewById(R.id.tv_strength_2);
+		mTextStrength_3 = (TextView) view.findViewById(R.id.tv_strength_3);
+		mTextStrength_4 = (TextView) view.findViewById(R.id.tv_strength_4);
+
+		mRbtnHandShoulder.setOnClickListener(this);
+		mRbtnWaist.setOnClickListener(this);
+		mRbtnLeg.setOnClickListener(this);
+		mRbtnAll.setOnClickListener(this);
+
+		mImageStrength_1.setOnClickListener(this);
+		mImageStrength_2.setOnClickListener(this);
+		mImageStrength_3.setOnClickListener(this);
+		mImageStrength_4.setOnClickListener(this);
+
+		return view;
+	}
+
+	private void clickAll() {
+		sendData(OPERATION.PRESSURE_AUTO_ON);
+		mLayout_Strength_1.setVisibility(View.VISIBLE);
+		mLayout_Strength_2.setVisibility(View.INVISIBLE);
+		mLayout_Strength_3.setVisibility(View.INVISIBLE);
+		mLayout_Strength_4.setVisibility(View.INVISIBLE);
+
+		/*mTextStrength_1.setText(getResources().getString(
+				R.string.strengthen_middle_weaken));*/
+
+	}
+
+	private void clickHandShoulder() {
+		sendData(OPERATION.PRESSURE_HAND_ON);
+		mLayout_Strength_1.setVisibility(View.INVISIBLE);
+		mLayout_Strength_2.setVisibility(View.VISIBLE);
+		mLayout_Strength_3.setVisibility(View.INVISIBLE);
+		mLayout_Strength_4.setVisibility(View.INVISIBLE);
+
+/*		mTextStrength_2.setText(getResources().getString(
+				R.string.strengthen_middle_weaken));*/
+	}
+
+	private void clickLegFoot() {
+		sendData(OPERATION.PRESSURE_LEG_ON);
+		mLayout_Strength_1.setVisibility(View.INVISIBLE);
+		mLayout_Strength_2.setVisibility(View.INVISIBLE);
+		mLayout_Strength_3.setVisibility(View.INVISIBLE);
+		mLayout_Strength_4.setVisibility(View.VISIBLE);
+
+		/*mTextStrength_4.setText(getResources().getString(
+				R.string.strengthen_middle_weaken));*/
+	}
+
+	private void clickWaist() {
+		sendData(OPERATION.PRESSURE_SEAT_ON);
+		mLayout_Strength_1.setVisibility(View.INVISIBLE);
+		mLayout_Strength_2.setVisibility(View.INVISIBLE);
+		mLayout_Strength_3.setVisibility(View.VISIBLE);
+		mLayout_Strength_4.setVisibility(View.INVISIBLE);
+
+	/*	mTextStrength_3.setText(getResources().getString(
+				R.string.strengthen_middle_weaken));*/
+	}
+
+	private void clickStrength() {
+		switch (mClickStrengthCount) {
+		case 0:
+			sendData(OPERATION.PRESSURE_SPEED_1);
+			changeImage(R.drawable.holo_speed_low);
+			mClickStrengthCount++;
+			mLowToHingh = true;
+			setText(R.string.weaken);
+			break;
+		case 1:
+			sendData(OPERATION.PRESSURE_SPEED_2);
+			changeImage(R.drawable.holo_speed_middle);
+			setText(R.string.middle);
+			if (mLowToHingh)
+				mClickStrengthCount++;
+			else
+				mClickStrengthCount--;
+			break;
+		case 2:
+			sendData(OPERATION.PRESSURE_SPEED_3);
+			changeImage(R.drawable.holo_speed_high);
+			mClickStrengthCount--;
+			mLowToHingh = false;
+			setText(R.string.strengthen);
+			break;
+
+		}
+
+	}
+
+	private void resetStrength(int resId) {
+		mImageStrength_1.setImageBitmap(BitmapFactory.decodeResource(
+				getResources(), resId));
+		mImageStrength_2.setImageBitmap(BitmapFactory.decodeResource(
+				getResources(), resId));
+		mImageStrength_3.setImageBitmap(BitmapFactory.decodeResource(
+				getResources(), resId));
+		mImageStrength_4.setImageBitmap(BitmapFactory.decodeResource(
+				getResources(), resId));
+
+		// R.string.strengthen_middle_weaken
+		mTextStrength_1.setText("");
+		mTextStrength_2.setText("");
+		mTextStrength_3.setText("");
+		mTextStrength_4.setText("");
+
+		RokolUtil.setTextNoShadow(mContext, mTextStrength_1);
+		mTextStrength_1.setSingleLine(false);
+		mTextStrength_1.setMaxLines(3);
+		mTextStrength_1.setTextSize(10);
+		mTextStrength_1.setTextColor(mContext.getResources().getColor(
+				R.color.black));
+		RokolUtil.setTextNoShadow(mContext, mTextStrength_2);
+		mTextStrength_2.setSingleLine(false);
+		mTextStrength_2.setMaxLines(3);
+		mTextStrength_2.setTextSize(10);
+		mTextStrength_2.setTextColor(mContext.getResources().getColor(
+				R.color.black));
+		RokolUtil.setTextNoShadow(mContext, mTextStrength_3);
+		mTextStrength_3.setSingleLine(false);
+		mTextStrength_3.setMaxLines(3);
+		mTextStrength_3.setTextSize(10);
+		mTextStrength_3.setTextColor(mContext.getResources().getColor(
+				R.color.black));
+		RokolUtil.setTextNoShadow(mContext, mTextStrength_4);
+		mTextStrength_4.setSingleLine(false);
+		mTextStrength_4.setMaxLines(3);
+		mTextStrength_4.setTextSize(10);
+		mTextStrength_4.setTextColor(mContext.getResources().getColor(
+				R.color.black));
+
+	}
+
+	private void setText(int rscId) {
+		if (mLayout_Strength_1.getVisibility() == View.VISIBLE) {
+			mTextStrength_1.setText(rscId);
+			RokolUtil.setTextShadow(mContext, mTextStrength_1);
+			mTextStrength_1.setSelected(true);
+		}
+		if (mLayout_Strength_2.getVisibility() == View.VISIBLE) {
+			mTextStrength_2.setText(rscId);
+			RokolUtil.setTextShadow(mContext, mTextStrength_2);
+			mTextStrength_2.setSelected(true);
+		}
+		if (mLayout_Strength_3.getVisibility() == View.VISIBLE) {
+			mTextStrength_3.setText(rscId);
+			RokolUtil.setTextShadow(mContext, mTextStrength_3);
+			mTextStrength_3.setSelected(true);
+		}
+		if (mLayout_Strength_4.getVisibility() == View.VISIBLE) {
+			mTextStrength_4.setText(rscId);
+			RokolUtil.setTextShadow(mContext, mTextStrength_4);
+			mTextStrength_4.setSelected(true);
+		}
+
+	}
+
+	private void changeImage(int resId) {
+		if (mLayout_Strength_1.getVisibility() == View.VISIBLE)
+			mImageStrength_1.setImageBitmap(BitmapFactory.decodeResource(
+					getResources(), resId));
+		if (mLayout_Strength_2.getVisibility() == View.VISIBLE)
+			mImageStrength_2.setImageBitmap(BitmapFactory.decodeResource(
+					getResources(), resId));
+		if (mLayout_Strength_3.getVisibility() == View.VISIBLE)
+			mImageStrength_3.setImageBitmap(BitmapFactory.decodeResource(
+					getResources(), resId));
+		if (mLayout_Strength_4.getVisibility() == View.VISIBLE)
+			mImageStrength_4.setImageBitmap(BitmapFactory.decodeResource(
+					getResources(), resId));
+	}
+
+	public void sendData(OPERATION op) {
+		((MainActivity) FragmentHolographicHandMassage.this.mContext)
+				.sendCommand(DataFrame.getSendFrame(op));
+	}
+
+	@Override
+	public void onCheckedChanged(RadioGroup group, int checkedId) {
+		// TODO some different with protocol
+		// Toast.makeText(mContext.getApplicationContext(),
+		// "checked change handler", Toast.LENGTH_LONG).show();
+		resetStrength(R.drawable.holographic_strength_normal);
+		switch (checkedId) {
+		case R.id.rbtn_all:
+			clickAll();
+			break;
+		case R.id.rbtn_hand_shoulder:
+			clickHandShoulder();
+			break;
+		case R.id.rbtn_leg_foot:
+			clickLegFoot();
+			break;
+		case R.id.rbtn_waist:
+			clickWaist();
+			break;
+
+		default:
+			break;
+		}
+
+		mClickStrengthCount = 0;
+	}
+
+	@Override
+	public void onClick(View arg0) {
+		// TODO Auto-generated method stub
+		switch (arg0.getId()) {
+		case R.id.img_strength_1:
+		case R.id.img_strength_2:
+		case R.id.img_strength_3:
+		case R.id.img_strength_4:
+			clickStrength();
+			break;
+		}
+		// handle touch sound
+		RokolUtil.performTouchSound(mContext);
+
+		// handle select event
+		for (int i = 0; i < mLayout_Part.getChildCount(); i++) {
+			RadioButton rbtn = (RadioButton) mLayout_Part.getChildAt(i);
+			if (rbtn.isChecked()){
+				RokolUtil.setTextShadow(mContext, rbtn);
+				rbtn.setSelected(true);
+			}
+			else {
+				RokolUtil.setTextNoShadow(mContext, rbtn);
+				rbtn.setSelected(false);
+			}
+		}
+	}
+
+}

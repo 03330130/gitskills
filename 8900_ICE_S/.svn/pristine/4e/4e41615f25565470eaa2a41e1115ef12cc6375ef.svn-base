@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/splash_background"
+    android:gravity="center_horizontal|top"
+    android:orientation="vertical" >
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp" >
+
+        <ImageView
+            android:id="@+id/img_language"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:contentDescription="@string/language"
+            android:scaleType="fitXY"
+            android:src="@drawable/settings_language_background" />
+
+        <TextView
+            style="@style/main_text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="60dp"
+            android:text="@string/language" />
+
+        <TextView
+            android:id="@+id/tv_language"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|right|bottom"
+            android:layout_marginBottom="5dp"
+            android:layout_marginRight="20dp"
+            android:text="@string/chinese"
+            android:textAppearance="@android:style/TextAppearance.Small"
+            android:textColor="@color/white" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp" >
+
+        <ImageView
+            android:id="@+id/img_timer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:contentDescription="@string/timer"
+            android:scaleType="fitXY"
+            android:src="@drawable/settings_timer_background" />
+
+        <TextView
+            style="@style/main_text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="60dp"
+            android:text="@string/timer" />
+
+        <TextView
+            android:id="@+id/tv_timer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|right|bottom"
+            android:layout_marginBottom="5dp"
+            android:layout_marginRight="20dp"
+            android:text="@string/timer_0"
+            android:textAppearance="@android:style/TextAppearance.Small"
+            android:textColor="@color/white" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp" >
+
+        <CheckBox
+            android:id="@+id/cbox_sound"
+            style="@style/settings_checkbox"
+            android:background="@drawable/settings_touch_sound_background"
+            android:text="@string/touch_sound" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:visibility="gone" >
+
+        <!-- for 7805 -->
+
+        <CheckBox
+            android:id="@+id/cbox_light"
+            style="@style/settings_checkbox"
+            android:background="@drawable/settings_light_background"
+            android:checked="true"
+            android:text="@string/colored_light" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp" >
+
+        <ImageView
+            android:id="@+id/img_bluetooth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:contentDescription="@string/bluetooth"
+            android:scaleType="fitXY"
+            android:src="@drawable/settings_bluetooth_background" />
+
+        <TextView
+            android:id="@+id/tv_bluetooth"
+            style="@style/main_text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="60dp"
+            android:text="@string/bluetooth" />
+
+        <TextView
+            android:id="@+id/tv_devicename"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|right|bottom"
+            android:layout_marginBottom="5dp"
+            android:layout_marginRight="20dp"
+            android:textAppearance="@android:style/TextAppearance.Small"
+            android:textColor="@color/white" />
+        <!--
+              CheckBox
+            android:id="@+id/cbox_bluetooth"
+            style="@style/settings_checkbox"
+            android:background="@drawable/settings_bluetooth_background"
+            android:text="@string/bluetooth"
+            android:drawableRight="@null"
+            android:color="#000000" -->
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:visibility="gone" >
+
+        <!--  -->
+
+        <CheckBox
+            android:id="@+id/cbox_wlan"
+            style="@style/settings_checkbox"
+            android:background="@drawable/settings_wlan_background"
+            android:text="@string/wlan" />
+    </FrameLayout>
+
+</LinearLayout>

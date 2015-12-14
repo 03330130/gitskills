@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="bottom_height">180dp</dimen>
+    <dimen name="textsize_Large">15sp</dimen>
+    <dimen name="top_divider_maginTop">1dp</dimen>
+    <dimen name="nav_position_textview_size">16sp</dimen>
+    <dimen name="fudong_text_size">32sp</dimen>
+    <dimen name="nav_height">80dp</dimen>
+    <dimen name="nav_margin_divider">15dp</dimen>
+    <dimen name="main_width_height">200dp</dimen>
+    <dimen name="auto_padding_left">100dp</dimen>
+    <dimen name="auto_margin">20dp</dimen>
+    <dimen name="menu_item_width">100dp</dimen>
+    <!-- manual layout -->
+    <dimen name="manual_textview_margin_left">100dp</dimen>
+    <dimen name="manual_detail_textview_layout_width">120dp</dimen>
+    <dimen name="manual_part_up_down_textview_layout_width">100dp</dimen>
+     <dimen name="manual_width_textview_layout_width">50dp</dimen>
+     <dimen name="manual_3d_textview_layout_width">50dp</dimen>
+    <dimen name="manual_layout_height">700dp</dimen>
+    <dimen name="holo_rbt_marginTop">30dp</dimen>
+    <dimen name="setting_service_marginTop">20dp</dimen>
+    <!-- system state -->
+    <dimen name="foot1_margin_left">12dp</dimen>
+    <dimen name="foot1_margin_bottom">50dp</dimen>
+    <dimen name="foot2_margin_left">20dp</dimen>
+    <dimen name="foot2_margin_bottom">20dp</dimen>
+    <dimen name="leg1_margin_left">110dp</dimen>
+    <dimen name="leg1_margin_bottom">35dp</dimen>
+    <dimen name="leg2_margin_left">140dp</dimen>
+    <dimen name="leg2_margin_bottom">45dp</dimen>
+    <dimen name="seat1_margin_right">190dp</dimen>
+    <dimen name="seat1_margin_bottom">70dp</dimen>
+    <dimen name="seat2_margin_right">155dp</dimen>
+    <dimen name="seat2_margin_bottom">67dp</dimen>
+    <dimen name="seat3_margin_right">120dp</dimen>
+    <dimen name="seat3_margin_bottom">65dp</dimen>
+    <dimen name="waist11_margin_right">95dp</dimen>
+    <dimen name="waist11_margin_bottom">85dp</dimen>
+    <dimen name="waist12_margin_right">60dp</dimen>
+    <dimen name="waist12_margin_bottom">90dp</dimen>
+    
+    <dimen name="waist_heat1_margin_right">110dp</dimen>
+    <dimen name="waist_heat1_margin_bottom">133dp</dimen>
+    <dimen name="waist_heat2_margin_right">102dp</dimen>
+    <dimen name="waist_heat2_margin_bottom">175dp</dimen>
+    
+    <dimen name="waist21_margin_right">85dp</dimen>
+    <dimen name="waist21_margin_bottom">130dp</dimen>
+    <dimen name="waist22_margin_right">52dp</dimen>
+    <dimen name="waist22_margin_bottom">132dp</dimen>
+    <dimen name="waist31_margin_right">75dp</dimen>
+    <dimen name="waist31_margin_bottom">172dp</dimen>
+    <dimen name="waist32_margin_right">40dp</dimen>
+    <dimen name="waist32_margin_bottom">172dp</dimen>
+    
+    <dimen name="back11_margin_right">50dp</dimen>
+    <dimen name="back11_margin_bottom">220dp</dimen>
+    <dimen name="back12_margin_right">20dp</dimen>
+    <dimen name="back12_margin_bottom">220dp</dimen>
+    <dimen name="back21_margin_right">45dp</dimen>
+    <dimen name="back21_margin_bottom">260dp</dimen>
+    <dimen name="back22_margin_right">15dp</dimen>
+    <dimen name="back22_margin_bottom">265dp</dimen>
+    <dimen name="neck1_margin_top">105dp</dimen>
+    <dimen name="neck1_margin_right">50dp</dimen>
+    <dimen name="neck2_margin_top">101dp</dimen>
+    <dimen name="neck2_margin_right">30dp</dimen>
+    <dimen name="shoulder1_margin_top">130dp</dimen>
+    <dimen name="shoulder1_margin_right">110dp</dimen>
+    <dimen name="shoulder2_margin_top">155dp</dimen>
+    <dimen name="shoulder2_margin_right">125dp</dimen>
+    <dimen name="arm1_margin_top">210dp</dimen>
+    <dimen name="arm1_margin_right">200dp</dimen>
+    <dimen name="arm2_margin_top">220dp</dimen>
+    <dimen name="arm2_margin_right">230dp</dimen>
+
+</resources>

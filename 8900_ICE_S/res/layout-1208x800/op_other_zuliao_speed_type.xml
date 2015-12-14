@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:orientation="horizontal" >
+    <TextView 
+        android:id="@+id/tv_other_zuoliao"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:drawableLeft="@drawable/op_other_zuliao_rouhe"
+        android:paddingLeft="7dp"
+        android:text="@string/soft"
+        android:clickable="true"
+        android:textColor="#000"
+        android:textSize="15sp"
+        />
+    
+
+</LinearLayout>

@@ -1,0 +1,1481 @@
+package com.kangtai.MassageChair;
+
+import com.kangtai.MassageChair.Protocal.RokolUtil;
+import com.kangtai.MassageChair.Protocal.DataFrame;
+import com.kangtai.MassageChair.Protocal.DataFrame.OPERATION;
+
+import android.app.ActionBar;
+import android.app.Activity;
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.SharedPreferences;
+import android.graphics.drawable.ColorDrawable;
+import android.media.AudioManager;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
+import android.view.Gravity;
+import android.view.KeyEvent;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
+import android.widget.FrameLayout;
+import android.widget.HorizontalScrollView;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.PopupWindow.OnDismissListener;
+
+public class MainActivity extends FragmentActivity implements OnClickListener,
+		OnTouchListener {
+
+	// Debugging
+	private static final String TAG = "Rokol Massage MainActivity";
+	private static final boolean D = true;
+
+	// Message types sent from the BluetoothService Handler
+	public static final int MESSAGE_REMAIN_TIME = 0;
+	public static final int MESSAGE_STATE_CHANGE = 1;
+	public static final int MESSAGE_READ = 2;
+	public static final int MESSAGE_WRITE = 3;
+	public static final int MESSAGE_DEVICE_NAME = 4;
+	public static final int MESSAGE_TOAST = 5;
+	private static final int MESSAGE_POPWINDOW_CLOSE = 6;
+
+	private static final int POPWINDOW_DELAYTIME = 5000;// position adjust
+														// closed after 5s
+
+	// Key names received from the BluetoothService Handler
+	public static final String DEVICE_NAME = "device_name";
+	public static final String DEVICE_ADDRESS = "device_address";
+	public static final String TOAST = "toast";
+	public static final String BLUETOOTHRECEIVER_ACTION = "com.kangtai.MassageChair.BluetoothReceiver";
+	public static int mBluetoothServiceState;
+
+	// Intent request codes
+	private static final int REQUEST_CONNECT_DEVICE_SECURE = 1;
+	private static final int REQUEST_CONNECT_DEVICE_INSECURE = 2;
+	private static final int REQUEST_ENABLE_BT = 3;
+
+	private final int MAINFRAGMENTID = 0;
+	private final int AUTOFRAGMENTID = 1;
+	private final int MANUALFRAGMENTID = 2;
+	private final int HANDFRAGMENTID = 3;
+	private final int OTHERFRAGMENTID = 4;
+	private final int SETTINGSFRAGMENTID = 5;
+	private final int SERVICEFRAGMENTID = 6;
+	private int mCURRENT_FRAGMENT_ID = MAINFRAGMENTID;
+	private final int TIMEOUT = 5; // popwindows timeout 5ms
+	private long exitTime = 0;// press back button 2 times to exit
+
+	private StringBuffer mOutStringBuffer;
+	// Local Bluetooth adapter
+	private BluetoothAdapter mBluetoothAdapter = null;
+	// Member object for the Bluetooth services
+	// private BluetoothService mBluetoothService = null;
+	private BluetoothReceiver mBluetoothReceiver;
+
+	private FragmentMainNav mFragmentMainNav;
+	private FragmentAutoMassage mAutoMassageFragment;
+	private FragmentManualMassage mManualMasssageFragment;
+	private FragmentHolographicHandMassage mHolographicHandMassageFragment;
+	private FragmentOtherMassage mOtherMassageFragment;
+	private FragmentServices mServicesFragment;
+	private FragmentSettings mSettingsFragment;
+	private FrameLayout mAutoMassageLayout;
+	private FrameLayout mManualMassageLayout;
+	private FrameLayout mHolographicHandMassageLayout;
+	private FrameLayout mOtherMassageLayout;
+	private FrameLayout mPositionAdjustLayout;
+
+	private ImageView mImageAuto;
+	private ImageView mImageManual;
+	private ImageView mImageHolographicHand;
+	private ImageView mImageOther;
+	private ImageView mImagePosition;
+
+	private TextView mTextAuto;
+	private TextView mTextManual;
+	private TextView mTextHolo;
+	private TextView mTextOther;
+	private TextView mTextPosition;
+
+	// pop window
+	private PopupWindow popWindow;
+
+	private ImageView mImageBackup;
+	private ImageView mImageBackdown;
+	private ImageView mImageLegBend;
+	private ImageView mImageLegStraighten;
+	private ImageView mImageLegStretch;
+	private ImageView mImageLegShrink;
+	private ImageView mImageZeroGravity;
+	private ImageView mImageSleep;
+
+	private ImageView mImageToLeft;
+	private ImageView mImageToRight;
+	ImageView menuPower;
+	private HorizontalScrollView mPositionView;
+	public static boolean mPower = false;
+	private boolean mZeroGravity = false;
+	private boolean mSleep = false;
+	private boolean mPopwindow_clicked = false;
+	// if communication failed ,(mCommunicationFailed=true),
+	private boolean mCommunicationFailed = false;
+
+	private String[] mSendData;
+	private String[] mReceiveData;
+	private byte[] currentSendData;
+
+	private int mCounter = 0;
+	private SharedPreferences sp;
+	private ActionBar actionBar;
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+
+		// customize the ActionBar
+		actionBar = getActionBar();
+		actionBar.setDisplayShowTitleEnabled(false);
+		actionBar.setHomeButtonEnabled(true);
+		// actionBar.setBackgroundDrawable(getResources().getDrawable(R.drawable.divider));
+		// using system music sound as touch sound
+		setVolumeControlStream(AudioManager.STREAM_MUSIC);
+		setupView();
+		showMainFragment();
+		/**
+		 * 
+		 * @20140610
+		 */
+		mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+
+	}
+
+	private void startConectPairedDevice() {
+		// Launch the DeviceListActivity to see devices and do scan
+		Intent serverIntent = new Intent(this, DeviceListActivity.class);
+		startActivityForResult(serverIntent, REQUEST_CONNECT_DEVICE_SECURE);
+	}
+
+	@Override
+	public void onStart() {
+		super.onStart();
+		if (D)
+			Log.e(TAG, "++ ON START ++");
+
+		// If BT is not on, request that it be enabled.
+		// setupService() will then be called during onActivityResult
+		if (!mBluetoothAdapter.isEnabled()) {
+			Intent enableIntent = new Intent(
+					BluetoothAdapter.ACTION_REQUEST_ENABLE);
+			startActivityForResult(enableIntent, REQUEST_ENABLE_BT);
+			// Otherwise, setup the session
+		} else {
+			if (mBluetoothReceiver == null)
+				setupService();
+		}
+	}
+
+	@Override
+	public synchronized void onResume() {
+		super.onResume();
+		if (D)
+			Log.e(TAG, "+ ON RESUME +");
+		mBluetoothReceiver = new BluetoothReceiver();
+		IntentFilter filter = new IntentFilter();
+		filter.addAction("android.intent.action.lxx");
+		registerReceiver(mBluetoothReceiver, filter);
+
+		// Performing this check in onResume() covers the case in which BT was
+		// not enabled during onStart(), so we were paused to enable it...
+		// onResume() will be called when ACTION_REQUEST_ENABLE activity
+		// returns.
+		if (mBluetoothReceiver != null) {
+			// Only if the state is STATE_NONE, do we know that we haven't
+			// started already
+			// if (mBluetoothReceiver.getState() == BluetoothService.STATE_NONE)
+			// {
+			// Start the Bluetooth chat services
+			// mBluetoothService.start();
+			// }
+
+		}
+	}
+
+	private void setupService() {
+		Log.d(TAG, "setupService()");
+		// Broadcast receiver
+
+		// Initialize the BluetoothService to perform bluetooth connections
+		// mBluetoothService = new BluetoothService(this, mHandler);
+		Intent it = new Intent(MainActivity.this, BluetoothService.class);
+		startService(it);
+
+		// Initialize the buffer for outgoing messages
+		mOutStringBuffer = new StringBuffer("");
+		mReceiveData = new String[] { "" };
+		sp = MainActivity.this.getSharedPreferences("Device", MODE_PRIVATE);
+		// Get the device MAC address
+		String address = sp.getString("Address", "");
+		// Toast.makeText(this, mAddress,Toast.LENGTH_LONG).show();
+		if (address.equals(""))
+			startConectPairedDevice();
+		else {
+			// Get the BluetoothDevice object
+			BluetoothDevice device = mBluetoothAdapter.getRemoteDevice(address);
+			// Attempt to connect to the device
+			Intent intent = new Intent(BLUETOOTHRECEIVER_ACTION);
+			intent.putExtra("cmd", BluetoothService.REQUIRE_CONNECT);
+			intent.putExtra(DEVICE_ADDRESS, address);
+			sendBroadcast(intent);
+
+			Log.d(TAG, "connect to: " + device);
+		}
+
+	}
+
+	@Override
+	public synchronized void onPause() {
+		super.onPause();
+		if (D)
+			Log.e(TAG, "- ON PAUSE -");
+	}
+
+	@Override
+	public void onStop() {
+		super.onStop();
+		if (D)
+			Log.e(TAG, "-- ON STOP --");
+	}
+
+	@Override
+	public void onDestroy() {
+		super.onDestroy();
+		// Stop the Bluetooth Receiver
+
+		if (mBluetoothReceiver != null) {
+			unregisterReceiver(mBluetoothReceiver);
+		}
+
+		if (D)
+			Log.e(TAG, "--- ON DESTROY ---");
+	}
+
+	private void setupView() {
+
+		mAutoMassageLayout = (FrameLayout) findViewById(R.id.layout_auto);
+		mManualMassageLayout = (FrameLayout) findViewById(R.id.layout_manual);
+		mHolographicHandMassageLayout = (FrameLayout) findViewById(R.id.layout_holographic_hand);
+		mOtherMassageLayout = (FrameLayout) findViewById(R.id.layout_other);
+		mPositionAdjustLayout = (FrameLayout) findViewById(R.id.layout_ajust);
+
+		mImageAuto = (ImageView) findViewById(R.id.img_auto);
+		mImageManual = (ImageView) findViewById(R.id.img_manual);
+		mImageHolographicHand = (ImageView) findViewById(R.id.img_holographic_hand);
+		mImageOther = (ImageView) findViewById(R.id.img_other);
+		mImagePosition = (ImageView) findViewById(R.id.img_position);
+
+		mTextAuto = (TextView) findViewById(R.id.tv_auto);
+		mTextManual = (TextView) findViewById(R.id.tv_manual);
+		mTextHolo = (TextView) findViewById(R.id.tv_holo);
+		mTextOther = (TextView) findViewById(R.id.tv_other);
+		mTextPosition = (TextView) findViewById(R.id.tv_position);
+
+		mAutoMassageLayout.setOnClickListener(this);
+		mManualMassageLayout.setOnClickListener(this);
+		mHolographicHandMassageLayout.setOnClickListener(this);
+		mOtherMassageLayout.setOnClickListener(this);
+		mPositionAdjustLayout.setOnClickListener(this);
+
+		if (getSupportFragmentManager().getFragments() != null
+				&& getSupportFragmentManager().getFragments().size() > 0) {
+			getSupportFragmentManager().getFragments().clear();
+			Log.d("--------------//////////", (getSupportFragmentManager()
+					.getFragments() != null)
+					+ ", "
+					+ getSupportFragmentManager().getFragments().size());
+		}
+		mFragmentMainNav = new FragmentMainNav();
+		mAutoMassageFragment = new FragmentAutoMassage();
+		mManualMasssageFragment = new FragmentManualMassage();
+		mHolographicHandMassageFragment = new FragmentHolographicHandMassage();
+		mOtherMassageFragment = new FragmentOtherMassage();
+		mSettingsFragment = new FragmentSettings();
+		mServicesFragment = new FragmentServices();
+	}
+
+	private void showMainFragment() {
+		actionBar.setHomeButtonEnabled(false);
+
+		FragmentTransaction fragmentTransaction = this
+				.getSupportFragmentManager().beginTransaction();
+		// fragmentTransaction.replace(R.id.frame_content, mFragmentMainNav);
+		if (!mFragmentMainNav.isAdded()) {
+			fragmentTransaction.add(R.id.frame_content, mFragmentMainNav);
+		}
+
+		hideFragment(fragmentTransaction);
+
+		fragmentTransaction.show(mFragmentMainNav);
+
+		fragmentTransaction.commit();
+		restoreNavigation();
+		mCURRENT_FRAGMENT_ID = MAINFRAGMENTID;
+	}
+
+	private void hideFragment(FragmentTransaction fragmentTransaction) {
+		switch (mCURRENT_FRAGMENT_ID) {
+		case MAINFRAGMENTID:
+			fragmentTransaction.hide(mFragmentMainNav);
+			break;
+		case AUTOFRAGMENTID:
+			fragmentTransaction.hide(mAutoMassageFragment);
+			break;
+		case MANUALFRAGMENTID:
+			fragmentTransaction.hide(mManualMasssageFragment);
+			break;
+		case HANDFRAGMENTID:
+			fragmentTransaction.hide(mHolographicHandMassageFragment);
+			break;
+		case OTHERFRAGMENTID:
+			fragmentTransaction.hide(mOtherMassageFragment);
+			break;
+		case SETTINGSFRAGMENTID:
+			fragmentTransaction.hide(mSettingsFragment);
+			break;
+		case SERVICEFRAGMENTID:
+			fragmentTransaction.hide(mServicesFragment);
+			break;
+		}
+	}
+
+	private void restoreNavigation() {
+
+		mManualMassageLayout.setSelected(false);
+		mImageManual.setSelected(false);
+
+		mAutoMassageLayout.setSelected(false);
+		mImageAuto.setSelected(false);
+
+		mHolographicHandMassageLayout.setSelected(false);
+		mImageHolographicHand.setSelected(false);
+
+		mOtherMassageLayout.setSelected(false);
+		mImageOther.setSelected(false);
+
+		mPositionAdjustLayout.setSelected(false);
+		mImagePosition.setSelected(false);
+
+		mTextAuto.setSelected(false);
+		mTextManual.setSelected(false);
+		mTextHolo.setSelected(false);
+		mTextOther.setSelected(false);
+		mTextPosition.setSelected(false);
+
+		RokolUtil.setTextNoShadow(getApplicationContext(), mTextAuto);
+		RokolUtil.setTextNoShadow(getApplicationContext(), mTextOther);
+		RokolUtil.setTextNoShadow(getApplicationContext(), mTextManual);
+		RokolUtil.setTextNoShadow(getApplicationContext(), mTextHolo);
+	}
+
+	private void showSettings() {
+		if (mSettingsFragment != null && mSettingsFragment.isVisible())
+			return;
+		actionBar.setHomeButtonEnabled(true);
+
+		FragmentTransaction fragmentTransaction = this
+				.getSupportFragmentManager().beginTransaction();
+		// fragmentTransaction.replace(R.id.frame_content, mSettingsFragment);
+
+		if (!mSettingsFragment.isAdded()) {
+			fragmentTransaction.add(R.id.frame_content, mSettingsFragment);
+		}
+		hideFragment(fragmentTransaction);
+		fragmentTransaction.show(mSettingsFragment);
+
+		fragmentTransaction.commit();
+		restoreNavigation();
+		mCURRENT_FRAGMENT_ID = SETTINGSFRAGMENTID;
+	}
+
+	private void showServices() {
+		if (mServicesFragment != null && mServicesFragment.isVisible())
+			return;
+		actionBar.setHomeButtonEnabled(true);
+
+		FragmentTransaction fragmentTransaction = this
+				.getSupportFragmentManager().beginTransaction();
+		// fragmentTransaction.replace(R.id.frame_content, mServicesFragment);
+
+		if (!mServicesFragment.isAdded()) {
+			fragmentTransaction.add(R.id.frame_content, mServicesFragment);
+		}
+		hideFragment(fragmentTransaction);
+		fragmentTransaction.show(mServicesFragment);
+
+		fragmentTransaction.commit();
+		restoreNavigation();
+		mCURRENT_FRAGMENT_ID = SERVICEFRAGMENTID;
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.option_menu, menu);
+		RelativeLayout powerLayout = (RelativeLayout) menu.findItem(
+				R.id.menu_power).getActionView();
+		menuPower = (ImageView) powerLayout.findViewById(R.id.img_power);
+
+		RelativeLayout stopLayout = (RelativeLayout) menu.findItem(
+				R.id.menu_stop).getActionView();
+		ImageView imgStop = (ImageView) stopLayout.findViewById(R.id.img_stop);
+
+		menuPower.setOnClickListener(this);
+		imgStop.setOnClickListener(this);
+
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+
+		switch (item.getItemId()) {
+		case android.R.id.home:
+			showMainFragment();
+			break;
+		case R.id.menu_power:
+
+			break;
+		case R.id.menu_stop:
+
+			// reset to power off
+			// mPower = false;
+
+			break;
+		/*
+		 * case R.id.menu_connect: startConectPairedDevice(); return true;
+		 */
+		case R.id.menu_settings:
+			showSettings();
+			break;
+		case R.id.menu_service:
+			showServices();
+			break;
+		}
+		// handle touch sound
+		RokolUtil.performTouchSound(MainActivity.this);
+		return false;
+	}
+
+	@Override
+	public void onClick(View arg0) {
+		switch (arg0.getId()) {
+
+		case R.id.img_power:
+			if (!mPower) {
+				sendCommand(DataFrame.getSendFrame(OPERATION.POWER_ON));
+				// mPower = true;
+			} else {
+				sendCommand(DataFrame.getSendFrame(OPERATION.POWER_OFF));
+				// mPower = false;
+			}
+			// changePowerState();
+			break;
+		case R.id.img_stop:
+			sendCommand(DataFrame.getSendFrame(OPERATION.STOP));
+			break;
+		case R.id.layout_auto:
+
+			clickAutoLayout();
+			break;
+		case R.id.layout_manual:
+
+			clickManualLayout();
+			break;
+
+		case R.id.layout_holographic_hand:
+			clickHolographicHandLayout();
+			break;
+		case R.id.layout_other:
+
+			clickOtherLayout();
+			break;
+		case R.id.layout_ajust:
+			clickPosition();
+			break;
+		case R.id.img_zero_gravity:
+			clickZeroGravity();
+			mPopwindow_clicked = true;
+			break;
+		case R.id.img_sleep:
+			clickSleep();
+			mPopwindow_clicked = true;
+			break;
+		case R.id.imgToLeft:
+			mPopwindow_clicked = true;
+			mPositionView.arrowScroll(View.FOCUS_LEFT);
+			// clickToLeft();
+			break;
+		case R.id.imgToRight:
+			mPopwindow_clicked = true;
+			mPositionView.arrowScroll(View.FOCUS_RIGHT);
+			// clickToRight();
+			break;
+		case R.id.img_leg_bend:
+		case R.id.img_leg_shrink:
+		case R.id.img_leg_straighten:
+		case R.id.img_leg_stretch:
+		case R.id.img_back_down:
+		case R.id.img_back_up:
+			break;
+		default:
+			break;
+		}
+		// handle touch sound
+		RokolUtil.performTouchSound(MainActivity.this);
+
+	}
+
+	private void clickBackUp(MotionEvent event) {
+		if (event.getAction() == MotionEvent.ACTION_DOWN) {
+			sendCommand(DataFrame.getSendFrame(OPERATION.BRACE_BACK_UP));
+		} else if (event.getAction() == MotionEvent.ACTION_UP
+				|| event.getAction() == MotionEvent.ACTION_CANCEL) {
+			sendCommand(DataFrame.getSendFrame(OPERATION.BRACE_BACK_STOP));
+		}
+		mSleep = false;
+		mZeroGravity = false;
+		mImageZeroGravity.setSelected(mZeroGravity);
+		mImageSleep.setSelected(mSleep);
+		// Toast.makeText(getApplication(), event.getAction()+"",
+		// Toast.LENGTH_LONG).show();
+		/*
+		 * mImageBackup.setSelected(true); mImageBackdown.setSelected(false);
+		 * mImageLegBend.setSelected(false);
+		 * mImageLegStraighten.setSelected(false);
+		 * mImageLegStretch.setSelected(false);
+		 * mImageLegShrink.setSelected(false); mImage_1_3.setSelected(false);
+		 * mImage_1_6.setSelected(false);
+		 */
+	}
+
+	private void clickSleep() {
+		if (!mSleep) {
+			// open sleep
+
+			sendCommand(DataFrame.getSendFrame(OPERATION.BRACE_SLEEP));
+
+		} else {
+			sendCommand(DataFrame
+					.getSendFrame(OPERATION.BRACE_ZERO_GRAVITY_SLEEP_STOP));
+		}
+		mSleep = !mSleep;
+		mImageSleep.setSelected(mSleep);
+		mZeroGravity = false;
+		mImageZeroGravity.setSelected(mZeroGravity);
+		/*
+		 * mImageBackup.setSelected(false); mImageBackdown.setSelected(false);
+		 * mImageLegBend.setSelected(false);
+		 * mImageLegStraighten.setSelected(false);
+		 * mImageLegStretch.setSelected(false);
+		 * mImageLegShrink.setSelected(false);
+		 * 
+		 * mImage_1_6.setSelected(true);
+		 */
+	}
+
+	private void clickZeroGravity() {
+		if (!mZeroGravity) {
+			// open zero gravity
+			sendCommand(DataFrame.getSendFrame(OPERATION.BRACE_ZERO_GRAVITY));
+
+		} else {
+			sendCommand(DataFrame
+					.getSendFrame(OPERATION.BRACE_ZERO_GRAVITY_SLEEP_STOP));
+		}
+		mZeroGravity = !mZeroGravity;
+		mImageZeroGravity.setSelected(mZeroGravity);
+		mSleep = false;
+		mImageSleep.setSelected(mSleep);
+		/*
+		 * mImageBackup.setSelected(false); mImageBackdown.setSelected(false);
+		 * mImageLegBend.setSelected(false);
+		 * mImageLegStraighten.setSelected(false);
+		 * mImageLegStretch.setSelected(false);
+		 * mImageLegShrink.setSelected(false); mImage_1_3.setSelected(true);
+		 * mImage_1_6.setSelected(false);
+		 */
+
+	}
+
+	private void clickLegShrink(MotionEvent event) {
+		if (event.getAction() == MotionEvent.ACTION_DOWN) {
+			sendCommand(DataFrame.getSendFrame(OPERATION.BRACE_LEG_SHRINK));
+		} else if (event.getAction() == MotionEvent.ACTION_UP
+				|| event.getAction() == MotionEvent.ACTION_CANCEL) {
+			sendCommand(DataFrame
+					.getSendFrame(OPERATION.BRACE_LEG_STRETCH_SHRINK_STOP));
+		}
+		mSleep = false;
+		mZeroGravity = false;
+		mImageZeroGravity.setSelected(mZeroGravity);
+		mImageSleep.setSelected(mSleep);
+		/*
+		 * mImageBackup.setSelected(false); mImageBackdown.setSelected(false);
+		 * mImageLegBend.setSelected(false);
+		 * mImageLegStraighten.setSelected(false);
+		 * mImageLegStretch.setSelected(false);
+		 * mImageLegShrink.setSelected(true); mImage_1_3.setSelected(false);
+		 * mImage_1_6.setSelected(false);
+		 */
+	}
+
+	private void clickBackDown(MotionEvent event) {
+		if (event.getAction() == MotionEvent.ACTION_DOWN) {
+			sendCommand(DataFrame.getSendFrame(OPERATION.BRACE_BACK_DOWN));
+		} else if (event.getAction() == MotionEvent.ACTION_UP
+				|| event.getAction() == MotionEvent.ACTION_CANCEL) {
+			sendCommand(DataFrame.getSendFrame(OPERATION.BRACE_BACK_STOP));
+		}
+		mSleep = false;
+		mZeroGravity = false;
+		mImageZeroGravity.setSelected(mZeroGravity);
+		mImageSleep.setSelected(mSleep);
+		/*
+		 * mImageBackup.setSelected(false); mImageBackdown.setSelected(true);
+		 * mImageLegBend.setSelected(false);
+		 * mImageLegStraighten.setSelected(false);
+		 * mImageLegStretch.setSelected(false);
+		 * mImageLegShrink.setSelected(false); mImage_1_3.setSelected(false);
+		 * mImage_1_6.setSelected(false);
+		 */
+	}
+
+	private void clickLegBend(MotionEvent event) {
+		if (event.getAction() == MotionEvent.ACTION_DOWN) {
+			sendCommand(DataFrame.getSendFrame(OPERATION.BRACE_LEG_BEND));
+		} else if (event.getAction() == MotionEvent.ACTION_UP
+				|| event.getAction() == MotionEvent.ACTION_CANCEL) {
+			sendCommand(DataFrame
+					.getSendFrame(OPERATION.BRACE_LEG_STRAIGHTEN_BEND_STOP));
+		}
+		mSleep = false;
+		mZeroGravity = false;
+		mImageZeroGravity.setSelected(mZeroGravity);
+		mImageSleep.setSelected(mSleep);
+		/*
+		 * mImageBackup.setSelected(false); mImageBackdown.setSelected(false);
+		 * mImageLegBend.setSelected(true);
+		 * mImageLegStraighten.setSelected(false);
+		 * mImageLegStretch.setSelected(false);
+		 * mImageLegShrink.setSelected(false); mImage_1_3.setSelected(false);
+		 * mImage_1_6.setSelected(false);
+		 */
+	}
+
+	private void clickLegStraighten(MotionEvent event) {
+		if (event.getAction() == MotionEvent.ACTION_DOWN) {
+			sendCommand(DataFrame.getSendFrame(OPERATION.BRACE_LEG_STRAIGHTEN));
+		} else if (event.getAction() == MotionEvent.ACTION_UP
+				|| event.getAction() == MotionEvent.ACTION_CANCEL) {
+			sendCommand(DataFrame
+					.getSendFrame(OPERATION.BRACE_LEG_STRAIGHTEN_BEND_STOP));
+		}
+		mSleep = false;
+		mZeroGravity = false;
+		mImageZeroGravity.setSelected(mZeroGravity);
+		mImageSleep.setSelected(mSleep);
+		/*
+		 * mImageBackup.setSelected(false); mImageBackdown.setSelected(false);
+		 * mImageLegBend.setSelected(false);
+		 * mImageLegStraighten.setSelected(true);
+		 * mImageLegStretch.setSelected(false);
+		 * mImageLegShrink.setSelected(false); mImage_1_3.setSelected(false);
+		 * mImage_1_6.setSelected(false);
+		 */
+	}
+
+	private void clickLegStretch(MotionEvent event) {
+		if (event.getAction() == MotionEvent.ACTION_DOWN) {
+			sendCommand(DataFrame.getSendFrame(OPERATION.BRACE_LEG_STRETCH));
+		} else if (event.getAction() == MotionEvent.ACTION_UP
+				|| event.getAction() == MotionEvent.ACTION_CANCEL) {
+			sendCommand(DataFrame
+					.getSendFrame(OPERATION.BRACE_LEG_STRETCH_SHRINK_STOP));
+		}
+		mSleep = false;
+		mZeroGravity = false;
+		mImageZeroGravity.setSelected(mZeroGravity);
+		mImageSleep.setSelected(mSleep);
+		/*
+		 * mImageBackup.setSelected(false); mImageBackdown.setSelected(false);
+		 * mImageLegBend.setSelected(false);
+		 * mImageLegStraighten.setSelected(false);
+		 * mImageLegStretch.setSelected(true);
+		 * mImageLegShrink.setSelected(false); mImage_1_3.setSelected(false);
+		 * mImage_1_6.setSelected(false);
+		 */
+	}
+
+	// auto massage tab
+	protected void clickAutoLayout() {
+		Log.d("click auto ", mAutoMassageFragment.isVisible() + ""
+				+ mAutoMassageFragment.isAdded());
+		
+		if (mAutoMassageFragment != null && mAutoMassageFragment.isVisible())
+			return;
+		actionBar.setHomeButtonEnabled(true);
+
+		FragmentTransaction fragmentTransaction = this
+				.getSupportFragmentManager().beginTransaction();
+		// fragmentTransaction.replace(R.id.frame_content,
+		// mAutoMassageFragment);
+
+		if (!mAutoMassageFragment.isAdded())
+			fragmentTransaction.add(R.id.frame_content, mAutoMassageFragment);
+		hideFragment(fragmentTransaction);
+		fragmentTransaction.show(mAutoMassageFragment);
+
+		fragmentTransaction.commit();
+		mManualMassageLayout.setSelected(false);
+		mImageManual.setSelected(false);
+
+		mImageAuto.setSelected(true);
+
+		mHolographicHandMassageLayout.setSelected(false);
+		mImageHolographicHand.setSelected(false);
+
+		mOtherMassageLayout.setSelected(false);
+		mImageOther.setSelected(false);
+
+		mPositionAdjustLayout.setSelected(false);
+		mImagePosition.setSelected(false);
+
+		mTextAuto.setSelected(true);
+		mTextManual.setSelected(false);
+		mTextHolo.setSelected(false);
+		mTextOther.setSelected(false);
+
+		RokolUtil.setTextShadow(getApplicationContext(), mTextAuto);
+		RokolUtil.setTextNoShadow(getApplicationContext(), mTextOther);
+		RokolUtil.setTextNoShadow(getApplicationContext(), mTextManual);
+		RokolUtil.setTextNoShadow(getApplicationContext(), mTextHolo);
+
+		mCURRENT_FRAGMENT_ID = AUTOFRAGMENTID;
+	}
+
+	// manual massage tab
+	protected void clickManualLayout() {
+		if (mManualMasssageFragment != null
+				&& mManualMasssageFragment.isVisible())
+			return;
+		actionBar.setHomeButtonEnabled(true);
+
+		FragmentTransaction fragmentTransaction = this
+				.getSupportFragmentManager().beginTransaction();
+		// fragmentTransaction
+		// .replace(R.id.frame_content, mManualMasssageFragment);
+
+		if (!mManualMasssageFragment.isAdded())
+			fragmentTransaction
+					.add(R.id.frame_content, mManualMasssageFragment);
+		hideFragment(fragmentTransaction);
+		fragmentTransaction.show(mManualMasssageFragment);
+
+		fragmentTransaction.commit();
+		mManualMassageLayout.setSelected(true);
+		mImageManual.setSelected(true);
+
+		mAutoMassageLayout.setSelected(false);
+		mImageAuto.setSelected(false);
+
+		mHolographicHandMassageLayout.setSelected(false);
+		mImageHolographicHand.setSelected(false);
+
+		mOtherMassageLayout.setSelected(false);
+		mImageOther.setSelected(false);
+
+		mPositionAdjustLayout.setSelected(false);
+		mImagePosition.setSelected(false);
+
+		mTextAuto.setSelected(false);
+		mTextManual.setSelected(true);
+		mTextHolo.setSelected(false);
+		mTextOther.setSelected(false);
+
+		RokolUtil.setTextShadow(getApplicationContext(), mTextManual);
+		RokolUtil.setTextNoShadow(getApplicationContext(), mTextOther);
+		RokolUtil.setTextNoShadow(getApplicationContext(), mTextAuto);
+		RokolUtil.setTextNoShadow(getApplicationContext(), mTextHolo);
+		mCURRENT_FRAGMENT_ID = MANUALFRAGMENTID;
+	}
+
+	// holographic hand massage
+	protected void clickHolographicHandLayout() {
+		if (mHolographicHandMassageFragment != null
+				&& mHolographicHandMassageFragment.isVisible())
+			return;
+		actionBar.setHomeButtonEnabled(true);
+		FragmentTransaction fragmentTransaction = this
+				.getSupportFragmentManager().beginTransaction();
+		// fragmentTransaction.replace(R.id.frame_content,
+		// mHolographicHandMassageFragment);
+		if (!mHolographicHandMassageFragment.isAdded()) {
+			fragmentTransaction.add(R.id.frame_content,
+					mHolographicHandMassageFragment);
+		}
+		hideFragment(fragmentTransaction);
+		fragmentTransaction.show(mHolographicHandMassageFragment);
+
+		fragmentTransaction.commit();
+		mManualMassageLayout.setSelected(false);
+		mImageManual.setSelected(false);
+
+		mAutoMassageLayout.setSelected(false);
+		mImageAuto.setSelected(false);
+
+		mHolographicHandMassageLayout.setSelected(true);
+		mImageHolographicHand.setSelected(true);
+
+		mOtherMassageLayout.setSelected(false);
+		mImageOther.setSelected(false);
+
+		mPositionAdjustLayout.setSelected(false);
+		mImagePosition.setSelected(false);
+
+		mTextAuto.setSelected(false);
+		mTextManual.setSelected(false);
+		mTextHolo.setSelected(true);
+		mTextOther.setSelected(false);
+
+		RokolUtil.setTextShadow(getApplicationContext(), mTextHolo);
+		RokolUtil.setTextNoShadow(getApplicationContext(), mTextOther);
+		RokolUtil.setTextNoShadow(getApplicationContext(), mTextManual);
+		RokolUtil.setTextNoShadow(getApplicationContext(), mTextAuto);
+		mCURRENT_FRAGMENT_ID = HANDFRAGMENTID;
+	}
+
+	// other massage
+	protected void clickOtherLayout() {
+		if (mOtherMassageFragment != null && mOtherMassageFragment.isVisible())
+			return;
+		actionBar.setHomeButtonEnabled(true);
+		FragmentTransaction fragmentTransaction = this
+				.getSupportFragmentManager().beginTransaction();
+		// fragmentTransaction.replace(R.id.frame_content,
+		// mOtherMassageFragment);
+		if (!mOtherMassageFragment.isAdded()) {
+			fragmentTransaction.add(R.id.frame_content, mOtherMassageFragment);
+		}
+		hideFragment(fragmentTransaction);
+		fragmentTransaction.show(mOtherMassageFragment);
+
+		fragmentTransaction.commit();
+		mManualMassageLayout.setSelected(false);
+		mImageManual.setSelected(false);
+
+		mAutoMassageLayout.setSelected(false);
+		mImageAuto.setSelected(false);
+
+		mHolographicHandMassageLayout.setSelected(false);
+		mImageHolographicHand.setSelected(false);
+
+		mOtherMassageLayout.setSelected(true);
+		mImageOther.setSelected(true);
+
+		mPositionAdjustLayout.setSelected(false);
+		mImagePosition.setSelected(false);
+
+		mTextAuto.setSelected(false);
+		mTextManual.setSelected(false);
+		mTextHolo.setSelected(false);
+		mTextOther.setSelected(true);
+
+		RokolUtil.setTextShadow(getApplicationContext(), mTextOther);
+		RokolUtil.setTextNoShadow(getApplicationContext(), mTextAuto);
+		RokolUtil.setTextNoShadow(getApplicationContext(), mTextManual);
+		RokolUtil.setTextNoShadow(getApplicationContext(), mTextHolo);
+		mCURRENT_FRAGMENT_ID = OTHERFRAGMENTID;
+	}
+
+	// position adjust
+	private void clickPosition() {
+		showPopupWindow(mImagePosition);
+		mImagePosition
+				.setImageResource(R.drawable.bg_position_adjust_activated);
+		mTextPosition.setSelected(true);
+		RokolUtil.setTextShadow(getApplicationContext(), mTextPosition);
+		mTextPosition.setTextSize(16);
+
+	}
+
+	private void restoreButton() {
+		mImagePosition.setImageResource(R.drawable.bg_position_adjust_normal);
+		mTextPosition.setSelected(false);
+		RokolUtil.setTextNoShadow(getApplicationContext(), mTextPosition);
+		mTextPosition.setTextSize(16);
+		mImageBackup.setSelected(false);
+		mImageBackdown.setSelected(false);
+		mImageLegBend.setSelected(false);
+		mImageLegStraighten.setSelected(false);
+		mImageLegStretch.setSelected(false);
+		mImageLegShrink.setSelected(false);
+		// mImageZeroGravity.setSelected(false);
+		mImageSleep.setSelected(false);
+	}
+
+	// show position adjust windows
+	private void showPopupWindow(View parent) {
+		if (popWindow == null) {
+			LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			View view = layoutInflater.inflate(R.layout.position_adjust, null);
+			popWindow = new PopupWindow(view,
+					LinearLayout.LayoutParams.MATCH_PARENT, 120);
+
+			popWindow.setFocusable(true);
+			popWindow.setOutsideTouchable(true);
+			popWindow.setBackgroundDrawable(new ColorDrawable(
+					android.R.color.transparent));
+		}
+		popWindow.showAsDropDown(parent, Gravity.CENTER, 0);
+
+		popWindow.setOnDismissListener(new OnDismissListener() {
+			@Override
+			public void onDismiss() {
+				restoreButton();
+				mHandler.removeMessages(MESSAGE_POPWINDOW_CLOSE);
+			}
+		});
+
+		mImageBackup = (ImageView) popWindow.getContentView().findViewById(
+				R.id.img_back_up);
+		;
+		mImageBackdown = (ImageView) popWindow.getContentView().findViewById(
+				R.id.img_back_down);
+		mImageLegBend = (ImageView) popWindow.getContentView().findViewById(
+				R.id.img_leg_bend);
+		mImageLegStraighten = (ImageView) popWindow.getContentView()
+				.findViewById(R.id.img_leg_straighten);
+		mImageLegStretch = (ImageView) popWindow.getContentView().findViewById(
+				R.id.img_leg_stretch);
+
+		mImageLegShrink = (ImageView) popWindow.getContentView().findViewById(
+				R.id.img_leg_shrink);
+		mImageZeroGravity = (ImageView) popWindow.getContentView()
+				.findViewById(R.id.img_zero_gravity);
+		mImageSleep = (ImageView) popWindow.getContentView().findViewById(
+				R.id.img_sleep);
+		mImageToLeft = (ImageView) popWindow.getContentView().findViewById(
+				R.id.imgToLeft);
+		mImageToRight = (ImageView) popWindow.getContentView().findViewById(
+				R.id.imgToRight);
+
+		mPositionView = (HorizontalScrollView) popWindow.getContentView()
+				.findViewById(R.id.positionview);
+
+		mImageBackup.setOnTouchListener(this);
+		mImageBackdown.setOnTouchListener(this);
+		mImageLegBend.setOnTouchListener(this);
+		mImageLegStraighten.setOnTouchListener(this);
+		mImageLegStretch.setOnTouchListener(this);
+		mImageLegShrink.setOnTouchListener(this);
+		mImageBackup.setOnClickListener(this);
+		mImageBackdown.setOnClickListener(this);
+		mImageLegBend.setOnClickListener(this);
+		mImageLegStraighten.setOnClickListener(this);
+		mImageLegStretch.setOnClickListener(this);
+		mImageLegShrink.setOnClickListener(this);
+		mImageZeroGravity.setOnClickListener(this);
+		mImageSleep.setOnClickListener(this);
+
+		mImageToLeft.setOnClickListener(this);
+		mImageToRight.setOnClickListener(this);
+		dismissPopwindow();
+	}
+
+	/**
+	 * close pop window
+	 */
+	private void dismissPopwindow() {
+
+		Message msg = new Message();
+		msg.what = MESSAGE_POPWINDOW_CLOSE;
+		mHandler.sendMessageDelayed(msg, POPWINDOW_DELAYTIME);
+		mPopwindow_clicked = false;
+	}
+
+	// The Handler that gets information back from the BluetoothService
+	private final Handler mHandler = new Handler() {
+		@Override
+		public void handleMessage(Message msg) {
+			switch (msg.what) {
+			case MESSAGE_STATE_CHANGE:
+				if (D)
+					Log.i(TAG, "MESSAGE_STATE_CHANGE: " + msg.arg1);
+				switch (msg.arg1) {
+				case BluetoothService.STATE_CONNECTED:
+
+					break;
+				case BluetoothService.STATE_CONNECTING:
+
+					break;
+				case BluetoothService.STATE_LISTEN:
+				case BluetoothService.STATE_NONE:
+					break;
+				}
+				break;
+			case MESSAGE_WRITE:
+				byte[] writeBuf = (byte[]) msg.obj;
+				// construct a string from the buffer
+				String writeMessage = new String(writeBuf);
+				mSendData = RokolUtil.bytesToHexStrings(writeBuf,
+						writeBuf.length);
+				break;
+			case MESSAGE_READ:
+				// ensureFeedBack(msg);
+
+				break;
+			case MESSAGE_DEVICE_NAME:
+				// save the connected device's address
+				String mConnectedDeviceName = msg.getData().getString(
+						DEVICE_NAME);
+				String mConnectedDeviceAddress = msg.getData().getString(
+						DEVICE_ADDRESS);
+				Toast.makeText(getApplicationContext(),
+						"Connected to " + mConnectedDeviceName,
+						Toast.LENGTH_SHORT).show();
+				sp.edit().putString("Address", mConnectedDeviceAddress)
+						.commit();
+				break;
+			case MESSAGE_TOAST:
+				Toast.makeText(getApplicationContext(),
+						msg.getData().getString(TOAST), Toast.LENGTH_SHORT)
+						.show();
+
+				break;
+			case MESSAGE_POPWINDOW_CLOSE:
+
+				if (popWindow.isShowing() && !mPopwindow_clicked)
+					popWindow.dismiss();
+				else
+					dismissPopwindow();
+				break;
+			}
+		}
+	};
+
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (D)
+			Log.d(TAG, "requestCode " + requestCode);
+		switch (requestCode) {
+		case REQUEST_CONNECT_DEVICE_SECURE:
+			// When DeviceListActivity returns with a device to connect
+			if (resultCode == Activity.RESULT_OK) {
+				connectDevice(data, true);
+
+			}
+			break;
+		case REQUEST_CONNECT_DEVICE_INSECURE:
+			// When DeviceListActivity returns with a device to connect
+			if (resultCode == Activity.RESULT_OK) {
+				// connectDevice(data, false);
+			}
+			break;
+		case REQUEST_ENABLE_BT:
+			// When the request to enable Bluetooth returns
+			if (resultCode == Activity.RESULT_OK) {
+				// Bluetooth is now enabled, so set up a chat session
+				setupService();
+			} else {
+				// User did not enable Bluetooth or an error occurred
+				Log.d(TAG, "BT not enabled");
+				Toast.makeText(this, R.string.bt_not_enabled_leaving,
+						Toast.LENGTH_SHORT).show();
+				finish();
+			}
+		}
+	}
+
+	/**
+	 * 
+	 * @param data
+	 * @param secure
+	 */
+	private void connectDevice(Intent data, boolean secure) {
+		// Get the device MAC address
+		String address = data.getExtras().getString(
+				DeviceListActivity.EXTRA_DEVICE_ADDRESS);
+		// Get the BluetoothDevice object
+		BluetoothDevice device = mBluetoothAdapter.getRemoteDevice(address);
+		// Attempt to connect to the device
+		Log.v(TAG, " Attempt to connect to address:" + address);
+		Intent intent = new Intent(BLUETOOTHRECEIVER_ACTION);
+		intent.putExtra("cmd", BluetoothService.REQUIRE_CONNECT);
+		intent.putExtra(DEVICE_ADDRESS, address);
+		sendBroadcast(intent);
+	}
+
+	/**
+	 * Sends a message.
+	 * 
+	 * @param message
+	 *            A string of text to send.
+	 */
+	protected void sendCommand(byte[] data) {
+		// Check that we're actually connected before trying anything
+		if (mBluetoothServiceState != BluetoothService.STATE_CONNECTED) {
+			Toast.makeText(this, R.string.not_connected, Toast.LENGTH_SHORT)
+					.show();
+			// TODO: startConectPairedDevice();
+			return;
+		}
+
+		// Check that there's actually something to send
+		if (data.length > 0) {
+			// Get the message bytes and tell the BluetoothService to write
+
+			// send=new byte[]{(byte) 0xf1,(byte) 0xaa,0x55};
+			// send=new DataFrame().getSendFrame(OPERATION.BACK_SPEED_2);
+			// send=new PowerOnOffDataFrame(false).getSendData();
+			// Toast.makeText(getApplicationContext(), new
+			// PowerOnOffDataFrame(true).getOperationCode(),
+			// Toast.LENGTH_LONG).show();
+			this.currentSendData = data;
+			// mBluetoothService.write(this.currentSendData);
+
+			// Reset out string buffer to zero and clear the edit text field
+			mOutStringBuffer.setLength(0);
+			mCommunicationFailed = false;
+			// ensureConnect();
+
+			Intent intent = new Intent();
+			intent.setAction(BLUETOOTHRECEIVER_ACTION);
+			intent.putExtra("cmd", BluetoothService.REQUIRE_WRITE);
+			intent.putExtra("command", this.currentSendData);
+			// intent.putExtra("value", value);
+			sendBroadcast(intent);// send Broadcast
+			// delay 500 Ms to avoid continuous press command button
+			/*
+			 * try { Thread.sleep(500); } catch (InterruptedException e) { //
+			 * TODO Auto-generated catch block e.printStackTrace(); }
+			 */
+		}
+	}
+
+	private void ensureConnect() {
+
+		new Handler().postDelayed(new Runnable() {
+
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				if (mCounter++ < 3) {
+					if (mReceiveData[0].equals("")) {
+						sendCommand(currentSendData);
+						ensureConnect();
+						return;
+					} else {
+						mCounter = 0;
+						return;
+					}
+				} else {
+					Toast.makeText(
+							getApplicationContext(),
+							getResources().getString(
+									R.string.communication_failed),
+							Toast.LENGTH_LONG).show();
+					mCounter = 0;
+				}
+			}
+		}, TIMEOUT);
+	}
+
+	// 20140611 debug receive
+	private void ensureFeedBack(byte[] readBuf, int length) {
+		// byte[] readBuf = (byte[]) msg.obj;
+		// construct a string from the valid bytes in the buffer
+		String readMessage = new String(readBuf, 0, length);
+		// String senddata = new String(currentSendData, 0,
+		// currentSendData.length);
+		mReceiveData = RokolUtil.bytesToHexStrings(readBuf, length);
+		if (mReceiveData[0].toUpperCase().equals("F1")) {
+			// TODO: handle read state
+			return;
+		}
+		// send from hand controller
+		if (mReceiveData[0].toUpperCase().equals("F5")) {
+			checkReceiveData(readBuf);
+		}
+		// send from BlueTooth
+		if (mReceiveData[0].toUpperCase().equals("F2")) {
+
+			if (mCommunicationFailed) {
+				if (D)
+					Log.v(TAG, "not available device   " + mReceiveData[0]
+							+ !mReceiveData[0].toUpperCase().equals("F1")
+							+ mCommunicationFailed);
+				return;
+			}
+
+			//
+			if (mCounter < 5) {
+				// if(mSendData==null)
+				// return;
+				/*
+				 * if (mSendData[2].toUpperCase(Locale.ENGLISH) == "AA") {// if
+				 * is // read // state // command
+				 * sendCommand(this.currentSendData); mCounter++; return; }
+				 */
+				if (!(RokolUtil.compareStingArray(mSendData, mReceiveData))) {
+					// the
+					// send
+					// data
+					// and
+					// feedback
+					// data
+					// is
+					// not
+					// equal.
+					try {
+						Thread.sleep(50);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					sendCommand(this.currentSendData);
+					mCounter++;
+					if (D)
+						Log.d(TAG,
+								"i="
+										+ mCounter
+										+ (RokolUtil.compareStingArray(
+												mSendData, mReceiveData)));
+					return;
+				} else {// get feedback right
+					mCounter = 0;
+					checkReceiveData(readBuf);
+
+				}
+
+			} else {// send times >3 ,communication failed
+
+				Toast.makeText(
+						getApplicationContext(),
+						getResources().getString(R.string.communication_failed),
+						Toast.LENGTH_LONG).show();
+
+				mCounter = 0;
+				mReceiveData = new String[] { "" };
+				mCommunicationFailed = true;
+			}
+		}
+	}
+
+	/**
+	 * check the massage state
+	 */
+	private void checkReceiveData(byte[] readBuf) {
+		Log.d(TAG, "checkReceiveData");
+
+		if (readBuf[1] == DataFrame.mPower_ON) {
+
+			mPower = true;
+			changePowerState();
+		}
+		if (readBuf[1] == DataFrame.mPower_OFF) {
+			mPower = false;
+			setupView();
+			changePowerState();
+			switch (mCURRENT_FRAGMENT_ID) {
+			case MAINFRAGMENTID:
+				showMainFragment();
+				break;
+			case AUTOFRAGMENTID:
+				clickAutoLayout();
+				break;
+			case MANUALFRAGMENTID:
+				clickManualLayout();
+				break;
+			case HANDFRAGMENTID:
+				clickHolographicHandLayout();
+				break;
+			case OTHERFRAGMENTID:
+				clickOtherLayout();
+				break;
+			case SETTINGSFRAGMENTID:
+				showSettings();
+				break;
+			case SERVICEFRAGMENTID:
+				showServices();
+				break;
+			}
+
+		}
+		if (readBuf[1] == DataFrame.mStop)
+			// mPower = false;
+
+			// the last line
+			mReceiveData = new String[] { "" };
+	}
+
+	private void resetUI() {
+
+	}
+
+	private void changePowerState() {
+
+		/*
+		 * Intent it = new Intent("com.kangtai.MassageChair.StopTimerService");
+		 * it.putExtra("start", mPower); sendBroadcast(it);
+		 */
+		menuPower.setSelected(mPower);
+		Log.d(TAG, "changePowerState");
+
+	}
+
+	@Override
+	public boolean onTouch(View v, MotionEvent event) {
+
+		switch (v.getId()) {
+		case R.id.img_back_up:
+
+			clickBackUp(event);
+			break;
+		case R.id.img_back_down:
+			clickBackDown(event);
+			break;
+		case R.id.img_leg_straighten:
+			clickLegStraighten(event);
+			break;
+		case R.id.img_leg_bend:
+			clickLegBend(event);
+			break;
+		case R.id.img_leg_shrink:
+			clickLegShrink(event);
+			break;
+		case R.id.img_leg_stretch:
+			clickLegStretch(event);
+			break;
+
+		default:
+			break;
+		}
+		mPopwindow_clicked = true;
+		return false;
+	}
+
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+		if (keyCode == KeyEvent.KEYCODE_BACK
+				&& event.getAction() == KeyEvent.ACTION_DOWN) {
+			if ((System.currentTimeMillis() - exitTime) > 2000) {
+				Toast.makeText(getApplicationContext(),
+						getResources().getString(R.string.back_toast),
+						Toast.LENGTH_SHORT).show();
+				exitTime = System.currentTimeMillis();
+			} else {
+				this.finish();
+
+			}
+			return true;
+		}
+		return super.onKeyDown(keyCode, event);
+	}
+
+	/**
+	 * bluetoothReciver listen to the feedback from bluetoothservice
+	 * 
+	 * @author
+	 * 
+	 */
+	public class BluetoothReceiver extends BroadcastReceiver {
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			// TODO Auto-generated method stub
+			if (intent.getAction().equals("android.intent.action.lxx")) {
+				Log.v(TAG, "receive message from service  ");
+				Bundle bundle = intent.getExtras();
+				int cmd = bundle.getInt(BluetoothService.BUNDLE_TYPE);
+				Log.v(TAG, "receive message from service  " + cmd);
+				switch (cmd) {
+				case MESSAGE_STATE_CHANGE:
+
+					mBluetoothServiceState = bundle.getInt("state");
+					Log.v(TAG, "receive mBluetoothServiceState from service  "
+							+ mBluetoothServiceState);
+					if (mSettingsFragment != null) {
+						mSettingsFragment
+								.setBluetoothState(mBluetoothServiceState);
+					}
+					break;
+				case MESSAGE_TOAST:
+					String message = bundle.getString(TOAST);
+
+					Toast.makeText(getApplicationContext(), message,
+							Toast.LENGTH_SHORT).show();
+					break;
+				case MESSAGE_DEVICE_NAME:
+					// save the connected device's address
+					String connectedDeviceName = bundle.getString(DEVICE_NAME);
+					String connectedDeviceAddress = bundle
+							.getString(DEVICE_ADDRESS);
+					Toast.makeText(getApplicationContext(),
+							"Connected to " + connectedDeviceName,
+							Toast.LENGTH_SHORT).show();
+					sp.edit().putString("Address", connectedDeviceAddress)
+							.commit();
+					sp.edit().putString("DeviceName", connectedDeviceName)
+							.commit();
+					break;
+				case MESSAGE_WRITE:
+					byte[] writeBuf = (byte[]) bundle.getByteArray("buffer");
+					// construct a string from the buffer
+					// String writeMessage = new String(writeBuf);
+					mSendData = RokolUtil.bytesToHexStrings(writeBuf,
+							writeBuf.length);
+					break;
+				case MESSAGE_READ:
+					byte[] buffer = bundle.getByteArray("buffer");
+					int length = bundle.getInt("length");
+					Log.d(TAG,
+							"read: length="
+									+ length
+									+ "   "
+									+ RokolUtil
+											.bytesToHexString(buffer, length));
+					// TODO: mark here for power
+					ensureFeedBack(buffer, length);
+					break;
+				case MESSAGE_REMAIN_TIME:
+					int minutes = bundle.getInt("RemainTime");
+					if (D)
+						Log.d(TAG, "remain minutes:" + minutes);
+					Toast.makeText(getApplicationContext(),
+							"remain minutes:" + minutes, Toast.LENGTH_LONG)
+							.show();
+
+					break;
+				}
+
+			}
+		}
+	}
+}

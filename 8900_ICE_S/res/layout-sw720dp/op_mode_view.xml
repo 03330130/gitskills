@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/img_bottom_menu_background"
+    android:orientation="vertical" >
+   
+     
+    <TextView 
+        android:id="@+id/tv_mode_rounie"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/img_bottom_menu_background"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:drawableLeft="@drawable/op_img_part_all_normal"
+        android:textColor="#000"
+        android:clickable="true"
+        android:textSize="18sp"
+        android:text="@string/all"
+        />
+    <ImageView 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/op_divider"
+        />
+    <TextView 
+        android:id="@+id/tv_mode_kouji"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/img_bottom_menu_background"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:clickable="true"
+        android:textColor="#000"
+        android:drawableLeft="@drawable/op_img_part_part_normal"
+        android:textSize="18sp"
+        android:text="@string/part"
+        />
+    <ImageView 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/op_divider"
+        />
+    <TextView 
+        android:id="@+id/tv_mode_paida"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/img_bottom_menu_background"
+        android:layout_weight="1"
+        android:drawableLeft="@drawable/op_img_part_focus_normal"
+        android:gravity="center"
+        android:textColor="#000"
+        android:clickable="true"
+        android:textSize="18sp"
+        android:text="@string/fixed_point"
+        />
+    <ImageView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/op_divider"
+        />
+    
+    
+     <!-- 3d  button -->
+   
+    <FrameLayout 
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+		     <ImageView
+		         android:id="@+id/img_part_up"
+		         android:layout_width="match_parent"
+		         android:layout_height="match_parent"
+		         android:src="@drawable/img_fix_part_bk" />
+
+		    <TextView 
+		        android:id="@+id/tv_mode_roukou"
+		        android:layout_width="match_parent"
+		        android:layout_height="32dp"
+		        android:drawableLeft="@drawable/op_img_part_up_normal"
+		        android:gravity="center"
+		        android:textColor="#000"
+		        android:textSize="18sp"
+		        android:text="@string/up"
+		        />
+    </FrameLayout>
+    <ImageView 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/op_divider"
+        />
+    
+    
+       
+		    
+		     <CheckBox 
+		         android:id="@+id/ckb_down"
+		         android:layout_width="wrap_content"
+		         android:layout_height="wrap_content"
+		         android:layout_weight="1"
+		         android:textSize="24sp"
+		         android:button="@drawable/checkabox_bk"
+		         android:text="@string/down"
+		         />
+    
+   
+    
+
+
+</LinearLayout>

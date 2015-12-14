@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/splash_background" >
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbarAlwaysDrawVerticalTrack="true" >
+
+        <RadioGroup
+            android:id="@+id/Layout_auto_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|center"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:orientation="vertical"
+            android:textAlignment="center" >
+
+            <RadioButton
+                android:id="@+id/rbtn_zyys"
+                style="@style/main_tab_bottom"
+                android:background="@drawable/auto_zyys_background"
+                android:text="@string/zyys" />
+
+            <RadioButton
+                android:id="@+id/rbtn_sthh"
+                style="@style/main_tab_bottom"
+                android:background="@drawable/auto_sthh_background"
+                android:text="@string/sthh" />
+
+            <RadioButton
+                android:id="@+id/rbtn_jgsz"
+                style="@style/main_tab_bottom"
+                android:background="@drawable/auto_jgsz_background"
+                android:text="@string/jgsz" />
+
+            <RadioButton
+                android:id="@+id/rbtn_qnty"
+                style="@style/main_tab_bottom"
+                android:background="@drawable/auto_qnty_background"
+                android:text="@string/qnty" />
+
+            <RadioButton
+                android:id="@+id/rbtn_xyfs"
+                style="@style/main_tab_bottom"
+                android:background="@drawable/auto_xyfs_background"
+                android:text="@string/xyfs"
+                android:visibility="gone" />
+            <!-- for 7905 hide -->
+
+            <RadioButton
+                android:id="@+id/rbtn_xsbj"
+                style="@style/main_tab_bottom"
+                android:background="@drawable/auto_xsbj_background"
+                android:text="@string/xsbj"
+                android:visibility="gone" />
+            <!-- for 7905 hide -->
+
+            <RadioButton
+                android:id="@+id/rbtn_ylam"
+                style="@style/main_tab_bottom"
+                android:background="@drawable/auto_ylam_background"
+                android:text="@string/ylam"
+                android:visibility="gone" />
+            <!-- for 7905 hide -->
+
+            <RadioButton
+                android:id="@+id/rbtn_blsbz"
+                style="@style/main_tab_bottom"
+                android:background="@drawable/auto_blsbz_background"
+                android:text="@string/blsbz" />
+
+            <RadioButton
+                android:id="@+id/rbtn_gwdr"
+                style="@style/main_tab_bottom"
+                android:background="@drawable/auto_gwdr_background"
+                android:text="@string/gwdr" />
+
+            <RadioButton
+                android:id="@+id/rbtn_yjkb"
+                style="@style/main_tab_bottom"
+                android:background="@drawable/auto_yjkb_background"
+                android:text="@string/yjkb" />
+
+            <RadioButton
+                android:id="@+id/rbtn_ydyms"
+                style="@style/main_tab_bottom"
+                android:background="@drawable/auto_ydyms_background"
+                android:text="@string/ydyms" />
+
+            <RadioButton
+                android:id="@+id/rbtn_ysbj"
+                style="@style/main_tab_bottom"
+                android:background="@drawable/auto_ysbj_background"
+                android:text="@string/ysbj" />
+        </RadioGroup>
+    </ScrollView>
+
+</LinearLayout>

@@ -1,0 +1,305 @@
+/**
+ * 
+ */
+package com.kangtai.MassageChair;
+
+import com.kangtai.MassageChair.Protocal.DataFrame;
+import com.kangtai.MassageChair.Protocal.DataFrame.OPERATION;
+import com.kangtai.MassageChair.Protocal.RokolUtil;
+import com.kangtai.MassageChair.WLAN.WlanDeviceActivity;
+
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+/**
+ * @author Administrator
+ * 
+ */
+public class FragmentSettings extends Fragment implements OnClickListener,
+		OnCheckedChangeListener {
+	private static final int REQUEST_CONNECT_DEVICE_SECURE = 1;
+	private TextView mTextLanguage, mTextTimer,mTextBluetooth,mTextDevice;
+	private CheckBox mCheckBoxSound, mCheckBoxLight;
+	private ImageView mImageLanguage, mImageTimer, mImageBluetooth;
+	private RokolApllication mApp;
+	private Context mContext;
+	// private int lang;
+
+	private CheckBox mCheckBoxWLAN;
+
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		View view = LayoutInflater.from(getActivity()).inflate(
+				R.layout.settings, null);
+
+		mApp = (RokolApllication) getActivity().getApplication();
+
+		mCheckBoxSound = (CheckBox) view.findViewById(R.id.cbox_sound);
+
+		mCheckBoxLight = (CheckBox) view.findViewById(R.id.cbox_light);
+
+		mTextLanguage = (TextView) view.findViewById(R.id.tv_language);
+
+		mTextLanguage.setText(mApp.LanguageToString());
+
+		mTextTimer = (TextView) view.findViewById(R.id.tv_timer);
+		mTextTimer.setText(mApp.TimerToString());
+
+		mTextBluetooth=(TextView) view.findViewById(R.id.tv_bluetooth);
+		mTextDevice=(TextView) view.findViewById(R.id.tv_devicename);
+		
+		mImageTimer = (ImageView) view.findViewById(R.id.img_timer);
+		mImageTimer.setOnClickListener(this);
+
+		mImageLanguage = (ImageView) view.findViewById(R.id.img_language);
+		mImageLanguage.setOnClickListener(this);
+		// setLanguage();
+		mCheckBoxSound.setChecked(mApp.isSoundSwitchOn());
+		if (mApp.isSoundSwitchOn()) {
+			RokolUtil.setTextShadow(mContext, mCheckBoxSound);
+		} else {
+			RokolUtil.setTextNoShadow(mContext, mCheckBoxSound);
+		}
+		mCheckBoxSound.setOnCheckedChangeListener(this);
+		mCheckBoxSound.setOnClickListener(this);
+
+		mCheckBoxLight.setOnCheckedChangeListener(this);
+		mCheckBoxLight.setOnClickListener(this);
+		RokolUtil.setTextShadow(mContext, mCheckBoxLight);
+
+		mImageBluetooth = (ImageView) view.findViewById(R.id.img_bluetooth);
+		setBluetoothState(MainActivity.mBluetoothServiceState);
+		mImageBluetooth.setOnClickListener(this);
+
+		mCheckBoxWLAN = (CheckBox) view.findViewById(R.id.cbox_wlan);
+		mCheckBoxWLAN.setOnClickListener(this);
+		return view;
+	}
+
+	/*
+	 * private void setLanguage(){ lang=mApp.getCurrentLanguage(); int resId=0;
+	 * switch(lang){ case 0: resId=R.drawable.settings_language_chinese_normal;
+	 * break; case 1: resId=R.drawable.settings_language_english_normal; break;
+	 * case 2: resId=R.drawable.settings_language_korean_normal; break; }
+	 * mImageLanguage
+	 * .setImageBitmap(BitmapFactory.decodeResource(getResources(), resId)); }
+	 */
+	@Override
+	public void onAttach(Activity activity) {
+		super.onAttach(activity);
+		this.mContext = (MainActivity) activity;
+
+	}
+
+	private void startConectPairedDevice() {
+		// Launch the DeviceListActivity to see devices
+		Intent serverIntent = new Intent(getActivity(),
+				DeviceListActivity.class);
+		getActivity().startActivityForResult(serverIntent,
+				REQUEST_CONNECT_DEVICE_SECURE);
+	}
+
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		switch (v.getId()) {
+		case R.id.img_language:
+			// clickLanguage();
+			ShowLanguageDialog();
+			break;
+		case R.id.img_timer:
+			ShowTimerDialog();
+			break;
+		case R.id.img_bluetooth:
+			startConectPairedDevice();
+			break;
+		case R.id.cbox_wlan:
+			if (RokolUtil.checWlankNetworkConnection(mContext)) {
+				Intent it = new Intent(getActivity(), WlanDeviceActivity.class);
+				getActivity().startActivity(it);
+			} else {
+				Toast.makeText(mContext,
+						getResources().getString(R.string.wlan_not_connected),
+						Toast.LENGTH_LONG).show();
+			}
+			break;
+		}
+		// touch sound
+		RokolUtil.performTouchSound(mContext);
+	}
+
+	/*
+	 * private void clickLanguage() { lang = (lang + 1) % 3; int resId = 0;
+	 * switch (lang) { case 0: resId =
+	 * R.drawable.settings_language_chinese_activated; break; case 1: resId =
+	 * R.drawable.settings_language_english_activated; break; case 2: resId =
+	 * R.drawable.settings_language_korean_activated; break; }
+	 * mImageLanguage.setImageBitmap(BitmapFactory.decodeResource(
+	 * getResources(), resId)); setLanguage(lang); }
+	 */
+
+	private void ShowTimerDialog() {
+		final int timer = mApp.getCurrentTimer();
+		new AlertDialog.Builder(mContext)
+		// .setTitle(mContext.getResources().getString(R.string.language))
+		// .setIcon(android.R.drawable.ic_dialog_info)
+				.setSingleChoiceItems(
+						new String[] {
+								mContext.getResources().getString(
+										R.string.timer_0),
+								mContext.getResources().getString(
+										R.string.timer_1),
+								mContext.getResources().getString(
+										R.string.timer_2) }, timer,
+						new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface dialog,
+									int which) {
+								if (timer != which) {
+									setTimer(which);
+
+								}
+								dialog.dismiss();
+							}
+						}).show();
+
+	}
+
+	private void setTimer(int choice) {
+		/*
+		 * if (!MainActivity.mPower) { // TODO translation
+		 * Toast.makeText(mContext, "please turn on the massage chair firstly!",
+		 * Toast.LENGTH_SHORT).show(); return; }
+		 */
+		mApp.setCurrentTimer(choice);
+		mTextTimer.setText(mApp.TimerToString());
+		// send broadcast to start stop timer
+		/*
+		 * Intent it = new Intent("com.kangtai.MassageChair.StopTimerService");
+		 * it.putExtra("time", choice); it.putExtra("start", true);
+		 * mContext.sendBroadcast(it);
+		 */
+		switch(choice){
+		case 0:
+			((MainActivity) FragmentSettings.this.mContext)
+			 .sendCommand(DataFrame.getSendFrame(OPERATION.TIMER_10));
+			break;
+		case 1:
+			((MainActivity) FragmentSettings.this.mContext)
+			 .sendCommand(DataFrame.getSendFrame(OPERATION.TIMER_20));
+			break;
+		case 2:
+			((MainActivity) FragmentSettings.this.mContext)
+			 .sendCommand(DataFrame.getSendFrame(OPERATION.TIMER_30));
+			break;
+			
+		}
+		Log.d("", "set timer !!" + choice);
+	}
+
+	/**
+	 * select language
+	 */
+	private void ShowLanguageDialog() {
+		final int language = mApp.getCurrentLanguage();
+		new AlertDialog.Builder(mContext)
+		// .setTitle(mContext.getResources().getString(R.string.language))
+		// .setIcon(android.R.drawable.ic_dialog_info)
+				.setSingleChoiceItems(
+						new String[] {
+								mContext.getResources().getString(
+										R.string.chinese),
+								mContext.getResources().getString(
+										R.string.english),
+								mContext.getResources().getString(
+										R.string.korean) }, language,
+						new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface dialog,
+									int which) {
+								if (language != which)
+									setLanguage(which);
+								dialog.dismiss();
+							}
+						}).show();
+	}
+
+	/**
+	 * save language selected
+	 * 
+	 * @param choice
+	 */
+	private void setLanguage(int choice) {
+
+		Intent intent = new Intent("com.kangtai.rokol.language");
+		mApp.setCurrentLanguage(choice);
+
+		mContext.sendBroadcast(intent);
+
+		// Toast.makeText(mContext, "---", Toast.LENGTH_SHORT).show();
+	}
+
+	@Override
+	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+		// TODO Auto-generated method stub
+		switch (buttonView.getId()) {
+		case R.id.cbox_sound:
+
+			if (isChecked) {
+				mApp.setSoundSwitch(true);
+				RokolUtil.setTextShadow(mContext, mCheckBoxSound);
+			} else {
+				mApp.setSoundSwitch(false);
+				RokolUtil.setTextNoShadow(mContext, mCheckBoxSound);
+			}
+			break;
+
+		case R.id.cbox_light:
+			if (isChecked) {
+				/*
+				 * ((MainActivity) FragmentSettings.this.mContext)
+				 * .sendCommand(DataFrame.getSendFrame(OPERATION.));
+				 */
+				RokolUtil.setTextShadow(mContext, mCheckBoxLight);
+			} else {
+				/*
+				 * ((MainActivity) FragmentSettings.this.mContext)
+				 * .sendCommand(DataFrame.getSendFrame(OPERATION.));
+				 */
+				RokolUtil.setTextNoShadow(mContext, mCheckBoxLight);
+			}
+			break;
+		}
+
+	}
+
+	// set bluetooth state
+	public void setBluetoothState(int state) {
+		if (mImageBluetooth != null) {
+			if (state == BluetoothService.STATE_CONNECTED) {
+				mImageBluetooth.setSelected(true);
+				RokolUtil.setTextShadow(mContext, mTextBluetooth);
+				//mTextDevice.setText(mApp.getConnectedDeviceName());
+			} else {
+				mImageBluetooth.setSelected(false);
+				RokolUtil.setTextNoShadow(mContext, mTextBluetooth);
+			}
+		}
+	}
+
+}

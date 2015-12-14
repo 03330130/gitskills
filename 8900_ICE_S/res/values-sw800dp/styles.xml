@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="MainTheme" parent="android:Theme.Holo">
+        <item name="android:textColor">@color/auto_text_color</item>
+        <!-- set option menu item background 
+        <item name="android:itemBackground">@drawable/tab_nav_background</item>-->
+
+        <!-- set action bar height -->
+        <item name="android:actionBarSize">80dp</item>
+        <!-- <item name="android:windowContentOverlay">@null</item> -->
+        <!-- 禁用系统的触摸声音 -->
+        <item name="android:soundEffectsEnabled">false</item>
+        <item name="android:actionBarStyle">@style/MainActionBarTheme</item>
+    </style>
+
+</resources>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/Mn_right_view"
+    android:orientation="vertical" >
+  
+
+    <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="-10dp"
+                android:layout_gravity="center"
+                android:textSize="@dimen/textsize_Large"
+                android:text="@string/sleep"/>
+    <ImageView 
+        android:id="@+id/img_sleep_position"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="-10dp"
+        android:scaleType="matrix"
+        android:src="@drawable/sleep_background"
+        />
+
+      <ImageView
+        android:id="@+id/img_back_positon"
+        android:scaleType="matrix"
+        android:layout_marginBottom="-10dp"
+	    android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+	    android:focusable="true"
+	    android:src="@drawable/position_back_up_background"/>
+      <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="-10dp"
+                android:layout_gravity="center"
+                android:textSize="@dimen/textsize_Large"
+                android:text="@string/overall"/>
+      
+       <ImageView
+        android:id="@+id/img_back_down"
+        android:scaleType="matrix"
+	    android:layout_width="wrap_content"
+	    android:layout_marginBottom="-10dp"
+        android:layout_height="wrap_content"
+	    android:focusable="true"
+	    android:src="@drawable/position_back_down_background"/>
+
+      <ImageView
+        android:id="@+id/img_foot_position"
+        android:scaleType="matrix"
+	   android:layout_width="wrap_content"
+	   android:layout_marginBottom="-10dp"
+        android:layout_height="wrap_content"
+	    android:src="@drawable/position_leg_straighten_background"/>
+      <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="-10dp"
+                android:layout_gravity="center"
+                android:textSize="@dimen/textsize_Large"
+                android:text="@string/legs"/>
+      
+      <ImageView
+        android:id="@+id/img_foot_down"
+        android:scaleType="matrix"
+          android:layout_marginBottom="-10dp"
+	   android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+	    android:src="@drawable/position_leg_bend_background"/>
+
+        <ImageView
+        android:id="@+id/img_foot_stretch"
+        android:scaleType="matrix"
+          android:layout_marginBottom="-10dp"
+	    android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+	    android:src="@drawable/position_leg_shrink_background"/>
+        <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="-10dp"
+               android:layout_gravity="center"
+                android:textSize="@dimen/textsize_Large"
+                android:text="@string/stretch"/>
+          <ImageView
+        android:id="@+id/img_foot_shen"
+          android:layout_marginBottom="-10dp"
+        android:scaleType="matrix"
+	    android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+	    android:src="@drawable/position_leg_stretch_background"/>
+
+    <ImageView
+                android:id="@+id/img_zero_gravity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                  android:layout_marginBottom="-10dp"
+                android:clickable="true"
+                android:scaleType="matrix"
+                android:src="@drawable/zero_gravity_background" />
+   <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                
+                android:layout_gravity="center"
+                android:textSize="@dimen/textsize_Large"
+                android:text="@string/zero"/>
+     
+  </LinearLayout>
+   
+

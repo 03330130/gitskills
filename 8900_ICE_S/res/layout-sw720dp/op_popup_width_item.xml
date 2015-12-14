@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:orientation="vertical" >
+    <TextView 
+        android:id="@+id/tv_pop_3d_item_up"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:drawableLeft="@drawable/bk_part_up"
+        android:text="@string/threeDstrengthen"
+        android:background="@drawable/bk_color_blue_pressed"
+        android:textColor="#000"
+        android:textSize="15sp"
+        />
+    <ImageView 
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#000"
+        />
+     <TextView 
+        android:id="@+id/tv_pop_3d_item_down"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:drawableLeft="@drawable/bk_part_down"
+        android:text="@string/threeDweaken"
+        android:background="@drawable/bk_color_blue_pressed"
+        android:textColor="#000"
+        android:textSize="15sp"
+        />
+    
+
+</LinearLayout>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android" >
+
+
+    <item android:drawable="@drawable/leg_bend_activated" android:state_selected="true"/>
+    <item android:drawable="@drawable/leg_bend_normal" android:state_selected="false"/>
+
+
+</selector>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" 
+    android:background="@android:color/background_dark" >
+
+    <HorizontalScrollView
+        android:id="@+id/positionview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_margin="10dp"
+        android:scrollbars="none" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:id="@+id/img_back_up"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="1dp"
+                android:clickable="true"
+                android:scaleType="centerInside"
+                android:src="@drawable/position_back_up_background" />
+
+            <ImageView
+                android:id="@+id/img_back_down"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="1dp"
+                android:clickable="true"
+                android:scaleType="centerInside"
+                android:src="@drawable/position_back_down_background" />
+
+
+                <ImageView
+                    android:id="@+id/img_zero_gravity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:layout_margin="1dp" 
+                    android:scaleType="centerInside"
+                    android:src="@drawable/zero_gravity_background" />
+
+
+            <ImageView
+                android:id="@+id/img_leg_straighten"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="1dp"
+                android:clickable="true"
+                android:scaleType="centerInside"
+                android:src="@drawable/position_leg_straighten_background" />
+
+            <ImageView
+                android:id="@+id/img_leg_bend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="1dp"
+                android:clickable="true"
+                android:scaleType="centerInside"
+                android:src="@drawable/position_leg_bend_background" />
+
+            <ImageView
+                android:id="@+id/img_sleep"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="1dp"
+                android:clickable="true"
+                android:scaleType="centerInside"
+                android:src="@drawable/sleep_background"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/img_leg_shrink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="1dp"
+                android:clickable="true"
+                android:scaleType="centerInside"
+                android:src="@drawable/position_leg_shrink_background"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/img_leg_stretch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="1dp"
+                android:clickable="true"
+                android:scaleType="centerInside"
+                android:src="@drawable/position_leg_stretch_background"
+                android:visibility="gone" />
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <ImageView
+        android:id="@+id/imgToLeft"
+        android:layout_width="20dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:scaleType="fitXY"
+        android:src="@drawable/arrow_left" />
+
+    <ImageView
+        android:id="@+id/imgToRight"
+        android:layout_width="20dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:scaleType="fitXY"
+        android:src="@drawable/arrow_right" />
+
+</RelativeLayout>

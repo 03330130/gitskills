@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/hd_splash_bg" >
+      <RelativeLayout
+        android:id="@+id/layout_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true" >
+
+        <ImageView
+            android:id="@+id/iv_top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/main_top" />
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/iv_top"
+            android:layout_marginBottom="20dp"
+            android:src="@drawable/main_logo" /> 
+    </RelativeLayout> 
+
+    <RelativeLayout
+        android:id="@+id/layout_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" >
+
+        <ImageView
+            android:id="@+id/iv_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/main_bottom" />
+
+        <Button
+            android:id="@+id/btn_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/iv_bottom"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/main_start_button_background"
+            android:text="@string/start"
+            android:textSize="@dimen/fudong_text_size"
+            android:textColor="#238E23"
+            android:visibility="invisible" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/layout_chairs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layout_top"
+        android:gravity="center_horizontal"
+        >
+
+        <FrameLayout
+            android:id="@+id/layout_chair"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/main_chair_bg" >
+        </FrameLayout>
+
+        <ImageSwitcher
+            android:id="@+id/is_chairs"
+            android:visibility="invisible" 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" >
+        </ImageSwitcher>
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/layout_chair"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:gravity="center"
+            android:text="@string/slogan"
+            android:textSize="32sp"
+            android:textColor="@color/white"  />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="168dp"
+        android:layout_above="@id/layout_bottom"
+        android:layout_below="@id/layout_chairs"
+        android:layout_marginTop="-10dp" >
+
+        <ImageView
+            android:id="@+id/iv_line"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="center"
+            android:src="@drawable/main_line" />
+
+        <Button
+            android:id="@+id/btn_service_center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/iv_line"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/main_service"
+            android:text="@string/support"
+            android:visibility="gone"
+            android:textSize="@dimen/fudong_text_size" />
+
+        <Button
+            android:id="@+id/btn_brand_story"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/main_brandstory"
+            android:text="@string/story"
+             android:visibility="gone"
+            android:textSize="@dimen/fudong_text_size" />
+
+        <Button
+            android:id="@+id/btn_health_care"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@id/iv_line"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="10dp"
+             android:visibility="gone"
+            android:background="@drawable/main_healthecare"
+            android:text="@string/experience"
+            android:textSize="@dimen/fudong_text_size" />
+    </RelativeLayout>
+
+</RelativeLayout>

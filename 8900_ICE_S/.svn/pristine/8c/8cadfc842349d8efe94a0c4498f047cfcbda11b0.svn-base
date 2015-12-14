@@ -1,0 +1,105 @@
+/**
+ * 
+ */
+package com.kangtai.MassageChair;
+
+import com.kangtai.MassageChair.Protocal.RokolUtil;
+import com.kangtai.MassageChair.Updater.UpdateManager;
+
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager.NameNotFoundException;
+import android.os.Bundle;
+import android.os.Handler;
+import android.support.v4.app.Fragment;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+/**
+ * @author Administrator
+ * 
+ */
+public class FragmentServices extends Fragment implements OnClickListener {
+	
+	private Context mContext;
+	private ImageView mImageUpgrade;
+	private ImageView mImageHelp;
+	private TextView mVersion;
+	private UpdateManager mUpdateManager;
+	
+
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		View view = LayoutInflater.from(getActivity()).inflate(
+				R.layout.services, null);
+		mUpdateManager=new UpdateManager(mContext);
+		mImageUpgrade = (ImageView) view.findViewById(R.id.img_upgrade);
+		mImageHelp= (ImageView) view.findViewById(R.id.img_help);
+		mVersion=(TextView)view.findViewById(R.id.tv_version);
+		
+		mVersion.setText(getResources().getString(R.string.current_version)+mUpdateManager.getVerName());
+		mImageHelp.setOnClickListener(this);
+		mImageUpgrade.setOnClickListener(this);
+		
+		
+		
+		return view;
+	}
+	@Override
+	public void onAttach(Activity activity) {
+		super.onAttach(activity);
+		this.mContext = (MainActivity) activity;
+		
+		
+	}
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		switch (v.getId()) {
+		case R.id.img_upgrade:
+			//Intent it = new Intent(getActivity(), Update.class);
+			//startActivity(it);
+			
+			if(!RokolUtil.checkNetWorkStatus(mContext)){
+				Toast.makeText(mContext, "network is not available", Toast.LENGTH_LONG).show();
+				return;
+				}
+					try {
+						mUpdateManager.checkToUpdate();
+						Log.d( "start update","----------------- click update check");
+					} catch (NameNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+						Log.d( "Fragment start update err",e.toString());
+					}
+					// TODO Auto-generated method stub
+
+
+		
+			break;
+		default:
+			break;
+		}
+		//handle touch sound
+		RokolUtil.performTouchSound(mContext);
+	}
+
+	/**
+	 * ���°�ť�ļ����¼�
+	 * 
+	 * @param view
+	 
+	public void updateVersion(View view) {
+		updateService = new UpdateService(UPDATEVERSIONXMLPATH, getActivity());
+		updateService.checkUpdate();
+	}
+*/
+}

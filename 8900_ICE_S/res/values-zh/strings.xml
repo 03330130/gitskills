@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <string name="app_name">Presidential</string>
+    <string name="back_toast">再按一次退出程序</string>
+      <!-- first page -->
+    <string name="slogan">椅生健康                    坐享荣康\nRK-8900</string>
+    <string name="support">服务\n支持</string>
+    <string name="story">关于\n荣康</string>
+    <string name="experience">体验\n中心</string>
+    <string name="start">立即体验</string>
+    <!-- LeftView -->
+    <string name="main_page">返回首页</string>
+
+    <string name="connected_to">已连接到 </string>
+    <string name="could_not_connect">无法连接到设备!</string>
+    <string name="connection_lost">连接已断开!</string>
+    <string name="insecure_connect">Connect a device - Insecure</string>
+    <string name="discoverable">Make discoverable</string>
+     <!-- positon adjust -->
+    <string name="sleep">睡眠</string>
+    <string name="overall">全身</string>
+    <string name="stretch">拉伸</string>
+    <string name="legs">腿部</string>
+    <string name="zero">零重力</string>
+    <!-- speed pressure 5 dang -->
+    <string name="levlel1"> 1 档</string>
+    <string name="levlel2"> 2 档</string>
+    <string name="levlel3"> 3 档</string>
+    <string name="levlel4"> 4 档</string>
+    <string name="levlel5"> 5 档</string>
+    <!-- state -->
+    <string name="speed_state">速  度:</string>
+    <string name="width_state">宽 度:</string>
+    <string name="strength_state">强 度:</string>
+    <string name="strength_low">弱</string>
+    <string name="strength_middle">中</string>
+    <string name="strength_high">强</string>
+    <string name="state_timer">计时:</string>
+    <string name="state_mode">模式：</string>
+    <string name="auto_shoulder">正在进行自动肩高检测！</string>
+    <string name="manual_shoulder">手动肩高调整</string>
+    <string name="increase_c">温度+</string>
+    <string name="decrease_c">温度-</string>
+    <string name="temp_display">加热功能未开启</string>
+    <string name="preheating">机芯预热已开启</string>
+    <string name="tempUp">温度+</string>
+    <string name="tempDown">温度+-</string>
+    <!-- Bluetooth -->
+    <string name="send">发送</string>
+    <string name="communication_failed">通讯失败！</string>
+    <string name="not_connected">没有连接设备</string>
+    <string name="bt_not_enabled_leaving">没有开启蓝牙,退出应用</string>
+    <string name="title_connecting">连接...</string>
+    <string name="title_not_connected">连接失败</string>
+    <string name="title_connected_to">连接到<xliff:g id="device_name">%1$s</xliff:g></string>
+    <string name="not_available">你的设备不支持蓝牙,应用即将关闭</string>
+    <!-- DeviceListActivity -->
+    <string name="scanning">正在搜索设备...</string>
+    <string name="select_device">请选择设备</string>
+    <string name="none_paired">没有配对的设备</string>
+    <string name="none_found">没有搜到设备</string>
+    <string name="title_paired_devices">已配对设备</string>
+    <string name="title_other_devices">其他可用设备</string>
+    <string name="button_scan">搜索设备</string>
+    <!-- MainActivity -->
+    <string name="secure_connect">连接</string>
+    <string name="settings">设置</string>
+    <string name="service">服务</string>
+    <string name="position_adjust">位姿 </string>
+    <string name="power">开关</string>
+    <string name="stop">急停</string>
+    <string name="auto_massage">自动</string>
+    <string name="manual_massage">手动</string>
+    <string name="holographic_hand_massage">气压</string>
+    <string name="other_massage">其它</string>
+    <string name="status">状态</string>
+    <string name="power_off_message">按摩椅正在关机</string>
+    <!-- 自动按摩 -->
+    
+    <string name="hot_rock">快速放松</string>
+    <string name="zyys">中医养生</string>
+    <string name="sthh">酸痛缓和</string>
+    <string name="jgsz">筋骨舒展</string>
+    <string name="qnty">快速体验</string>
+    <string name="xyfs">逍遥放松</string>
+    <string name="xsbj">修身保健</string>
+    <string name="ylam">音律按摩</string>
+    <string name="blsbz">白领一族</string>
+    <string name="gwdr">购物达人</string>
+    <string name="yjkb">瑜伽开背</string>
+    <string name="ydyms">运动员</string>
+    <string name="ysbj">益寿保健</string>
+    <!-- 手动按摩 -->
+    <string name="finger_knead">指揉</string>
+    <string name="Pulse_Shiatsu">滚压</string>
+    <string name="back_rubbing">搓背</string>
+    
+    <string name="mode">模式</string>
+    <string name="part">部位</string>
+    <string name="width">    宽度</string>
+    <string name="speed">    速度</string>
+    <string name="threeD">3D手感</string>
+    <string name="threeD_position">3 D \n模式</string>
+    <string name="knead">揉捏</string>
+    <string name="rap">叩击</string>
+    <string name="pat">拍打</string>
+    <string name="knead_knock">揉叩</string>
+    <string name="finger">指压</string>
+    <string name="whole">全身</string>
+    <string name="local">局部</string>
+    <string name="fixed_point">定点</string>
+    <string name="up">上</string>
+    <string name="down">下</string>
+    <string name="narrow_center_wide">窄\n中\n宽</string>
+    <string name="wide">宽</string>
+    <string name="center">中</string>
+    <string name="narrow">窄</string>
+    <string name="low_middle_high">低\n中\n高</string>
+    <string name="higher">高</string>
+    <string name="middle">中</string>
+    <string name="lower">低</string>
+    <string name="strengthen_weaken">弱\n强</string>
+    <string name="strengthen">强</string>
+    <string name="weaken">弱</string>
+    <string name="threeDstrengthen">3D感强</string>
+    <string name="threeDweaken">3D感弱</string>
+    <!-- 全息手感 -->
+    <string name="all">全程</string>
+    <string name="strengthen_middle_weaken">弱\n中\n强</string>
+    <string name="strength">强度</string>
+    <string name="hand_shoulder">手肩部</string>
+    <string name="waist">腰座部</string>
+    <string name="leg_foot">腿脚部</string>
+    <string name="pressure_strength">气压强度</string>
+    <string name="air_off">关闭</string>
+     <!-- control panel -->
+    <string name="state_width">&#160;&#160;&#160;宽度&#160;</string>
+    <string name="state_strength">&#160;&#160;&#160;&#160;强度&#160;</string>
+    <string name="state_speed">&#160;速度&#160;&#160;&#160;</string>
+    <string name="state_pedicure">&#160;足疗&#160;&#160;&#160;</string>
+
+    <!-- 其它 -->
+    <string name="pedicure">足疗</string>
+    <string name="thermal_method">热疗</string>
+    <string name="thermal_heart">背部热疗</string>
+    <string name="thermal_waist">腰部加热</string>
+    <string name="thermal_foot">脚部热疗</string>
+    <string name="physiology_test">生理检测</string>
+    <string name="fast_soft">柔和\n快速</string>
+    <string name="fast">快速</string>
+    <string name="soft">柔和</string>
+    <string name="play">播放</string>
+    <string name="pause">暂停</string>
+    <string name="previous">上一首</string>
+    <string name="next">下一首</string>
+    <string name="vol_increase">音量+</string>
+    <string name="vol_decrease">音量-</string>
+    <string name="install_duomi">请先安装多米音乐</string>
+    <!-- 服务 -->
+    <string name="upgrade">检查更新</string>
+    <string name="help">帮助</string>
+    <string name="current_version">当前版本:</string>
+    <string name="is_latest_version">当前已经是最新版本</string>
+    <string name="found_new_version">发现新版本,建议立即升级.</string>
+    <!-- 设置 -->
+    <string name="language">语言</string>
+    <string name="chinese">中文</string>
+    <string name="english">ENGLISH</string>
+    <string name="korean">한국어</string>
+    <string name="timer_0"><u>10min</u></string>
+    <string name="timer_1">20min</string>
+    <string name="timer_2">30min</string>
+    <string name="timer_3">45min</string>
+    <string name="timer">定时</string>
+    <string name="music">音乐</string>
+    <string name="touch_sound">触摸声音</string>
+    <string name="colored_light">彩灯</string>
+    <string name="bluetooth">蓝牙</string>
+    <string name="wlan">WLAN</string>
+    <string name="ok">确定</string>
+    <string name="cancel">取消</string>
+    <string name="wlan_not_connected">当前没有连接 WLAN </string>
+
+</resources>
+

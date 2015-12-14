@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/op_top_bg"
+    android:baselineAligned="false"
+    android:orientation="horizontal" >
+
+    <FrameLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.25" >
+
+        <Button
+            android:id="@+id/btn_op_power"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|center_vertical"
+            android:background="@drawable/op_power_background" />
+
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.6" >
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/main_start_clicked"
+            android:rotation="180"
+            android:scaleType="center" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="center"
+            android:src="@drawable/op_top_logo" />
+        <EditText
+             android:id="@+id/edtxt_show_words"
+            android:layout_width="100dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:background="@android:color/transparent"
+            />
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_weight="0.25" >
+     <TextView 
+           android:layout_height="wrap_content"
+           android:layout_width="wrap_content"
+           android:textColor="#000"
+           android:textSize="@dimen/textsize_Large"
+           android:layout_gravity="center_vertical"
+           android:text="@string/state_mode"
+           />
+        <TextView
+                    android:id="@+id/state_mode"
+                    android:textColor="#000"
+		            android:textSize="@dimen/textsize_Large"
+		            android:layout_gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                   />
+        <Button
+            android:id="@+id/btn_op_stop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/op_stop_background" />
+    </LinearLayout>
+
+</LinearLayout>
