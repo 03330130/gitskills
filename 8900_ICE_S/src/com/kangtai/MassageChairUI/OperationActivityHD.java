@@ -236,7 +236,7 @@ public class OperationActivityHD extends FragmentActivity implements OnTouchList
 		Log.d("activityHD", "onCreate-----------()");
 		context=getApplicationContext();
 //		mApp.setCurrentLanguage(sp.getInt(LANGUAGE, this.mCurrentLanguage));
-		getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
+//		getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
 		
 		setVolumeControlStream(AudioManager.STREAM_MUSIC);
 		
@@ -3471,12 +3471,16 @@ if(auto_ListItem.get(arg2).get("ItemTitle").equals(getString(R.string.blsbz))){
 		// .setIcon(android.R.drawable.ic_dialog_info)
 				.setSingleChoiceItems(
 						new String[] {
-								getApplicationContext().getResources().getString(
+						getApplicationContext().getResources().getString(
 										R.string.chinese),
 										getApplicationContext().getResources().getString(
-										R.string.english)
-//										,getApplicationContext().getResources().getString(
-//										R.string.korean) 
+										R.string.english),
+										getApplicationContext().getResources().getString(
+										R.string.korean),
+										getApplicationContext().getResources().getString(
+										R.string.spanish),
+										getApplicationContext().getResources().getString(
+										R.string.Vietnamese) 
 										}, language,
 						new DialogInterface.OnClickListener() {
 							public void onClick(DialogInterface dialog,

@@ -18,7 +18,7 @@
     <dimen name="icon_padding_left">5dp</dimen>
     <!--  -->
     <dimen name="bottom_height">178dp</dimen>
-    <dimen name="textsize_Large">12sp</dimen>
+    <dimen name="textsize_Large">10sp</dimen>
     <dimen name="fudong_text_size">17sp</dimen>
     <dimen name="bottom_btn_text_size">15sp</dimen>
     <dimen name="top_divider_maginTop">1dp</dimen>

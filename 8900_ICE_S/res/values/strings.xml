@@ -31,10 +31,10 @@
     <string name="experience">Health\nCare</string>
     <string name="start">Start</string>
     <!-- positon adjust -->
-    <string name="sleep">Sleep</string>
-    <string name="overall">Overall</string>
-    <string name="stretch">Stretch</string>
-    <string name="legs">Legs</string>
+     <string name="sleep">Sleep</string>
+    <string name="overall">Backrest</string>
+    <string name="stretch">LegExtend</string>
+    <string name="legs">Footrest</string>
     <string name="zero">Zero</string>
     
     <!-- state  -->
@@ -187,6 +187,8 @@
     <string name="chinese">中文</string>
     <string name="english">ENGLISH</string>
     <string name="korean">한국어</string>
+    <string name="spanish">spanish</string>
+    <string name="Vietnamese">Vietnamese</string>
     <string name="timer_0"><u>10min</u></string>
     <string name="timer_1">20min</string>
     <string name="timer_2">30min</string>

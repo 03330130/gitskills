@@ -19,7 +19,7 @@
         android:id="@+id/ckb_other_zuliao"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:gravity="center_horizontal|center_vertical"
+        
         android:button="@drawable/bk_other_zuliao"
         android:textSize="@dimen/textsize_Large"
         android:background="@drawable/bk_color_blue"
@@ -36,7 +36,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:button="@drawable/bk_other_feet_thermal"
-        android:gravity="center_horizontal|center_vertical"
+       
          android:background="@drawable/bk_color_blue"
         android:textColor="#A8A8A8"
          android:layout_weight="1"
@@ -52,7 +52,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:button="@drawable/bk_other_feet_thermal"
-        android:gravity="center_horizontal|center_vertical"
+        
          android:background="@drawable/bk_color_blue"
         android:textColor="#A8A8A8"
          android:layout_weight="1"
@@ -67,7 +67,7 @@
         android:id="@+id/ckb_other_feet_thermal"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:gravity="center_horizontal|center_vertical"
+        
         android:textSize="@dimen/textsize_Large"
         android:background="@drawable/bk_color_blue"
         android:textColor="#A8A8A8"
@@ -86,7 +86,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:button="@drawable/bk_other_music"
-        android:gravity="center_horizontal|center_vertical"
+        
          android:background="@drawable/bk_color_blue_pressed"
         android:textColor="#000"
         android:visibility="gone"
@@ -103,7 +103,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
        
-        android:gravity="center_horizontal|center_vertical"
+        
         android:button="@drawable/bk_leftview_bluetooth"
         android:textSize="@dimen/textsize_Large"
         android:background="@drawable/bk_bluetooth"
@@ -122,7 +122,7 @@
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         
-        android:gravity="center_horizontal|center_vertical"
+        android:paddingLeft="5dp"
         android:button="@drawable/bk_leftview_language"
         android:textSize="@dimen/textsize_Large"
         android:background="@drawable/bk_color_blue_pressed"
@@ -141,7 +141,7 @@
         
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
-        android:paddingLeft="40dp"
+        
         android:button="@drawable/bk_leftview_colorlight"
         android:textSize="@dimen/textsize_Large"
         android:background="@drawable/bk_color_blue"
@@ -160,7 +160,7 @@
         
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
-        android:paddingLeft="40dp"
+        
         android:button="@drawable/bk_leftview_sound"
         android:textSize="@dimen/textsize_Large"
         android:background="@drawable/bk_color_blue"
@@ -177,7 +177,7 @@
         android:id="@+id/ckb_leftview_update"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:gravity="center_horizontal|center_vertical"
+        
         android:button="@drawable/bk_leftview_update"
         android:textSize="@dimen/textsize_Large"
         android:background="@drawable/bk_color_blue_pressed"

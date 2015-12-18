@@ -81,13 +81,13 @@
                     android:text="20" />
             </RelativeLayout>
             </TableRow>
-
+  
         
             <TableRow
                 android:id="@+id/tableRow2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" 
-                
+                android:layout_marginTop="25dp"
                 >
 
                 <TextView
@@ -114,22 +114,7 @@
 
         
 
-        <TableRow
-            android:id="@+id/tableRow3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" 
-            android:visibility="invisible">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Accessibility:" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Zero Gravity" />
-        </TableRow>
+     
 
         <TableRow
             android:id="@+id/tableRow4"

@@ -21,8 +21,10 @@ public class RokolApllication extends Application {
 	private final int CHINESE = 0;
 	private final int ENGLISH = 1;
 	private final int KOREAN = 2;
+	private final int SPANISH= 3;
+	private final int VITNAMESE=4;
 	private final String LANGUAGE = "Language";
-	private int mCurrentLanguage;
+	private int mCurrentLanguage=1;
 	private int mCurrentTimer = 1;
 	private Locale mLocale;
 	private boolean mSoundSwitch;
@@ -32,7 +34,7 @@ public class RokolApllication extends Application {
 	private final int TIMER_0 = 0;
 	private final int TIMER_1 = 1;
 	private final int TIMER_2 = 2;
-
+	
 	public int getCurrentLanguage() {
 		Log.d(getClass().getSimpleName(), "getCurrentLanguage -----------"+mCurrentLanguage);
 		return mCurrentLanguage;
@@ -60,6 +62,12 @@ public class RokolApllication extends Application {
 		case KOREAN:
 			resId = R.string.korean;
 			break;
+		case SPANISH:
+			resId = R.string.spanish;
+			break;
+		case VITNAMESE:
+			resId = R.string.Vietnamese;
+			break;
 		default:
 			resId = 0;
 			break;
@@ -72,13 +80,14 @@ public class RokolApllication extends Application {
 	public void onCreate() {
 		// TODO Auto-generated method stub
 		super.onCreate();
+		
        Log.d("Application", "Application on creat----");
 		sp = getApplicationContext().getSharedPreferences("Device",
 				Context.MODE_PRIVATE);
 
 		this.mLocale = Locale.getDefault();
 
-		Locale.setDefault(mLocale);
+//		Locale.setDefault(mLocale);
 		setCurrentLanguage(sp.getInt(LANGUAGE, this.mCurrentLanguage));
 
 	}
@@ -112,6 +121,12 @@ public class RokolApllication extends Application {
 			break;
 		case KOREAN:
 			config.locale = Locale.KOREA;
+			break;
+		case SPANISH:
+			config.locale =new Locale("es","ES");
+			break;
+		case VITNAMESE:
+			config.locale =new Locale("vi");
 			break;
 		}
 

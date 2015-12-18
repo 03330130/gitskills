@@ -17,7 +17,7 @@
         layout="@layout/ice_right_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="-10dp"
+        android:layout_marginRight="-7dp"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
        
@@ -88,6 +88,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" 
                 android:layout_gravity="bottom"
+                android:layout_marginTop="15dp"
                 >
 
                 <TextView
@@ -177,7 +178,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/layout_1"
-        android:paddingRight="15dp"
+        
+        
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="false"
         android:layout_marginTop="@dimen/body_layout_top" >
