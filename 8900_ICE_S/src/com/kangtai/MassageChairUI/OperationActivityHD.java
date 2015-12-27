@@ -70,17 +70,7 @@ import android.widget.SimpleAdapter;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
-import com.iflytek.cloud.ErrorCode;
-import com.iflytek.cloud.GrammarListener;
-import com.iflytek.cloud.InitListener;
-import com.iflytek.cloud.RecognizerListener;
-import com.iflytek.cloud.RecognizerResult;
-import com.iflytek.cloud.SpeechConstant;
-import com.iflytek.cloud.SpeechError;
-import com.iflytek.cloud.SpeechRecognizer;
-import com.iflytek.cloud.SpeechUtility;
-import com.iflytek.cloud.ui.RecognizerDialog;
-import com.iflytek.cloud.ui.RecognizerDialogListener;
+
 import com.kangtai.MassageChairUI.Protocal.DataFrame;
 import com.kangtai.MassageChairUI.Protocal.DataFrame.OPERATION;
 import com.kangtai.MassageChairUI.Protocal.FucUtil;
@@ -209,8 +199,8 @@ public class OperationActivityHD extends FragmentActivity implements OnTouchList
 		private MyCount countTime;
 		private boolean kstyFlag=false,unkstyFlag=false,mManualListFlag=false,mModeListFlag=false,
 				mPressureListFlag=false;;
-		private SpeechRecognizer mIat;
-		private RecognizerDialog isrDialog ;
+//		private SpeechRecognizer mIat;
+//		private RecognizerDialog isrDialog ;
 		private String text = "";  
 		private EditText editText;
 		private Context context;
@@ -218,10 +208,10 @@ public class OperationActivityHD extends FragmentActivity implements OnTouchList
 		private String mCloudGrammar=null;
 		// 本地语法文件
 	    private String mLocalGrammar = null;
-		private SpeechRecognizer mAsr;
+//		private SpeechRecognizer mAsr;
 		private static final String KEY_GRAMMAR_ABNF_ID = "grammar_abnf_id";
 		int ret = 0;// 函数调用返回值
-		private String mEngineType = SpeechConstant.TYPE_LOCAL;
+//		private String mEngineType = SpeechConstant.TYPE_LOCAL;
 		private  View bottomView,view1;
 		private ScrollView scroView_auto,scroView_other,scroView_mode;
 		
@@ -265,9 +255,9 @@ public class OperationActivityHD extends FragmentActivity implements OnTouchList
 		//离线语音识别
 		mSharedPreferences=getSharedPreferences(getPackageName(), MODE_PRIVATE);// 缓存 在线使用
 		//1.初始化 
-		SpeechUtility.createUtility(OperationActivityHD.this, SpeechConstant.APPID +"=558cc56a"); 
-		//创建SpeechRecognizer对象
-		mAsr = SpeechRecognizer.createRecognizer(context, minitListener);
+//		SpeechUtility.createUtility(OperationActivityHD.this, SpeechConstant.APPID +"=558cc56a"); 
+//		//创建SpeechRecognizer对象
+//		mAsr = SpeechRecognizer.createRecognizer(context, minitListener);
 		mCloudGrammar = FucUtil.readFile(this,"grammar_sample.abnf","utf-8");
 		mLocalGrammar=FucUtil.readFile(this,"order.bnf","utf-8");
 		//pressure
@@ -514,8 +504,8 @@ public class OperationActivityHD extends FragmentActivity implements OnTouchList
 		unregisterReceiver(mBluetoothReceiver);
 		// 退出时释放连接
 		
-		mAsr.cancel();
-		mAsr.destroy();
+//		mAsr.cancel();
+//		mAsr.destroy();
 		super.onDestroy();
 	}
 	@Override
@@ -547,209 +537,209 @@ public class OperationActivityHD extends FragmentActivity implements OnTouchList
 
 	}
 	//离线识别语法构建
-	private void initGrammar(){
-		if (mEngineType.equals(SpeechConstant.TYPE_LOCAL)){
-			mAsr.setParameter(SpeechConstant.TEXT_ENCODING, "utf-8");
-			mAsr.setParameter(SpeechConstant.ENGINE_TYPE, mEngineType);
-			ret = mAsr.buildGrammar("bnf", mLocalGrammar , localGrammarListener);
-					if (ret != ErrorCode.SUCCESS){
-					Log.d(TAG,"语法构建失败,错误码： " + ret);
-					}else{
-					Log.d(TAG,"语法构建成功");
-				         }
-	         }else{//在线
-	        	 mAsr.setParameter(SpeechConstant.ENGINE_TYPE, mEngineType);
-	        	 mAsr.setParameter(SpeechConstant.TEXT_ENCODING,"utf-8");
-				    ret = mAsr.buildGrammar("abnf", mCloudGrammar, grammarListener);
-					if(ret != ErrorCode.SUCCESS)
-						Log.d(TAG,"语法构建失败,错误码：" + ret);
-	         }
-			
-	}
-	//设置构建语法类型为本地
-	private GrammarListener localGrammarListener = new GrammarListener() {
-		@Override
-		public void onBuildFinish(String grammarId, SpeechError error) {
-			if(error == null){
-				Log.d(TAG,"localGrammarListener构建成功：" + grammarId);
-			}else{
-				Log.d(TAG,"localGrammarListener构建失败,错误码：" + error.getErrorCode());
-			}			
-		}
-	};
-   //开始识别,设置引擎类型为云端
-	private GrammarListener grammarListener=new GrammarListener(){
-
-		@Override
-		public void onBuildFinish(String grammarId, SpeechError error) {
-			// TODO Auto-generated method stub
-			if(error == null){
-				String grammarID = new String(grammarId);
-				Editor editor = mSharedPreferences.edit();
-				if(!TextUtils.isEmpty(grammarId))
-					editor.putString(KEY_GRAMMAR_ABNF_ID, grammarID);
-				editor.commit();
-				Log.d(TAG,"云端语法构建成功：" + grammarId);
-			}else{
-				Log.d(TAG,"云端语法构建失败,错误码：" + error.getErrorCode());
-			}			
-		}};
-	 private InitListener minitListener=new InitListener(){
-
-			@Override
-			public void onInit(int arg0) {
-				// TODO Auto-generated method stub
-				if (arg0 == ErrorCode.SUCCESS) {}
-				Log.d("activityHD","InitListener aro="+arg0);
-			}};
-	public boolean setParam(){
-				boolean result = false;
-				//设置识别引擎   本地识别
-				mAsr.setParameter(SpeechConstant.ENGINE_TYPE, mEngineType);
-				//设置返回结果为json格式
-				if(SpeechConstant.TYPE_CLOUD.equalsIgnoreCase(mEngineType))
-				{
-				    mAsr.setParameter(SpeechConstant.RESULT_TYPE, "json");
-					String grammarId = mSharedPreferences.getString(KEY_GRAMMAR_ABNF_ID, null);
-					if(TextUtils.isEmpty(grammarId))
-					{
-						result =  false;
-					}else {
-						//设置云端识别使用的语法id
-						mAsr.setParameter(SpeechConstant.CLOUD_GRAMMAR, grammarId);
-						result =  true;
-						 }
-				}else{
-					//设置返回值数据格式
-					mAsr.setParameter(SpeechConstant.RESULT_TYPE, "json");
-					//设置本地识别使用语法id
-					mAsr.setParameter(SpeechConstant.LOCAL_GRAMMAR, "order");
-					//设置本地识别的门限值
-					mAsr.setParameter(SpeechConstant.ASR_THRESHOLD, "30");
-					Log.d(TAG,"语法本地构建成功 " );	
-					result = true;
-				}
-					
-				
-				return result;
-			}
-	private RecognizerListener mRecoListener=new RecognizerListener() {
-		
-		//听写结果回调接口 (返回Json格式结果，用户可参见附录12.1)；
-		  //一般情况下会通过onResults接口多次返回结果，完整的识别内容是多次结果的累加；
-		  //关于解析Json的代码可参见MscDemo中JsonParser类；
-		  //isLast等于true时会话结束。
-		  public void onResult(RecognizerResult results, boolean isLast) {
-			  text+=JsonParser.parseIatResult(results.getResultString ());
-		  Log.d("activityHD","onResult"+isLast+JsonParser.parseIatResult(results.getResultString ()));
-		  editText.setText(text);
-		  
-		  if(text.contains("购物达人")){
-			  Log.d("activityHD","text == 购物达人");
-			  sendCommand(DataFrame.getSendFrame(OPERATION.SHOPPER_ON));
-			  
-			  }
-		  else if(text.contains("中医养生")){
-			  Log.d("activityHD","text == 中医养生");
-			  sendCommand(DataFrame.getSendFrame(OPERATION.PAINEASE_ON));
-		
-		  }
-		  else if(text.contains("快速体验")){
-			  Log.d("activityHD","text == 快速体验");
-			  sendCommand(DataFrame.getSendFrame(OPERATION._3DEXPERIENCE_ON));
-			  
-		  }else if(text.contains("开机")|text.contains("打开按摩椅")){
-			  Log.d("activityHD","text == 开机");
-			  sendCommand(DataFrame.getSendFrame(OPERATION.POWER_ON));
-	      }
-		  else if(text.contains("关机")|text.contains("关闭")){
-			  Log.d("activityHD","text == 关机");
-			  sendCommand(DataFrame.getSendFrame(OPERATION.POWER_OFF));
-		  }
-//		  if(isLast){
-////				setParam();
-//				mIat.startListening(mRecoListener);
-////				setIsRunning(true);
+//	private void initGrammar(){
+//		if (mEngineType.equals(SpeechConstant.TYPE_LOCAL)){
+//			mAsr.setParameter(SpeechConstant.TEXT_ENCODING, "utf-8");
+//			mAsr.setParameter(SpeechConstant.ENGINE_TYPE, mEngineType);
+//			ret = mAsr.buildGrammar("bnf", mLocalGrammar , localGrammarListener);
+//					if (ret != ErrorCode.SUCCESS){
+//					Log.d(TAG,"语法构建失败,错误码： " + ret);
+//					}else{
+//					Log.d(TAG,"语法构建成功");
+//				         }
+//	         }else{//在线
+//	        	 mAsr.setParameter(SpeechConstant.ENGINE_TYPE, mEngineType);
+//	        	 mAsr.setParameter(SpeechConstant.TEXT_ENCODING,"utf-8");
+//				    ret = mAsr.buildGrammar("abnf", mCloudGrammar, grammarListener);
+//					if(ret != ErrorCode.SUCCESS)
+//						Log.d(TAG,"语法构建失败,错误码：" + ret);
+//	         }
+//			
+//	}
+//	//设置构建语法类型为本地
+//	private GrammarListener localGrammarListener = new GrammarListener() {
+//		@Override
+//		public void onBuildFinish(String grammarId, SpeechError error) {
+//			if(error == null){
+//				Log.d(TAG,"localGrammarListener构建成功：" + grammarId);
+//			}else{
+//				Log.d(TAG,"localGrammarListener构建失败,错误码：" + error.getErrorCode());
+//			}			
+//		}
+//	};
+//   //开始识别,设置引擎类型为云端
+////	private GrammarListener grammarListener=new GrammarListener(){
+////
+////		@Override
+////		public void onBuildFinish(String grammarId, SpeechError error) {
+////			// TODO Auto-generated method stub
+////			if(error == null){
+////				String grammarID = new String(grammarId);
+////				Editor editor = mSharedPreferences.edit();
+////				if(!TextUtils.isEmpty(grammarId))
+////					editor.putString(KEY_GRAMMAR_ABNF_ID, grammarID);
+////				editor.commit();
+////				Log.d(TAG,"云端语法构建成功：" + grammarId);
+////			}else{
+////				Log.d(TAG,"云端语法构建失败,错误码：" + error.getErrorCode());
+////			}			
+////		}};
+////	 private InitListener minitListener=new InitListener(){
+////
+////			@Override
+////			public void onInit(int arg0) {
+////				// TODO Auto-generated method stub
+////				if (arg0 == ErrorCode.SUCCESS) {}
+////				Log.d("activityHD","InitListener aro="+arg0);
+////			}};
+////	public boolean setParam(){
+////				boolean result = false;
+////				//设置识别引擎   本地识别
+////				mAsr.setParameter(SpeechConstant.ENGINE_TYPE, mEngineType);
+////				//设置返回结果为json格式
+////				if(SpeechConstant.TYPE_CLOUD.equalsIgnoreCase(mEngineType))
+////				{
+////				    mAsr.setParameter(SpeechConstant.RESULT_TYPE, "json");
+////					String grammarId = mSharedPreferences.getString(KEY_GRAMMAR_ABNF_ID, null);
+////					if(TextUtils.isEmpty(grammarId))
+////					{
+////						result =  false;
+////					}else {
+////						//设置云端识别使用的语法id
+////						mAsr.setParameter(SpeechConstant.CLOUD_GRAMMAR, grammarId);
+////						result =  true;
+////						 }
+////				}else{
+////					//设置返回值数据格式
+////					mAsr.setParameter(SpeechConstant.RESULT_TYPE, "json");
+////					//设置本地识别使用语法id
+////					mAsr.setParameter(SpeechConstant.LOCAL_GRAMMAR, "order");
+////					//设置本地识别的门限值
+////					mAsr.setParameter(SpeechConstant.ASR_THRESHOLD, "30");
+////					Log.d(TAG,"语法本地构建成功 " );	
+////					result = true;
+////				}
+////					
+////				
+////				return result;
+////			}
+////	private RecognizerListener mRecoListener=new RecognizerListener() {
+////		
+////		//听写结果回调接口 (返回Json格式结果，用户可参见附录12.1)；
+////		  //一般情况下会通过onResults接口多次返回结果，完整的识别内容是多次结果的累加；
+////		  //关于解析Json的代码可参见MscDemo中JsonParser类；
+////		  //isLast等于true时会话结束。
+////		  public void onResult(RecognizerResult results, boolean isLast) {
+////			  text+=JsonParser.parseIatResult(results.getResultString ());
+////		  Log.d("activityHD","onResult"+isLast+JsonParser.parseIatResult(results.getResultString ()));
+////		  editText.setText(text);
+////		  
+////		  if(text.contains("购物达人")){
+////			  Log.d("activityHD","text == 购物达人");
+////			  sendCommand(DataFrame.getSendFrame(OPERATION.SHOPPER_ON));
+////			  
+////			  }
+////		  else if(text.contains("中医养生")){
+////			  Log.d("activityHD","text == 中医养生");
+////			  sendCommand(DataFrame.getSendFrame(OPERATION.PAINEASE_ON));
+////		
+////		  }
+////		  else if(text.contains("快速体验")){
+////			  Log.d("activityHD","text == 快速体验");
+////			  sendCommand(DataFrame.getSendFrame(OPERATION._3DEXPERIENCE_ON));
+////			  
+////		  }else if(text.contains("开机")|text.contains("打开按摩椅")){
+////			  Log.d("activityHD","text == 开机");
+////			  sendCommand(DataFrame.getSendFrame(OPERATION.POWER_ON));
+////	      }
+////		  else if(text.contains("关机")|text.contains("关闭")){
+////			  Log.d("activityHD","text == 关机");
+////			  sendCommand(DataFrame.getSendFrame(OPERATION.POWER_OFF));
+////		  }
+//////		  if(isLast){
+////////				setParam();
+//////				mIat.startListening(mRecoListener);
+////////				setIsRunning(true);
+//////			}
+////		  }
+////		  //会话发生错误回调接口
+////		  public void onError(SpeechError error) {
+////		  error.getPlainDescription(true);} //获取错误码描述}
+////		  //开始录音
+////		  public void onBeginOfSpeech() {
+////			  Log.d("activityHD","begin speech"+"");
+////			  editText.setText("");
+////			  text="";
+////		  }
+////		  //音量值0~30
+////		  public void onVolumeChanged(int volume){
+////			  Log.d("activityHD","on Volume"+"");
+////		  }
+////		  //结束录音
+////		  public void onEndOfSpeech() {
+////			  Log.d("activityHD","end speech"+"");
+////		  }
+////		  //扩展用接口
+////		  public void onEvent(int eventType, int arg1, int arg2, Bundle obj) {}
+////		  };	
+////private RecognizerDialogListener mRecoDialogListener=new RecognizerDialogListener() {
+////				@Override
+////				public void onResult(RecognizerResult results, boolean arg1) {
+////					// TODO Auto-generated method stub
+////					  text+=JsonParser.parseIatResult(results.getResultString ());
+////					  Log.d("activityHD",JsonParser.parseIatResult(results.getResultString ()));
+////					  editText.setText(text);text+="####";
+////					  Log.d("activityHD","text.substring(0,2)"+text);
+////					  if(text.contains("购物达人")){
+////						  Log.d("activityHD","text == 购物达人");
+////						  sendCommand(DataFrame.getSendFrame(OPERATION.SHOPPER_ON));
+//////						  setAutoGwdr(checked);
+////						  }
+////					  else if(text.contains("中医养生")){
+////						  Log.d("activityHD","text == 中医养生");
+////						  sendCommand(DataFrame.getSendFrame(OPERATION.PAINEASE_ON));
+//////						  setAutoSthh(checked);
+////					  }
+////					  else if(text.contains("快速体验")){
+////						  Log.d("activityHD","text == 快速体验");
+////						  sendCommand(DataFrame.getSendFrame(OPERATION._3DEXPERIENCE_ON));
+//////						  setAutoKsty(checked);
+////					  }else if(text.contains("开机")|text.contains("打开按摩椅")){
+////						  Log.d("activityHD","text == 开机");
+////						  sendCommand(DataFrame.getSendFrame(OPERATION.POWER_ON));
+////				      }
+////					  else if(text.contains("关机")|text.contains("关闭")){
+////						  Log.d("activityHD","text == 关机");
+////						  sendCommand(DataFrame.getSendFrame(OPERATION.POWER_OFF));
+////					  }
+////				}
+////				@Override
+////				public void onError(SpeechError arg0) {
+////					// TODO Auto-generated method stub
+////					Log.d("activityHD","recognizer diolag"+arg0);
+////				}
+////			};
+////			
+////	private void tellNetStatus(){
+//				if (!RokolUtil.checkNetWorkStatus(getBaseContext())) {
+//					mIat.setParameter(SpeechConstant.ENGINE_TYPE, SpeechConstant.TYPE_LOCAL);
+//					if(!SpeechUtility.getUtility().checkServiceInstalled ()){  
+//					    String url = SpeechUtility.getUtility().getComponentUrl();  
+//					    Uri uri = Uri.parse(url);  
+//					    Log.d("activityHD","-----mInstaller.install();---" );
+//					    Intent it = new Intent(Intent.ACTION_VIEW, uri);  
+//					    it.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//					    context.startActivity(it);  
+//					}   
+//					 else {
+//							String result = FucUtil.checkLocalResource();
+//							if (!TextUtils.isEmpty(result)) {
+//								Log.d("activityHD","-----!TextUtils.isEmpty(result---" +result);
+//								editText.setText(result);
+//							}
+//						}
+//					}
 //			}
-		  }
-		  //会话发生错误回调接口
-		  public void onError(SpeechError error) {
-		  error.getPlainDescription(true);} //获取错误码描述}
-		  //开始录音
-		  public void onBeginOfSpeech() {
-			  Log.d("activityHD","begin speech"+"");
-			  editText.setText("");
-			  text="";
-		  }
-		  //音量值0~30
-		  public void onVolumeChanged(int volume){
-			  Log.d("activityHD","on Volume"+"");
-		  }
-		  //结束录音
-		  public void onEndOfSpeech() {
-			  Log.d("activityHD","end speech"+"");
-		  }
-		  //扩展用接口
-		  public void onEvent(int eventType, int arg1, int arg2, Bundle obj) {}
-		  };	
-private RecognizerDialogListener mRecoDialogListener=new RecognizerDialogListener() {
-				@Override
-				public void onResult(RecognizerResult results, boolean arg1) {
-					// TODO Auto-generated method stub
-					  text+=JsonParser.parseIatResult(results.getResultString ());
-					  Log.d("activityHD",JsonParser.parseIatResult(results.getResultString ()));
-					  editText.setText(text);text+="####";
-					  Log.d("activityHD","text.substring(0,2)"+text);
-					  if(text.contains("购物达人")){
-						  Log.d("activityHD","text == 购物达人");
-						  sendCommand(DataFrame.getSendFrame(OPERATION.SHOPPER_ON));
-//						  setAutoGwdr(checked);
-						  }
-					  else if(text.contains("中医养生")){
-						  Log.d("activityHD","text == 中医养生");
-						  sendCommand(DataFrame.getSendFrame(OPERATION.PAINEASE_ON));
-//						  setAutoSthh(checked);
-					  }
-					  else if(text.contains("快速体验")){
-						  Log.d("activityHD","text == 快速体验");
-						  sendCommand(DataFrame.getSendFrame(OPERATION._3DEXPERIENCE_ON));
-//						  setAutoKsty(checked);
-					  }else if(text.contains("开机")|text.contains("打开按摩椅")){
-						  Log.d("activityHD","text == 开机");
-						  sendCommand(DataFrame.getSendFrame(OPERATION.POWER_ON));
-				      }
-					  else if(text.contains("关机")|text.contains("关闭")){
-						  Log.d("activityHD","text == 关机");
-						  sendCommand(DataFrame.getSendFrame(OPERATION.POWER_OFF));
-					  }
-				}
-				@Override
-				public void onError(SpeechError arg0) {
-					// TODO Auto-generated method stub
-					Log.d("activityHD","recognizer diolag"+arg0);
-				}
-			};
-			
-	private void tellNetStatus(){
-				if (!RokolUtil.checkNetWorkStatus(getBaseContext())) {
-					mIat.setParameter(SpeechConstant.ENGINE_TYPE, SpeechConstant.TYPE_LOCAL);
-					if(!SpeechUtility.getUtility().checkServiceInstalled ()){  
-					    String url = SpeechUtility.getUtility().getComponentUrl();  
-					    Uri uri = Uri.parse(url);  
-					    Log.d("activityHD","-----mInstaller.install();---" );
-					    Intent it = new Intent(Intent.ACTION_VIEW, uri);  
-					    it.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-					    context.startActivity(it);  
-					}   
-					 else {
-							String result = FucUtil.checkLocalResource();
-							if (!TextUtils.isEmpty(result)) {
-								Log.d("activityHD","-----!TextUtils.isEmpty(result---" +result);
-								editText.setText(result);
-							}
-						}
-					}
-			}
 	private void initAutoOtherCKB(){
 		ckb_auto_scview=(RelativeLayout)findViewById(R.id.ckb_auto);
 		ckb_other_llayout=(RelativeLayout)findViewById(R.id.ckb_other);
@@ -1126,7 +1116,7 @@ private RecognizerDialogListener mRecoDialogListener=new RecognizerDialogListene
 			if (!mPower) {
 				sendCommand(DataFrame.getSendFrame(OPERATION.POWER_ON));
 				//构建语音识别语法
-				initGrammar();
+//				initGrammar();
 //				 mPower = true;
 			} else {
 				sendCommand(DataFrame.getSendFrame(OPERATION.POWER_OFF));
