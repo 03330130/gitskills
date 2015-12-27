@@ -17,7 +17,7 @@
         layout="@layout/ice_right_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="-7dp"
+        android:layout_marginRight="0dp"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
        
@@ -190,7 +190,7 @@
             android:layout_height="wrap_content"
             android:contentDescription="@string/app_name"
             android:scaleType="centerInside"
-            
+            android:layout_marginRight="15dp"
             
             android:src="@drawable/state_body" />
 
@@ -493,14 +493,15 @@
 
     <TableLayout
         android:id="@+id/table_layout"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/layout_center"
         android:layout_marginTop="@dimen/state_display_top"
+        android:layout_marginLeft="40dp"
          >
 
         <TableRow
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center" >
 

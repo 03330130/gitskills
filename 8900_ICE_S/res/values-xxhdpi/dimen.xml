@@ -63,38 +63,38 @@
     <dimen name="foot1_margin_bottom">35dp</dimen>
     <dimen name="foot2_margin_left">15dp</dimen>
     <dimen name="foot2_margin_bottom">15dp</dimen>
-    <dimen name="leg1_margin_left">70dp</dimen>
-    <dimen name="leg1_margin_bottom">25dp</dimen>
-    <dimen name="leg2_margin_left">90dp</dimen>
-    <dimen name="leg2_margin_bottom">35dp</dimen>
+    <dimen name="leg1_margin_left">65dp</dimen>
+    <dimen name="leg1_margin_bottom">30dp</dimen>
+    <dimen name="leg2_margin_left">85dp</dimen>
+    <dimen name="leg2_margin_bottom">40dp</dimen>
     
-    <dimen name="seat1_margin_right">130dp</dimen>
-    <dimen name="seat1_margin_bottom">45dp</dimen>
+    <dimen name="seat1_margin_right">125dp</dimen>
+    <dimen name="seat1_margin_bottom">50dp</dimen>
     
-    <dimen name="seat2_margin_right">105dp</dimen>
-    <dimen name="seat2_margin_bottom">45dp</dimen>
+    <dimen name="seat2_margin_right">100dp</dimen>
+    <dimen name="seat2_margin_bottom">50dp</dimen>
     
-    <dimen name="seat3_margin_right">80dp</dimen>
-    <dimen name="seat3_margin_bottom">45dp</dimen>
+    <dimen name="seat3_margin_right">75dp</dimen>
+    <dimen name="seat3_margin_bottom">50dp</dimen>
     
-    <dimen name="waist_heat1_margin_right">72dp</dimen>
+    <dimen name="waist_heat1_margin_right">70dp</dimen>
     <dimen name="waist_heat1_margin_bottom">82dp</dimen>
     
     <dimen name="waist_heat2_margin_right">64dp</dimen>
     <dimen name="waist_heat2_margin_bottom">108dp</dimen>
     
-    <dimen name="waist11_margin_right">60dp</dimen>
+    <dimen name="waist11_margin_right">55dp</dimen>
     <dimen name="waist11_margin_bottom">53dp</dimen>
     
     <dimen name="waist12_margin_right">34dp</dimen>
     <dimen name="waist12_margin_bottom">55dp</dimen>
     
-    <dimen name="waist21_margin_right">55dp</dimen>
+    <dimen name="waist21_margin_right">50dp</dimen>
     <dimen name="waist21_margin_bottom">80dp</dimen>
     <dimen name="waist22_margin_right">28dp</dimen>
     <dimen name="waist22_margin_bottom">82dp</dimen>
     
-    <dimen name="waist31_margin_right">46dp</dimen>
+    <dimen name="waist31_margin_right">41dp</dimen>
     <dimen name="waist31_margin_bottom">108dp</dimen>
     <dimen name="waist32_margin_right">17dp</dimen>
     <dimen name="waist32_margin_bottom">110dp</dimen>
@@ -114,10 +114,10 @@
     <dimen name="neck2_margin_top">60dp</dimen>
     <dimen name="neck2_margin_right">13dp</dimen>
     
-    <dimen name="shoulder1_margin_top">92dp</dimen>
-    <dimen name="shoulder1_margin_right">75dp</dimen>
-    <dimen name="shoulder2_margin_top">72dp</dimen>
-    <dimen name="shoulder2_margin_right">63dp</dimen>
+    <dimen name="shoulder1_margin_top">95dp</dimen>
+    <dimen name="shoulder1_margin_right">70dp</dimen>
+    <dimen name="shoulder2_margin_top">75dp</dimen>
+    <dimen name="shoulder2_margin_right">58dp</dimen>
     
     <dimen name="arm1_margin_top">130dp</dimen>
     <dimen name="arm1_margin_right">142dp</dimen>

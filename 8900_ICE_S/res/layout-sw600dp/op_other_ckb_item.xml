@@ -122,7 +122,10 @@
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         
-        android:paddingLeft="5dp"
+        android:paddingLeft="3dp"
+        android:paddingStart="3dp"
+        android:paddingRight="0dp"
+        android:paddingEnd="0dp"
         android:button="@drawable/bk_leftview_language"
         android:textSize="@dimen/textsize_Large"
         android:background="@drawable/bk_color_blue_pressed"
