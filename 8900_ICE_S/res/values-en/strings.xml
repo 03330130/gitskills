@@ -22,7 +22,7 @@
     <string name="back_toast">Press again to exit</string>
     <string name="main_page">Main page</string>
     <string name="connected_to">Connected to </string>
-    <string name="could_not_connect">Cannot connect to the device!</string>
+    <string name="could_not_connect">Can not connect to the device!</string>
     <string name="connection_lost">Device connection was lost!</string>
     <!-- first page -->
     <string name="slogan">Presidential</string>
@@ -33,7 +33,7 @@
     <!-- positon adjust -->
     <string name="sleep">Sleep</string>
     <string name="overall">Backrest</string>
-    <string name="stretch">LegExtend</string>
+    <string name="stretch">Leg Extend</string>
     <string name="legs">Footrest</string>
     <string name="zero">Zero</string>
     
