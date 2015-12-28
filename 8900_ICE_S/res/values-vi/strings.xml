@@ -78,8 +78,8 @@ Care"</string>
     <string name="back_rubbing">Chà lưng</string>
     <string name="mode">Chế độ</string>
     <string name="part">Vị trí</string>
-    <string name="width">Chiều rộng:</string>
-    <string name="speed">Tốc độ:</string>
+    <string name="width">Chiều rộng</string>
+    <string name="speed">Tốc độ</string>
     <string name="threeD">3 D</string>
     <string name="knead">Xoa bóp</string>
     <string name="rap">Nhấn</string>
@@ -111,15 +111,15 @@ W"</string>
     <string name="threeDweaken">3D-</string>
     <string name="tempUp">NHIỆT+</string>
     <string name="tempDown">NHIỆT-</string>
-    <string name="state_width">   Chiều rộng  </string>
-    <string name="state_strength">   Cường độ </string>
-    <string name="state_speed"> Tốc độ</string>
+    <string name="state_width">Chiều rộng</string>
+    <string name="state_strength">Cường độ </string>
+    <string name="state_speed">Tốc độ</string>
     <string name="state_pedicure"> Chân Con lăn</string>
     <string name="all">Toàn thân</string>
     <string name="strengthen_middle_weaken">"S
 M
 W"</string>
-    <string name="strength">Cường độ:</string>
+    <string name="strength">Cường độ</string>
     <string name="hand_shoulder">Thân trên</string>
     <string name="waist">Hông &amp; Môn</string>
     <string name="leg_foot">Chân&amp;Bàn chân</string>

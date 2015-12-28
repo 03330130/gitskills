@@ -19,10 +19,11 @@
         android:id="@+id/tv_manual_info"
         android:singleLine="true"
         android:textColor="#000"
-        android:layout_gravity="left"
+        
+        
         android:layout_width="0dp"
-        android:layout_weight="4"
-        android:layout_marginLeft="2dp" 
+        android:layout_weight="5"
+       
         android:layout_height="match_parent"
         android:textSize="@dimen/textsize_Large"/>
     <ImageView

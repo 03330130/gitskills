@@ -456,13 +456,14 @@ public class OperationActivityHD extends FragmentActivity implements OnTouchList
 		else if(mBluetoothServiceState==BluetoothService.STATE_CONNECTED){
 //			mPower=true;
 			ckb_bt.setSelected(true);
-			changePowerState();
+			
 			mBluetoothService=new BluetoothService();
 			mOutStringBuffer = new StringBuffer("");
 			mReceiveData = new String[] { "" };
 			sp = OperationActivityHD.this.getSharedPreferences("Device", MODE_PRIVATE);
 			touchSoundFlag =mApp.isSoundSwitchOn();
 		    Log.d("activityHD", "BluetoothServiceState --is 3 connected---");
+		    sendCommand(DataFrame.getSendFrame(OPERATION.POWER_ON));
 	      }
 		
 		else {
@@ -481,7 +482,7 @@ public class OperationActivityHD extends FragmentActivity implements OnTouchList
 			filter.addAction("android.intent.action.lxx");
 			OperationActivityHD.this.registerReceiver(mBluetoothReceiver, filter);
 			Log.d("activityHD", "MainActivity---------->" + "ON RESUME + register Receiver success");}
-				
+			changePowerState();
 	   }
 	private void startConectPairedDevice() {
 		// Launch the DeviceListActivity to see devices and do scan
@@ -503,7 +504,8 @@ public class OperationActivityHD extends FragmentActivity implements OnTouchList
 		Log.d("activityHD", "onDestroy-----------()");
 		unregisterReceiver(mBluetoothReceiver);
 		// 退出时释放连接
-		
+		mPower=false;
+		changePowerState();//20151228  re-open app power button state doesn't change.
 //		mAsr.cancel();
 //		mAsr.destroy();
 		super.onDestroy();
@@ -2444,7 +2446,7 @@ if(auto_ListItem.get(arg2).get("ItemTitle").equals(getString(R.string.blsbz))){
 			btn_Auto.setEnabled(false);
 			btn_manual.setEnabled(false);
 			btn_pressure.setEnabled(false);
-			btn_other.setEnabled(false);
+//			btn_other.setEnabled(false);
 			txtstate_mode.setText("");
 //			LayoutInflater inflater=LayoutInflater.from(this);
 //			inflater.inflate(R.layout.op_bottom_view, null);
