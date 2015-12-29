@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/splash_background"
+    android:baselineAligned="false"
+    android:orientation="horizontal" >
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:layout_weight="0.55"
+        android:gravity="right"
+        android:orientation="vertical"
+        android:paddingTop="50dp" >
+
+        <RadioGroup
+            android:id="@+id/layout_part"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <RadioButton
+                android:id="@+id/rbtn_all"
+                style="@style/hogographic_hand_radiogroup"
+                android:text="@string/all" />
+
+            <RadioButton
+                android:id="@+id/rbtn_hand_shoulder"
+                style="@style/hogographic_hand_radiogroup"
+                android:text="@string/hand_shoulder" />
+
+            <RadioButton
+                android:id="@+id/rbtn_waist"
+                style="@style/hogographic_hand_radiogroup"
+                android:text="@string/waist" />
+
+            <RadioButton
+                android:id="@+id/rbtn_leg_foot"
+                style="@style/hogographic_hand_radiogroup"
+                android:text="@string/leg_foot" />
+        </RadioGroup>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/img_divider"
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:scaleType="fitXY"
+        android:src="@drawable/divider_vertical" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:layout_weight="0.45"
+        android:gravity="left"
+        android:orientation="vertical"
+        android:paddingTop="50dp" >
+
+        <FrameLayout
+            android:id="@+id/layout_strength_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:visibility="invisible" >
+
+            <ImageView
+                android:id="@+id/img_strength_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="fill"
+                android:scaleType="centerInside"
+                android:src="@drawable/holographic_strength_normal" />
+
+            <TextView
+                android:id="@+id/tv_strength_1"
+                style="@style/main_text_style"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|right"
+                android:layout_marginRight="1dp" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/layout_strength_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:visibility="invisible" >
+
+            <ImageView
+                android:id="@+id/img_strength_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="fill"
+                android:scaleType="centerInside"
+                android:src="@drawable/holographic_strength_normal" />
+
+            <TextView
+                android:id="@+id/tv_strength_2"
+                style="@style/main_text_style"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|right"
+                android:layout_marginRight="1dp" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/layout_strength_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:visibility="invisible" >
+
+            <ImageView
+                android:id="@+id/img_strength_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="fill"
+                android:scaleType="centerInside"
+                android:src="@drawable/holographic_strength_normal" />
+
+            <TextView
+                android:id="@+id/tv_strength_3"
+                style="@style/main_text_style"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|right"
+                android:layout_marginRight="1dp" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/layout_strength_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:visibility="invisible" >
+
+            <ImageView
+                android:id="@+id/img_strength_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="fill"
+                android:scaleType="centerInside"
+                android:src="@drawable/holographic_strength_normal" />
+
+            <TextView
+                android:id="@+id/tv_strength_4"
+                style="@style/main_text_style"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|right"
+                android:layout_marginRight="1dp" />
+        </FrameLayout>
+    </LinearLayout>
+
+</LinearLayout>

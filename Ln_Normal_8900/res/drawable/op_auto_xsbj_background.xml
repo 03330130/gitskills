@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_enabled="true" android:drawable="@drawable/op_auto_xsbj_activated" android:state_activated="true" />
+    <item android:drawable="@drawable/op_auto_xsbj_normal" />
+</selector>

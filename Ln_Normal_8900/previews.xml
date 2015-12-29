@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<previews>
+
+    <preview
+        name="Config1"
+        activity="com.kangtai.MassageChair.OperationActivityHD"
+        config="layout-ldltr-sw800dp-w800dp-h1280dp-normal-notlong-port-notnight-mdpi-finger-keyssoft-nokeys-navhidden-nonav-1280x800-v19"
+        device="1280x800"
+        devicestate="Portrait"
+        target="Android 4.4.2"
+        theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" >
+    </preview>
+
+</previews>

@@ -1,0 +1,187 @@
+package com.kangtai.MassageChair;
+
+import com.kangtai.MassageChair.Protocal.DataFrame;
+import com.kangtai.MassageChair.Protocal.RokolUtil;
+import com.kangtai.MassageChair.Protocal.DataFrame.OPERATION;
+
+import android.app.Activity;
+import android.content.Context;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.text.TextUtils.TruncateAt;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Toast;
+import android.widget.RadioGroup.OnCheckedChangeListener;
+
+public class FragmentAutoMassage extends Fragment implements
+		/*OnCheckedChangeListener,*/ OnClickListener {
+
+	private Context mContext;
+	private RadioGroup mRadioGroup;
+	private RadioButton rbtnZyys, rbtnSthh, rbtnJgsz, rbtnQnty, rbtnXyfs,
+			rbtnXsbj, rbtnYlam, rbtnBlsbz, rbtnGwdr, rbtnYjkb, rbtnYdyms,
+			rbtnYsbj;
+
+	@Override
+	public void onAttach(Activity activity) {
+		super.onAttach(activity);
+		this.mContext = (MainActivity) activity;
+
+	}
+
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		Log.d("auto", "click auto");
+		View view = LayoutInflater.from(getActivity()).inflate(
+				R.layout.auto_massage, null);
+		mRadioGroup = (RadioGroup) view.findViewById(R.id.Layout_auto_list);
+//		mRadioGroup.setOnCheckedChangeListener(this);
+
+		rbtnZyys = (RadioButton) view.findViewById(R.id.rbtn_zyys);
+		rbtnSthh = (RadioButton) view.findViewById(R.id.rbtn_sthh);
+		rbtnJgsz = (RadioButton) view.findViewById(R.id.rbtn_jgsz);
+		rbtnQnty = (RadioButton) view.findViewById(R.id.rbtn_qnty);
+		rbtnXyfs = (RadioButton) view.findViewById(R.id.rbtn_xyfs);
+		rbtnXsbj = (RadioButton) view.findViewById(R.id.rbtn_xsbj);
+		rbtnYlam = (RadioButton) view.findViewById(R.id.rbtn_ylam);
+		rbtnBlsbz = (RadioButton) view.findViewById(R.id.rbtn_blsbz);
+		rbtnGwdr = (RadioButton) view.findViewById(R.id.rbtn_gwdr);
+		rbtnYjkb = (RadioButton) view.findViewById(R.id.rbtn_yjkb);
+		rbtnYdyms = (RadioButton) view.findViewById(R.id.rbtn_ydyms);
+		rbtnYsbj = (RadioButton) view.findViewById(R.id.rbtn_ysbj);
+
+		rbtnZyys.setOnClickListener(this);
+		rbtnSthh.setOnClickListener(this);
+		rbtnJgsz.setOnClickListener(this);
+		rbtnQnty.setOnClickListener(this);
+		rbtnXyfs.setOnClickListener(this);
+		rbtnXsbj.setOnClickListener(this);
+		rbtnYlam.setOnClickListener(this);
+		rbtnBlsbz.setOnClickListener(this);
+		rbtnGwdr.setOnClickListener(this);
+		rbtnYjkb.setOnClickListener(this);
+		rbtnYdyms.setOnClickListener(this);
+		rbtnYsbj.setOnClickListener(this);
+		return view;
+	}
+
+	public void sendData(OPERATION op) {
+		((MainActivity) FragmentAutoMassage.this.mContext)
+				.sendCommand(DataFrame.getSendFrame(op));
+	}
+
+/*	@Override
+	public void onCheckedChanged(RadioGroup group, int checkedId) {
+		// TODO Auto-generated method stub
+		switch (checkedId) {
+		case R.id.rbtn_zyys:
+	
+			sendData(OPERATION.FATIGUERECOVERY_ON);
+			break;
+		case R.id.rbtn_sthh:
+			sendData(OPERATION.PAINEASE_ON);
+			break;
+		case R.id.rbtn_jgsz:
+			sendData(OPERATION.MOODRELAX_ON);
+			break;
+		case R.id.rbtn_qnty:
+			sendData(OPERATION._3DEXPERIENCE_ON);
+			break;
+		case R.id.rbtn_xyfs:
+
+			break;
+		case R.id.rbtn_xsbj:
+			break;
+		case R.id.rbtn_ylam:
+			sendData(OPERATION.RHYTHM_ON);
+			break;
+		case R.id.rbtn_blsbz:
+			sendData(OPERATION.OFFICEWORKER_ON);
+			break;
+		case R.id.rbtn_gwdr:
+			sendData(OPERATION.SHOPPER_ON);
+			break;
+		case R.id.rbtn_yjkb:
+			sendData(OPERATION.YOGIOPENBACK_ON);
+			break;
+		case R.id.rbtn_ydyms:
+			sendData(OPERATION.ATHLETEMODE_ON);
+			break;
+		case R.id.rbtn_ysbj:
+			sendData(OPERATION.HEALTH_ON);
+			break;
+		default:
+			break;
+		}
+
+	}*/
+
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		switch (v.getId()) {
+		case R.id.rbtn_zyys:
+			
+			sendData(OPERATION.FATIGUERECOVERY_ON);
+			break;
+		case R.id.rbtn_sthh:
+			sendData(OPERATION.PAINEASE_ON);
+			break;
+		case R.id.rbtn_jgsz:
+			sendData(OPERATION.MOODRELAX_ON);
+			break;
+		case R.id.rbtn_qnty:
+			sendData(OPERATION._3DEXPERIENCE_ON);
+			break;
+		case R.id.rbtn_xyfs:
+
+			break;
+		case R.id.rbtn_xsbj:
+			break;
+		case R.id.rbtn_ylam:
+			sendData(OPERATION.RHYTHM_ON);
+			break;
+		case R.id.rbtn_blsbz:
+			sendData(OPERATION.OFFICEWORKER_ON);
+			break;
+		case R.id.rbtn_gwdr:
+			sendData(OPERATION.SHOPPER_ON);
+			break;
+		case R.id.rbtn_yjkb:
+			sendData(OPERATION.YOGIOPENBACK_ON);
+			break;
+		case R.id.rbtn_ydyms:
+			sendData(OPERATION.ATHLETEMODE_ON);
+			break;
+		case R.id.rbtn_ysbj:
+			sendData(OPERATION.HEALTH_ON);
+			break;
+		default:
+			break;
+		}
+		// handle touch sound
+
+		RokolUtil.performTouchSound(mContext);
+		
+		//handle text style
+		for (int i = 0; i < mRadioGroup.getChildCount(); i++) {
+			RadioButton rbtn=(RadioButton) mRadioGroup.getChildAt(i);
+			if (rbtn.isChecked()){
+				RokolUtil.setTextShadow(mContext, mRadioGroup.getChildAt(i));
+				rbtn.setSelected(true);			
+			}
+			else{
+				RokolUtil.setTextNoShadow(mContext, mRadioGroup.getChildAt(i));
+				rbtn.setSelected(false);
+			}
+		}
+	}
+
+}

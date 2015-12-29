@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:background="@android:color/transparent" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <FrameLayout android:id="@id/zuliao_speed_layout" android:background="@android:color/white" android:visibility="invisible" android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_weight="1.2">
+        <TextView android:textSize="@dimen/textsize_Large" android:textColor="#ff000000" android:gravity="center" android:id="@id/tv_other_zuoliao" android:paddingLeft="7.0dip" android:clickable="true" android:layout_width="fill_parent" android:layout_height="fill_parent" android:text="@string/soft" android:drawableLeft="@drawable/op_other_zuliao_rouhe" />
+    </FrameLayout>
+    <FrameLayout android:id="@id/fmlayout" android:background="@android:color/transparent" android:visibility="invisible" android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_weight="0.8">
+        <TextView android:textSize="18.0sp" android:textColor="#ff000000" android:gravity="center" android:id="@id/tv_manual_null" android:paddingLeft="7.0dip" android:clickable="true" android:layout_width="fill_parent" android:layout_height="fill_parent" android:text="@string/middle" android:drawableLeft="@drawable/op_img_middle" />
+    </FrameLayout>
+    <FrameLayout android:id="@id/width_layout" android:background="@android:color/white" android:visibility="invisible" android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_weight="1.0">
+        <TextView android:textSize="@dimen/textsize_Large" android:textColor="#ff000000" android:gravity="center" android:id="@id/tv_manual_width" android:paddingLeft="7.0dip" android:clickable="true" android:layout_width="fill_parent" android:layout_height="fill_parent" android:text="@string/middle" android:drawableLeft="@drawable/op_img_middle" />
+    </FrameLayout>
+    <FrameLayout android:id="@id/speed_layout" android:background="@android:color/white" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_weight="1.0">
+        <TextView android:textSize="@dimen/textsize_Large" android:textColor="#ff000000" android:gravity="center" android:id="@id/tv_manual_speed" android:background="@drawable/bk_color_blue_pressed" android:paddingLeft="7.0dip" android:clickable="true" android:layout_width="fill_parent" android:layout_height="fill_parent" android:text="@string/middle" android:drawableLeft="@drawable/op_middle" />
+    </FrameLayout>
+    <FrameLayout android:id="@id/null_layout" android:background="@android:color/white" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_weight="1.0">
+        <TextView android:textSize="@dimen/textsize_Large" android:textColor="#ff000000" android:gravity="center" android:id="@id/tv_null" android:background="@drawable/bk_color_blue_pressed" android:paddingLeft="7.0dip" android:clickable="true" android:layout_width="fill_parent" android:layout_height="fill_parent" android:text="@string/middle" android:drawableLeft="@drawable/op_middle" />
+    </FrameLayout>
+    <LinearLayout android:orientation="vertical" android:id="@id/manual_3d_layout" android:background="@android:color/white" android:visibility="invisible" android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_weight="2.0">
+        <TextView android:textSize="@dimen/textsize_Large" android:textColor="#ff000000" android:gravity="center" android:id="@id/tv_pop_3d_item_up" android:background="@drawable/bk_color_blue_pressed" android:layout_width="fill_parent" android:layout_height="fill_parent" android:text="@string/threeDstrengthen" android:drawableLeft="@drawable/bk_part_up" android:layout_weight="1.0" />
+        <View android:background="#ff000000" android:layout_width="fill_parent" android:layout_height="0.5dip" />
+        <TextView android:textSize="@dimen/textsize_Large" android:textColor="#ff000000" android:gravity="center" android:id="@id/tv_pop_3d_item_down" android:background="@drawable/bk_color_blue_pressed" android:layout_width="fill_parent" android:layout_height="fill_parent" android:text="@string/threeDweaken" android:drawableLeft="@drawable/bk_part_down" android:layout_weight="1.0" />
+    </LinearLayout>
+</LinearLayout>

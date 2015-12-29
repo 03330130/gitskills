@@ -1,0 +1,327 @@
+package com.kangtai.MassageChair;
+
+import com.kangtai.MassageChair.R.color;
+import com.kangtai.MassageChair.Protocal.DataFrame;
+import com.kangtai.MassageChair.Protocal.RokolUtil;
+import com.kangtai.MassageChair.Protocal.DataFrame.OPERATION;
+
+import android.app.Activity;
+import android.content.Context;
+import android.graphics.BitmapFactory;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.FrameLayout;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+public class FragmentOtherMassage extends Fragment implements OnClickListener,
+		OnCheckedChangeListener {
+	private Context mContext;
+	// private RadioGroup mLayout_Method;
+
+	private CheckBox rbtnPedicure, rbtnThermal, mCheckBoxMusic;
+	private ImageView rbtnPhysiology;
+	private FrameLayout mLayout_Strength_1/*
+										 * , mLayout_Strength_2,
+										 * mLayout_Strength_3
+										 */;
+	private ImageView mImageStrength_1 /* ,mImageStrength_2, mImageStrength_3 */;
+
+	private TextView mTextStrength_1, mTextHeartRate/*
+													 * , mTextStrength_2,
+													 * mTextStrength_3
+													 */;
+	private boolean mStrength;
+
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		View view = LayoutInflater.from(getActivity()).inflate(
+				R.layout.others_massage, null);
+
+		// mLayout_Method = (RadioGroup) view.findViewById(R.id.layout_method);
+
+		rbtnPedicure = (CheckBox) view.findViewById(R.id.rbtn_pedicure);
+
+		rbtnThermal = (CheckBox) view.findViewById(R.id.rbtn_thermal_method);
+
+		mCheckBoxMusic = (CheckBox) view.findViewById(R.id.cbox_music);
+		mCheckBoxMusic.setOnCheckedChangeListener(this);
+		mCheckBoxMusic.setOnClickListener(this);
+
+		rbtnPhysiology = (ImageView) view
+				.findViewById(R.id.rbtn_physiology_test);
+
+		mTextHeartRate = (TextView) view.findViewById(R.id.tv_physiology_test);
+		mTextHeartRate.setSelected(true);
+		mTextHeartRate.setTextColor(getResources().getColor(
+				android.R.color.black));
+
+		mLayout_Strength_1 = (FrameLayout) view
+				.findViewById(R.id.layout_strength_1);
+		/*
+		 * mLayout_Strength_2 = (FrameLayout) view
+		 * .findViewById(R.id.layout_strength_2); mLayout_Strength_3 =
+		 * (FrameLayout) view .findViewById(R.id.layout_strength_3);
+		 */
+
+		mImageStrength_1 = (ImageView) view.findViewById(R.id.img_strength_1);
+		/*
+		 * mImageStrength_2 = (ImageView)
+		 * view.findViewById(R.id.img_strength_2); mImageStrength_3 =
+		 * (ImageView) view.findViewById(R.id.img_strength_3);
+		 */
+
+		mTextStrength_1 = (TextView) view.findViewById(R.id.tv_strength_1);
+		/*
+		 * mTextStrength_2 = (TextView) view.findViewById(R.id.tv_strength_2);
+		 * mTextStrength_3 = (TextView) view.findViewById(R.id.tv_strength_3);
+		 */
+
+		mImageStrength_1.setOnClickListener(this);
+		/*
+		 * mImageStrength_2.setOnClickListener(this);
+		 * mImageStrength_3.setOnClickListener(this);
+		 */
+
+		// mLayout_Method.setOnCheckedChangeListener(this);
+
+		rbtnPedicure.setOnClickListener(this);
+		rbtnPedicure.setOnCheckedChangeListener(this);
+
+		rbtnThermal.setOnClickListener(this);
+		rbtnThermal.setOnCheckedChangeListener(this);
+
+		rbtnPhysiology.setOnClickListener(this);
+		return view;
+	}
+
+	@Override
+	public void onAttach(Activity activity) {
+		super.onAttach(activity);
+		this.mContext = (MainActivity) activity;
+	}
+
+	private void clickPedicure(boolean isChecked) {
+		// TODO send command
+		if (isChecked) {
+			
+			mLayout_Strength_1.setVisibility(View.VISIBLE);
+			rbtnPedicure.setSelected(true);
+			RokolUtil.setTextShadow(mContext, rbtnPedicure);
+		} else {
+			sendData(OPERATION.PEDICURE_OFF);
+			mLayout_Strength_1.setVisibility(View.INVISIBLE);
+			resetStrength(R.drawable.other_speed_normal);
+			rbtnPedicure.setSelected(false);
+			RokolUtil.setTextNoShadow(mContext, rbtnPedicure);
+		}
+	}
+
+	private void clickThemalMethod(boolean isChecked) {
+		// TODO send command
+		if (isChecked) {
+			rbtnThermal.setSelected(true);
+			RokolUtil.setTextShadow(mContext, rbtnThermal);
+			sendData(OPERATION.THEMALMETHOD_ON);
+
+		} else {
+			rbtnThermal.setSelected(false);
+			RokolUtil.setTextNoShadow(mContext, rbtnThermal);
+			sendData(OPERATION.THEMALMETHOD_OFF);
+		}
+		// mLayout_Strength_1.setVisibility(View.INVISIBLE);
+		/*
+		 * mLayout_Strength_2.setVisibility(View.VISIBLE);
+		 * mLayout_Strength_3.setVisibility(View.INVISIBLE);
+		 * resetStrength(R.drawable.other_speed_normal);
+		 */
+	}
+
+	private void clickphysiology_test() {
+		// TODO send command
+		// mLayout_Strength_1.setVisibility(View.INVISIBLE);
+		/*
+		 * mLayout_Strength_2.setVisibility(View.INVISIBLE);
+		 * mLayout_Strength_3.setVisibility(View.VISIBLE);
+		 * resetStrength(R.drawable.other_speed_normal);
+		 */
+	}
+
+	private void resetStrength(int resId) {
+		mImageStrength_1.setImageBitmap(BitmapFactory.decodeResource(
+				getResources(), resId));
+		/*
+		 * mImageStrength_2.setImageBitmap(BitmapFactory.decodeResource(
+		 * getResources(), resId));
+		 * mImageStrength_3.setImageBitmap(BitmapFactory.decodeResource(
+		 * getResources(), resId));
+		 */
+
+		mTextStrength_1.setText("");
+		/*
+		 * mTextStrength_2.setText(""); mTextStrength_3.setText("");
+		 */
+
+		/*
+		 * RokolUtil.setTextNoShadow(mContext, mTextStrength_1);
+		 * mTextStrength_1.setSingleLine(false);
+		 * mTextStrength_1.setTextSize(10);
+		 * mTextStrength_1.setTextColor(mContext.getResources().getColor(
+		 * R.color.black)); RokolUtil.setTextNoShadow(mContext,
+		 * mTextStrength_2); mTextStrength_2.setSingleLine(false);
+		 * mTextStrength_2.setTextSize(10);
+		 * mTextStrength_2.setTextColor(mContext.getResources().getColor(
+		 * R.color.black)); RokolUtil.setTextNoShadow(mContext,
+		 * mTextStrength_3); mTextStrength_3.setSingleLine(false);
+		 * mTextStrength_3.setTextSize(10);
+		 * mTextStrength_3.setTextColor(mContext.getResources().getColor(
+		 * R.color.black));
+		 */
+		mStrength = true;
+
+	}
+
+	private void setText(int rscId) {
+		if (mLayout_Strength_1.getVisibility() == View.VISIBLE) {
+			mTextStrength_1.setText(rscId);
+			RokolUtil.setTextShadow(mContext, mTextStrength_1);
+		}
+		/*
+		 * if (mLayout_Strength_2.getVisibility() == View.VISIBLE) {
+		 * mTextStrength_2.setText(rscId); RokolUtil.setTextShadow(mContext,
+		 * mTextStrength_2); } if (mLayout_Strength_3.getVisibility() ==
+		 * View.VISIBLE) { mTextStrength_3.setText(rscId);
+		 * RokolUtil.setTextShadow(mContext, mTextStrength_3); }
+		 */
+
+	}
+
+	private void changeImage(int resId) {
+		if (mLayout_Strength_1.getVisibility() == View.VISIBLE)
+			mImageStrength_1.setImageBitmap(BitmapFactory.decodeResource(
+					getResources(), resId));
+		/*
+		 * if (mLayout_Strength_2.getVisibility() == View.VISIBLE)
+		 * mImageStrength_2.setImageBitmap(BitmapFactory.decodeResource(
+		 * getResources(), resId)); if (mLayout_Strength_3.getVisibility() ==
+		 * View.VISIBLE)
+		 * mImageStrength_3.setImageBitmap(BitmapFactory.decodeResource(
+		 * getResources(), resId));
+		 */
+
+	}
+
+	private void clickStrength() {
+		if (mStrength) {
+			// TODO send command
+			/*
+			 * mRbtnSpeed_1.setBackgroundResource(R.drawable.other_speed_low);
+			 * mRbtnSpeed_2.setBackgroundResource(R.drawable.other_speed_low);
+			 * mRbtnSpeed_3.setBackgroundResource(R.drawable.other_speed_low);
+			 */
+			sendData(OPERATION.PEDICURE_SOFT);
+			changeImage(R.drawable.other_speed_low);
+			setText(R.string.soft);
+			/*
+			 * mRbtnSpeed_1.setText(R.string.soft);
+			 * mRbtnSpeed_2.setText(R.string.soft);
+			 * mRbtnSpeed_3.setText(R.string.soft);
+			 * mRbtnSpeed_1.setText(R.string.soft);
+			 */
+
+		} else {
+			// TODO send command
+			/*
+			 * mRbtnSpeed_1.setBackgroundResource(R.drawable.other_speed_high);
+			 * mRbtnSpeed_2.setBackgroundResource(R.drawable.other_speed_high);
+			 * mRbtnSpeed_3.setBackgroundResource(R.drawable.other_speed_high);
+			 * 
+			 * mRbtnSpeed_1.setText(R.string.fast);
+			 * mRbtnSpeed_2.setText(R.string.fast);
+			 * mRbtnSpeed_3.setText(R.string.fast);
+			 */
+			sendData(OPERATION.PEDICURE_FAST);
+			changeImage(R.drawable.other_speed_high);
+			setText(R.string.fast);
+		}
+
+		mTextStrength_1.setTextAppearance(mContext,
+				android.R.style.TextAppearance_Medium);
+		/*
+		 * mTextStrength_2.setTextAppearance(mContext,
+		 * android.R.style.TextAppearance_Small);
+		 * mTextStrength_3.setTextAppearance(mContext,
+		 * android.R.style.TextAppearance_Small);
+		 */
+		mTextStrength_1.setShadowLayer(1, 1, 1, 0xff000000);
+		/*
+		 * mTextStrength_2.setShadowLayer(1, 1, 1, 0xff000000);
+		 * mTextStrength_3.setShadowLayer(1, 1, 1, 0xff000000);
+		 */
+		mTextStrength_1.setSelected(true);
+		mStrength = !mStrength;
+	}
+
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()) {
+		case R.id.img_strength_1:
+			/*
+			 * case R.id.img_strength_2: case R.id.img_strength_3:
+			 */
+			clickStrength();
+			break;
+		case R.id.rbtn_physiology_test:
+			clickphysiology_test();
+			break;
+		}
+		// handle touch sound
+		RokolUtil.performTouchSound(mContext);
+		//
+		/*
+		 * for (int i = 0; i < mLayout_Method.getChildCount(); i++) {
+		 * RadioButton rbtn = (RadioButton) mLayout_Method.getChildAt(i); if
+		 * (rbtn.isChecked()) RokolUtil.setTextShadow(mContext, rbtn); else {
+		 * RokolUtil.setTextNoShadow(mContext, rbtn); } }
+		 */
+	}
+
+	public void sendData(OPERATION op) {
+		((MainActivity) FragmentOtherMassage.this.mContext)
+				.sendCommand(DataFrame.getSendFrame(op));
+	}
+
+	@Override
+	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+		// TODO Auto-generated method stub
+		switch (buttonView.getId()) {
+		case R.id.rbtn_pedicure:
+			clickPedicure(isChecked);
+			break;
+		case R.id.rbtn_thermal_method:
+			clickThemalMethod(isChecked);
+			break;
+		case R.id.cbox_music:
+			if (isChecked) {
+				((MainActivity) mContext).sendCommand(DataFrame
+						.getSendFrame(OPERATION.MUSIC_POWER_ON));
+				RokolUtil.setTextShadow(mContext, mCheckBoxMusic);
+			} else {
+				((MainActivity) mContext).sendCommand(DataFrame
+						.getSendFrame(OPERATION.MUSIC_POWER_OFF));
+				RokolUtil.setTextNoShadow(mContext, mCheckBoxMusic);
+			}
+			break;
+		}
+	}
+
+}

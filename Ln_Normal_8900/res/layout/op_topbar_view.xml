@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="horizontal" android:background="@drawable/op_top_bg" android:layout_width="fill_parent" android:layout_height="wrap_content" android:baselineAligned="false"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <FrameLayout android:layout_width="0.0dip" android:layout_height="fill_parent" android:layout_weight="0.2">
+        <Button android:layout_gravity="right|center" android:id="@id/btn_op_power" android:background="@drawable/op_power_background" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+    </FrameLayout>
+    <FrameLayout android:layout_width="0.0dip" android:layout_height="fill_parent" android:layout_weight="0.6">
+        <ImageView android:background="@drawable/main_start_clicked" android:layout_width="fill_parent" android:layout_height="fill_parent" android:scaleType="center" android:rotation="180.0" />
+        <ImageView android:layout_width="fill_parent" android:layout_height="fill_parent" android:src="@drawable/op_top_logo" android:scaleType="center" />
+        <EditText android:layout_gravity="center_horizontal" android:id="@id/edtxt_show_words" android:background="@android:color/transparent" android:layout_width="100.0dip" android:layout_height="wrap_content" android:singleLine="true" />
+    </FrameLayout>
+    <FrameLayout android:layout_width="0.0dip" android:layout_height="fill_parent" android:layout_weight="0.2">
+        <Button android:layout_gravity="center_vertical" android:id="@id/btn_op_stop" android:background="@drawable/op_stop_background" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+    </FrameLayout>
+</LinearLayout>

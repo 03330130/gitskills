@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:background="@android:color/transparent" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <FrameLayout android:id="@id/pressure_speed_layout1" android:background="@android:color/white" android:visibility="invisible" android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_weight="1.0">
+        <TextView android:textSize="15.0sp" android:textColor="#ff000000" android:gravity="center" android:id="@id/tv_speed1" android:paddingLeft="7.0dip" android:clickable="true" android:layout_width="fill_parent" android:layout_height="fill_parent" android:text="@string/middle" android:drawableLeft="@drawable/op_middle" />
+    </FrameLayout>
+    <FrameLayout android:id="@id/pressure_speed_layout2" android:background="@android:color/white" android:visibility="invisible" android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_weight="1.0">
+        <TextView android:textSize="15.0sp" android:textColor="#ff000000" android:gravity="center" android:id="@id/tv_speed2" android:paddingLeft="7.0dip" android:clickable="true" android:layout_width="fill_parent" android:layout_height="fill_parent" android:text="@string/middle" android:drawableLeft="@drawable/op_middle" />
+    </FrameLayout>
+    <FrameLayout android:id="@id/pressure_speed_layout3" android:background="@android:color/white" android:visibility="invisible" android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_weight="1.0">
+        <TextView android:textSize="15.0sp" android:textColor="#ff000000" android:gravity="center" android:id="@id/tv_speed3" android:paddingLeft="7.0dip" android:clickable="true" android:layout_width="fill_parent" android:layout_height="fill_parent" android:text="@string/middle" android:drawableLeft="@drawable/op_middle" />
+    </FrameLayout>
+    <FrameLayout android:id="@id/pressure_speed_layout4" android:background="@android:color/white" android:visibility="invisible" android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_weight="1.0">
+        <TextView android:textSize="15.0sp" android:textColor="#ff000000" android:gravity="center" android:id="@id/tv_speed4" android:background="@drawable/bk_color_blue_pressed" android:paddingLeft="7.0dip" android:clickable="true" android:layout_width="fill_parent" android:layout_height="fill_parent" android:text="@string/middle" android:drawableLeft="@drawable/op_middle" />
+    </FrameLayout>
+</LinearLayout>
