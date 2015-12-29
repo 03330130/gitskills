@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="horizontal" android:background="@null" android:layout_width="fill_parent" android:layout_height="67.0dip"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:textSize="@dimen/textsize_Large" android:textColor="#ff000000" android:gravity="center" android:id="@id/tv_pressure_info" android:layout_width="0.0dip" android:layout_height="fill_parent" android:singleLine="true" android:layout_weight="5.0" />
+    <ImageView android:layout_gravity="right|center" android:id="@id/img_pressure_arrow" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_marginRight="1.0dip" android:layout_weight="1.0" />
+</LinearLayout>

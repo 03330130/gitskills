@@ -1,0 +1,8 @@
+﻿#BNF+IAT 1.0 UTF-8;
+!grammar order;
+!slot <command>;
+!slot <Pre>;
+!start <orderStart>;
+<orderStart>:[<Pre>]<command>;
+<command>:开机|关机|快速体验|购物达人|中医养生|打开按摩椅|关闭按摩椅;
+<Pre>:我要|我想|我想要;

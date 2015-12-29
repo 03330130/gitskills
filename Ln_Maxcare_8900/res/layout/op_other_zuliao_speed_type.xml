@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="horizontal" android:background="@android:color/white" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:textSize="18.0sp" android:textColor="#ff000000" android:gravity="center" android:id="@id/tv_other_zuoliao" android:paddingLeft="7.0dip" android:clickable="true" android:layout_width="fill_parent" android:layout_height="fill_parent" android:text="@string/soft" android:drawableLeft="@drawable/op_other_zuliao_rouhe" />
+</LinearLayout>
