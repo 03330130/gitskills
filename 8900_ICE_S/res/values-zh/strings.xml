@@ -101,7 +101,7 @@
     <string name="width">    宽度</string>
     <string name="speed">    速度</string>
     <string name="threeD">3D手感</string>
-    <string name="threeD_position">3 D \n模式</string>
+    <string name="threeD_position">3D \n模式</string>
     <string name="knead">揉捏</string>
     <string name="rap">叩击</string>
     <string name="pat">拍打</string>
@@ -166,7 +166,7 @@
     <!-- 设置 -->
     <string name="language">语言</string>
     <string name="chinese">中文</string>
-    <string name="english">ENGLISH</string>
+    <string name="english">English</string>
     <string name="korean">한국어</string>
     <string name="timer_0"><u>10min</u></string>
     <string name="timer_1">20min</string>

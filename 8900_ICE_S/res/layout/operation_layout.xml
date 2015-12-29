@@ -95,7 +95,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
-                    android:gravity="center_horizontal"
+                    
                     android:layout_marginBottom="-2dp"
                     android:textSize="@dimen/fudong_text_size"
                     android:text="@string/threeD_position" />

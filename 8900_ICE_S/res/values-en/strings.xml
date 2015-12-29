@@ -185,9 +185,9 @@
     <!-- settings -->
     <string name="language">Language</string>
     <string name="chinese">中文</string>
-    <string name="english">ENGLISH</string>
+    <string name="english">English</string>
     <string name="korean">한국어</string>
-    <string name="spanish">spanish</string>
+    <string name="spanish">Spanish</string>
     <string name="Vietnamese">Vietnamese</string>
     <string name="timer_0"><u>10min</u></string>
     <string name="timer_1">20min</string>

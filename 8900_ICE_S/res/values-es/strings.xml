@@ -150,9 +150,9 @@ F"</string>
     <string name="found_new_version">There is an new vesion,please update now.</string>
     <string name="language">Temporizador</string>
     <string name="chinese">中文</string>
-    <string name="english">ENGLISH</string>
+    <string name="english">English</string>
     <string name="korean">한국어</string>
-    <string name="spanish">spanish</string>
+    <string name="spanish">Spanish</string>
     <string name="Vietnamese">Vietnamese</string>
     <string name="timer_0"><u>10min</u></string>
     <string name="timer_1">20min</string>
@@ -167,9 +167,8 @@ F"</string>
     <string name="cancel">Cancel</string>
     <string name="wlan_not_connected">WLAN is not connected</string>
     <string name="title_connected_to">conectado a%1$s</string>
-    <string name="hot_rock">Hot Rocks</string>
-    <string name="threeD_position">"3 D
-Posición"</string>
+    <string name="hot_rock">Hot Rocks</string>  
+    <string name="threeD_position">"3 D \nPosición"</string>
     <string name="levlel1">Nivel 1</string>
     <string name="levlel2">Nivel 2</string>
     <string name="levlel3">Nivel 3</string>
