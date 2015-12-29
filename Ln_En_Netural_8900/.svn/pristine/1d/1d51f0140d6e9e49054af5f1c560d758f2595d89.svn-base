@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" >
+
+    <ImageView
+        android:id="@+id/img_power"
+        android:layout_width="60dp"
+        android:layout_height="match_parent"
+        android:background="@drawable/menu_button_background"
+        android:clickable="true"
+        android:scaleType="centerInside"
+        android:src="@drawable/menu_power_background"
+        android:contentDescription="@string/power" />
+
+</RelativeLayout> <!-- android:visibility="invisible" -->

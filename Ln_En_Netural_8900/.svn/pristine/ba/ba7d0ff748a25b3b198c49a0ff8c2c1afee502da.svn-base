@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/splash_background" >
+
+<!--     <RelativeLayout
+        android:id="@+id/headerbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/nav_height"
+        android:layout_alignParentTop="true"
+        android:layout_centerVertical="true"
+        android:background="@android:color/transparent" >
+         <ImageButton
+        android:id="@+id/img_more"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:src="@android:drawable/ic_menu_moreoverflow_normal_holo_dark" />
+    </RelativeLayout> -->
+
+    <ImageView
+        android:id="@+id/img_divider"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/divider" />
+
+    <!-- content frame -->
+
+    <FrameLayout
+        android:id="@+id/frame_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/frameLayoutNavigation"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="5dp" >
+    </FrameLayout>
+    <!-- bottom navigation -->
+
+    <FrameLayout
+        android:id="@+id/frameLayoutNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/nav_height"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@android:color/transparent" >
+
+        <ImageView
+            android:id="@+id/img_divider_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/divider" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:baselineAligned="false"
+            android:gravity="center_horizontal|bottom" >
+
+            <!-- auto massage -->
+
+            <FrameLayout
+                android:id="@+id/layout_auto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:src="@drawable/tab_auto_background" >
+
+                <ImageView
+                    android:id="@+id/img_auto"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="top|center"
+                    android:contentDescription="@string/auto_massage"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/tab_nav_background" />
+
+                <TextView
+                    android:id="@+id/tv_auto"
+                    style="@style/main_text_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/auto_massage" />
+            </FrameLayout>
+            <!-- manual massage -->
+
+            <FrameLayout
+                android:id="@+id/layout_manual"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1" >
+
+                <ImageView
+                    android:id="@+id/img_manual"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="top|center"
+                    android:contentDescription="@string/manual_massage"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/tab_nav_background" />
+
+                <TextView
+                    android:id="@+id/tv_manual"
+                    style="@style/main_text_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/manual_massage" />
+            </FrameLayout>
+            <!-- position adjust -->
+
+            <FrameLayout
+                android:id="@+id/layout_ajust"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1" >
+
+                <ImageView
+                    android:id="@+id/img_position"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="top|center"
+                    android:background="@drawable/tab_position_adjust_background"
+                    android:contentDescription="@string/position_adjust"
+                    android:scaleType="fitXY" />
+
+                <TextView
+                    android:id="@+id/tv_position"
+                    style="@style/main_text_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|center"
+                    android:text="@string/position_adjust"
+                    android:textSize="16sp" />
+            </FrameLayout>
+            <!-- holographic_hand_massage -->
+
+            <FrameLayout
+                android:id="@+id/layout_holographic_hand"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1" >
+
+                <ImageView
+                    android:id="@+id/img_holographic_hand"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="top|center"
+                    android:contentDescription="@string/holographic_hand_massage"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/tab_nav_background" />
+
+                <TextView
+                    android:id="@+id/tv_holo"
+                    style="@style/main_text_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/holographic_hand_massage" />
+            </FrameLayout>
+            <!-- other massage -->
+
+            <FrameLayout
+                android:id="@+id/layout_other"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1" >
+
+                <ImageView
+                    android:id="@+id/img_other"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="top|center"
+                    android:contentDescription="@string/other_massage"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/tab_nav_background" />
+
+                <TextView
+                    android:id="@+id/tv_other"
+                    style="@style/main_text_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/other_massage" />
+            </FrameLayout>
+        </LinearLayout>
+    </FrameLayout>
+
+</RelativeLayout>

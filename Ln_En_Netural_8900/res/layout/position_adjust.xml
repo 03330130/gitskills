@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:background="@android:color/background_dark" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <HorizontalScrollView android:id="@id/positionview" android:scrollbars="none" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_margin="10.0dip" android:layout_centerInParent="true">
+        <LinearLayout android:layout_gravity="center_vertical" android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content">
+            <ImageView android:id="@id/img_back_up" android:clickable="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_margin="1.0dip" android:src="@drawable/position_back_up_background" android:scaleType="centerInside" />
+            <ImageView android:id="@id/img_back_down" android:clickable="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_margin="1.0dip" android:src="@drawable/position_back_down_background" android:scaleType="centerInside" />
+            <ImageView android:id="@id/img_zero_gravity" android:clickable="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_margin="1.0dip" android:src="@drawable/zero_gravity_background" android:scaleType="centerInside" />
+            <ImageView android:id="@id/img_leg_straighten" android:clickable="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_margin="1.0dip" android:src="@drawable/position_leg_straighten_background" android:scaleType="centerInside" />
+            <ImageView android:id="@id/img_leg_bend" android:clickable="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_margin="1.0dip" android:src="@drawable/position_leg_bend_background" android:scaleType="centerInside" />
+            <ImageView android:id="@id/img_sleep" android:clickable="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_margin="1.0dip" android:src="@drawable/sleep_background" android:scaleType="centerInside" />
+            <ImageView android:id="@id/img_leg_shrink" android:clickable="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_margin="1.0dip" android:src="@drawable/position_leg_shrink_background" android:scaleType="centerInside" />
+            <ImageView android:id="@id/img_leg_stretch" android:clickable="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_margin="1.0dip" android:src="@drawable/position_leg_stretch_background" android:scaleType="centerInside" />
+        </LinearLayout>
+    </HorizontalScrollView>
+    <ImageView android:id="@id/imgToLeft" android:layout_width="20.0dip" android:layout_height="fill_parent" android:src="@drawable/arrow_left" android:scaleType="fitXY" android:layout_alignParentLeft="true" android:layout_centerVertical="true" />
+    <ImageView android:id="@id/imgToRight" android:layout_width="20.0dip" android:layout_height="fill_parent" android:src="@drawable/arrow_right" android:scaleType="fitXY" android:layout_alignParentRight="true" android:layout_centerVertical="true" />
+</RelativeLayout>

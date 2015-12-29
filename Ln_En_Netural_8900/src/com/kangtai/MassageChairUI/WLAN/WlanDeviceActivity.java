@@ -1,0 +1,315 @@
+package com.kangtai.MassageChairUI.WLAN;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import com.kangtai.MassageChairUI.R;
+
+import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.wifi.WifiConfiguration;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
+import android.view.View;
+import android.view.Window;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.TextView;
+
+/**
+ * 根據連接的WIFI網絡 搜索網絡中的�?有在線設備IP地址
+ * 
+ * @author KrisLight
+ */
+public class WlanDeviceActivity extends Activity {
+	private final static int SEARCH_IPS_MESSAGE = 0x10003;
+	private final static int lOCAL_IP_MESSAGE = 0x10002;
+	private final static int RESULT_MESSAGE = 0x10001;
+	private Button mTestButton;
+	private WifiManager mWifiManager;
+	private TextView iptextview;
+	static int threadCount = 0;
+	boolean isOver = false;
+	static int pingSize = 0;
+	public ArrayList<Map<String, Object>> ping; // ping 后的结果�?
+	private ListView showiplistview;
+	
+	private SocketService mSocketService;
+	// private ProgressDialog progress;
+	private Handler mUpdaHandler = new Handler() {
+		@Override
+		public void handleMessage(Message msg) {
+			IpAdapter adapter;
+			switch (msg.what) {
+			case RESULT_MESSAGE:
+				Log.i("Light", "RESULT_MESSAGE");
+				try {
+					Log.d("Tag", ping.toString() + "over");
+					adapter = (IpAdapter) showiplistview.getAdapter();
+					adapter.setIpData(getPing());
+					adapter.notifyDataSetChanged();
+					isOver = true;
+
+				} catch (Exception e) {
+					e.printStackTrace();
+					Log.e("Light", e.getLocalizedMessage());
+				}
+
+				break;
+
+			case lOCAL_IP_MESSAGE:
+				Log.i("Light", "lOCAL_IP_MESSAGE");
+				String[] s = (String[]) msg.obj;
+				iptextview.setText("本机IP:" + s[1]);// + "\n路由器IP:" + s[0]
+				break;
+			case SEARCH_IPS_MESSAGE:
+				setProgressBarIndeterminateVisibility(false);
+				setTitle(R.string.select_device);
+				Log.i("Light", "SEARCH_IPS_MESSAGE");
+				adapter = new IpAdapter(WlanDeviceActivity.this, ping);
+				showiplistview.setAdapter(adapter);
+				adapter.notifyDataSetChanged();
+				break;
+			}
+		}
+	};
+
+	public ArrayList<Map<String, Object>> getPing() {
+		// 用来得到ping后的结果�?
+		return ping;
+	}
+
+	public void setPing(ArrayList<Map<String, Object>> ping) {
+		this.ping = ping;
+	}
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+
+		super.onCreate(savedInstanceState);
+		// Setup the window
+		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
+		setContentView(R.layout.wlan_device_list);
+		// Set result CANCELED in case the user backs out
+		setResult(Activity.RESULT_CANCELED);
+		if (ping == null) {
+			ping = new ArrayList<Map<String, Object>>();
+		}
+		mWifiManager = (WifiManager) this
+				.getSystemService(Context.WIFI_SERVICE);
+
+		// 手機Ip地址
+		iptextview = (TextView) findViewById(R.id.tv_ip);
+		// 搜索按鈕
+		mTestButton = (Button) findViewById(R.id.btn_test);
+		// 搜索結果列表
+		showiplistview = (ListView) findViewById(R.id.lv_show);
+		showiplistview.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				// TODO Auto-generated method stub
+				String ip=arg0.getItemAtPosition(arg2).toString();
+				
+				Log.d("---", ip);
+				mSocketService=new SocketService(ip);
+				
+			}
+		}); 
+		mTestButton.setOnClickListener(mAllClickListener);
+	}
+
+	@Override
+	protected void onResume() {
+		isOver = true;
+		mUpdaHandler.sendMessage(createMessage(SEARCH_IPS_MESSAGE, null));
+		super.onResume();
+	}
+
+	private View.OnClickListener mAllClickListener = new View.OnClickListener() {
+
+		@Override
+		public void onClick(View v) {
+			
+			switch (v.getId()) {
+			case R.id.btn_test:
+
+				if (ping.size() > 0) {
+					ping.clear();
+					((IpAdapter) showiplistview.getAdapter()).setIpData(ping);
+				}
+
+				// progress.setTitle("正在搜索�?...");
+				// progress.show();
+				// Indicate scanning in the title
+				setProgressBarIndeterminateVisibility(true);
+				setTitle(R.string.scanning);
+				new Thread() {
+					public void run() {
+						mWifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
+						// 得到wifi連接信息
+						WifiInfo wifiInfo = mWifiManager.getConnectionInfo();
+						mWifiManager.getConfiguredNetworks();
+						// 配置信息列表
+						List<WifiConfiguration> list = mWifiManager
+								.getConfiguredNetworks();
+
+						for (WifiConfiguration wifiConfiguration : list) {
+							String ssid = wifiConfiguration.SSID;
+							String mSsid = ssid.substring(1, ssid.length() - 1);
+							String result = wifiConfiguration.toString();
+							if (mSsid.equalsIgnoreCase(wifiInfo.getSSID())) {
+								Log.d("Tag", wifiConfiguration.toString());
+								try {
+									int i = result.indexOf("LinkAddresses");
+									int i1 = result.indexOf("Routes");
+									// 連接ip地址
+									String ipAddress = result
+											.substring(i, i1)
+											.trim()
+											.substring(
+													16,
+													result.substring(i, i1)
+															.length() - 6);
+									Log.d("Tag", ipAddress);
+									int i2 = result.indexOf("DnsAddresses");
+									// DNS地址
+									String mWifiIntAddress = result
+											.substring(i2)
+											.trim()
+											.substring(
+													15,
+													result.substring(i2)
+															.length() - 4);
+									String[] dnsIps = mWifiIntAddress
+											.split(",");
+									String[] s = { dnsIps[1], ipAddress };
+
+									mUpdaHandler.sendMessage(createMessage(
+											lOCAL_IP_MESSAGE, s));
+									// 根據IP地址搜索該網段所有�?�接的設備的Ip
+									PingAll(ipAddress);
+								} catch (Exception e) {
+									Log.e("Tag", "erro" + e);
+								}
+							}
+						}
+					}
+				}.start();
+				break;
+			}
+		}
+	};
+
+	public void PingAll(String hostAddress) {
+		// 首先得到本机的IP，得到网�?
+		try {
+			int k = 0;
+			k = hostAddress.lastIndexOf(".");
+			String ss = hostAddress.substring(0, k + 1);
+			for (int i = 1; i <= 250; i++) {
+				// 遍歷�?有局域网Ip
+				String iip = ss + i;
+				if (!hostAddress.equals(iip)) {
+					Ping(iip);
+				}
+			}
+
+			// 等着�?有Ping结束
+			while (isOver) {
+				Thread.sleep(2000);
+				if (threadCount == 0) {
+					isOver = false;
+					int k1 = 0;
+					String result = "";
+					result = (String) ping.get(0).get("ip");
+					k1 = result.lastIndexOf(".");
+					result = result.substring(k1 + 1, result.length());
+					int mResult = Integer.valueOf(result);
+					for (Map<String, Object> map : ping) {
+						String s = (String) map.get("ip");
+						String s1 = s.substring(k1 + 1, s.length());
+						int mS1 = Integer.valueOf(s1);
+						mResult = mResult > mS1 ? mResult : mS1;
+					}
+					Log.d("Tag", "" + mResult);
+					mUpdaHandler.sendMessage(createMessage(SEARCH_IPS_MESSAGE,
+							null));
+				}
+			}
+		} catch (Exception e) {
+			Log.e("Light", e.getLocalizedMessage());
+		}
+	}
+
+	public void Ping(String ip) {
+		// �?�?30个线�?
+		try {
+			while (threadCount > 30) {
+				Thread.sleep(2);
+			}
+			threadCount += 1;
+			runPingIPprocess(ip);
+		} catch (Exception e) {
+			Log.e("Light", e.getLocalizedMessage());
+		}
+	}
+
+	public void runPingIPprocess(final String ipString) {
+		final Thread pingThread = new Thread() {
+			@Override
+			public void run() {
+				try {
+					Log.i("Light", "ip address" + ipString);
+					// ping ip地址
+					Process p = Runtime.getRuntime().exec(
+							"ping -c 1 -w 5 " + ipString);
+					int status = p.waitFor();
+					if (status == 0) {
+						Log.i("Light", "ping ip");
+						Map<String, Object> map = new HashMap<String, Object>();
+						map.put("ip", ipString);
+						ping.add(map);
+						pingSize++;
+						if (pingSize > 10) {
+							pingSize = 0;
+							// setPing(ping);
+							mUpdaHandler.sendMessage(createMessage(
+									RESULT_MESSAGE, ping));
+						}
+					} else {
+					}
+					threadCount--;
+				} catch (Exception e) {
+					threadCount--;
+					Log.e("Light", e.getLocalizedMessage());
+				} finally {
+				}
+			}
+		};
+		pingThread.start();
+	}
+
+	/** 創建發�?�的消息Message **/
+	public static Message createMessage(int what, Object object) {
+		Message message = new Message();
+		message.what = what;
+		message.obj = object;
+		return message;
+	}
+	 
+
+}

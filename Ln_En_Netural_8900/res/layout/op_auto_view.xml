@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView android:id="@id/img_auto_up_arrow" android:layout_width="fill_parent" android:layout_height="wrap_content" android:src="@drawable/img_auto_up_arrow" />
+    <ListView android:id="@id/lv_auto" android:background="@drawable/op_auto_bg" android:layout_width="185.0dip" android:layout_height="296.0dip" />
+</LinearLayout>

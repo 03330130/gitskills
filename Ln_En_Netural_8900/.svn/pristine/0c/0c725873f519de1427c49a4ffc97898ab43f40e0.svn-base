@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">荣康</string>
+    <string name="back_toast">Press again to exit</string>
+    <!-- Bluetooth -->
+    <string name="send">发送</string>
+    <string name="communication_failed">通讯失败！</string>
+    <string name="not_connected">not connected to message chair</string>
+    <string name="bt_not_enabled_leaving">没有开启蓝牙,退出应用</string>
+    <string name="title_connecting">连接...</string>
+    <string name="title_not_connected">连接失败</string>
+    <string name="not_available">你的设备不支持蓝牙,应用即将关闭</string>
+    <!-- DeviceListActivity -->
+    <string name="scanning">scanning for devices...</string>
+    <string name="select_device">请选择设备</string>
+    <string name="none_paired">没有配对的设备</string>
+    <string name="none_found">No devices found</string>
+    <string name="title_paired_devices">已配对设备</string>
+    <string name="title_other_devices">Other Available Devices</string>
+    <string name="button_scan">Scan for devices</string>
+    <!-- MainActivity -->
+    <string name="secure_connect">连接</string>
+    <string name="settings">Settings</string>
+    <string name="service">service</string>
+    <string name="position_adjust">位姿 </string>
+    <string name="power">开关</string>
+    <string name="stop">정지</string>
+    <string name="auto_massage">자동</string>
+    <string name="manual_massage">수동</string>
+    <string name="holographic_hand_massage">에어코스</string>
+    <string name="other_massage">其它</string>
+    <!-- 自动按摩 -->
+    <string name="zyys">양생모드</string>
+    <string name="sthh">피로회복</string>
+    <string name="jgsz">스트레스</string>
+    <string name="qnty">3D 체험</string>
+    <string name="xyfs">편안모드</string>
+    <string name="xsbj">修身保健</string>
+    <string name="ylam">리듬안마</string>
+    <string name="blsbz">직장인</string>
+    <string name="gwdr">쇼핑달인</string>
+    <string name="yjkb">요가</string>
+    <string name="ydyms">운동선수</string>
+    <string name="ysbj">보건안마</string>
+    <!-- 手动按摩 -->
+    <string name="mode">모드 </string>
+    <string name="part">부위</string>
+    <string name="width">넓이 </string>
+    <string name="speed">속도 </string>
+    <string name="threeD">3D손감</string>
+    <string name="knead">주무름</string>
+    <string name="rap">두드림</string>
+    <string name="pat">파도안마</string>
+    <string name="knead_knock">복합안마</string>
+    <string name="finger">지압</string>
+    <string name="all">전체</string>
+    <string name="local">局部</string>
+    <string name="fixed_point">부위선택</string>
+    <string name="up">上</string>
+    <string name="down">下</string>
+    <string name="narrow_center_wide">窄\n中\n宽</string>
+    <string name="wide">넓</string>
+    <string name="center">중</string>
+    <string name="narrow">좁</string>
+    <string name="low_middle_high">低\n中\n高</string>
+    <string name="higher">고</string>
+    <string name="middle">중</string>
+    <string name="lower">저</string>
+    <string name="strengthen_weaken">弱\n强</string>
+    <string name="strengthen">强</string>
+    <string name="weaken">弱</string>
+    <!-- 全息手感 -->
+    <string name="strengthen_middle_weaken">弱\n中\n强</string>
+    <string name="strength">강도</string>
+    <string name="hand_shoulder">팔과/어깨</string>
+    <string name="waist">허리/엉덩이</string>
+    <string name="leg_foot">다리/발</string>
+
+    <!-- 其它 -->
+    <string name="pedicure">발마사지</string>
+    <string name="thermal_method">온열</string>
+    <string name="physiology_test">生理检测</string>
+    <string name="fast_soft">柔和\n快速</string>
+    <string name="fast">쾌속</string>
+    <string name="soft">부드럽다</string>
+    <!-- 服务 -->
+    <string name="upgrade">升级</string>
+    <string name="help">帮助</string>
+    <string name="current_version">Version:</string>
+    <string name="is_latest_version">This is the latest version</string>
+    <string name="found_new_version">There is an new vesion,please update now. </string>
+    <!-- 设置 -->
+    <string name="language">언어</string>
+    <string name="chinese">中文</string>
+    <string name="english">ENGLISH</string>
+    <string name="korean">한국어</string>
+    <string name="timer_0"><u>10min</u></string>
+    <string name="timer_1">20min</string>
+    <string name="timer_2">30min</string>
+    <string name="timer">정시</string>
+    <string name="music">Music</string>
+    <string name="touch_sound">Touch Sound</string>
+    <string name="colored_light">彩灯</string>
+    <string name="bluetooth">Bluetooth</string>
+    <string name="wlan">WLAN</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="wlan_not_connected">WLAN is not connected</string>
+
+</resources>

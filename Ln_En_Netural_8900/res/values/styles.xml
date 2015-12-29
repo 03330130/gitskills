@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppBaseTheme" parent="@android:style/Theme.Light" />
+    <style name="AppTheme" parent="@style/AppBaseTheme" />
+    <style name="MainTheme" parent="@android:style/Theme.Holo">
+        <item name="android:textColor">@color/auto_text_color</item>
+        <item name="android:soundEffectsEnabled">false</item>
+        <item name="android:actionBarStyle">@style/MainActionBarTheme</item>
+    </style>
+    <style name="MainActionBarTheme" parent="@android:style/Widget.ActionBar">
+        <item name="android:background">@color/black</item>
+    </style>
+    <style name="main_text_style">
+        <item name="android:textAppearance">@style/TextSizeLarge</item>
+        <item name="android:textColor">@color/auto_text_color</item>
+        <item name="android:ellipsize">marquee</item>
+        <item name="android:singleLine">true</item>
+    </style>
+    <style name="TextSizeLarge">
+        <item name="android:textSize">@dimen/textsize_Large</item>
+    </style>
+    <style name="main_tab_bottom" parent="@style/MainTheme">
+        <item name="android:textAppearance">@style/TextSizeLarge</item>
+        <item name="android:ellipsize">marquee</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingLeft">@dimen/auto_padding_left</item>
+        <item name="android:paddingTop">1.0dip</item>
+        <item name="android:paddingRight">20.0dip</item>
+        <item name="android:focusable">true</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">@dimen/auto_margin</item>
+        <item name="android:button">@null</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:drawableRight">@android:drawable/btn_radio</item>
+        <item name="android:layout_weight">1.0</item>
+    </style>
+    <style name="hogographic_hand_radiogroup" parent="@style/MainTheme">
+        <item name="android:textAppearance">@style/TextSizeLarge</item>
+        <item name="android:ellipsize">marquee</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingLeft">20.0dip</item>
+        <item name="android:paddingRight">@dimen/holo_rbt_paddingRight</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/holo_rbt_marginTop</item>
+        <item name="android:button">@null</item>
+        <item name="android:singleLine">true</item>
+    </style>
+    <style name="hogographic_strength_radiogroup" parent="@style/MainTheme">
+        <item name="android:textAppearance">@style/TextSizeLarge</item>
+        <item name="android:ellipsize">marquee</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">20.0dip</item>
+        <item name="android:button">@null</item>
+        <item name="android:singleLine">true</item>
+    </style>
+    <style name="other_speed_radiogroup" parent="@style/MainTheme">
+        <item name="android:textAppearance">@style/TextSizeLarge</item>
+        <item name="android:ellipsize">marquee</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingLeft">@dimen/other_checkbox_padding_left</item>
+        <item name="android:paddingRight">@dimen/other_checkbox_padding_right</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:button">@null</item>
+        <item name="android:singleLine">true</item>
+    </style>
+    <style name="other_imgbutton" parent="@style/MainTheme">
+        <item name="android:textAppearance">@style/TextSizeLarge</item>
+        <item name="android:ellipsize">marquee</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingLeft">60.0dip</item>
+        <item name="android:paddingRight">25.0dip</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:singleLine">true</item>
+    </style>
+    <style name="settings_language_radiogroup" parent="@style/MainTheme">
+        <item name="android:textAppearance">?android:textAppearanceSmall</item>
+        <item name="android:ellipsize">marquee</item>
+        <item name="android:gravity">left</item>
+        <item name="android:paddingTop">10.0dip</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:button">@null</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:drawableBottom">@android:drawable/btn_radio</item>
+    </style>
+    <style name="settings_checkbox" parent="@style/MainTheme">
+        <item name="android:textAppearance">@style/TextSizeLarge</item>
+        <item name="android:ellipsize">marquee</item>
+        <item name="android:gravity">left|center</item>
+        <item name="android:paddingLeft">@dimen/setting_service_textview_margin_left</item>
+        <item name="android:paddingRight">20.0dip</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:button">@null</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:drawableRight">@android:drawable/btn_radio</item>
+    </style>
+</resources>

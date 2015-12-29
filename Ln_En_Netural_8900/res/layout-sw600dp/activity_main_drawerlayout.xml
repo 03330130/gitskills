@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout android:id="@id/drawerlayout" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <FrameLayout android:id="@id/container" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+    <LinearLayout android:layout_gravity="left|center" android:id="@id/left" android:background="@drawable/op_left_view_bg" android:layout_width="200.0dip" android:layout_height="325.0dip">
+        <include android:id="@id/view_leftview" android:layout_width="170.0dip" android:layout_height="fill_parent" layout="@layout/op_leftview_checkbox" />
+    </LinearLayout>
+    <RelativeLayout android:layout_gravity="right|center" android:id="@id/right" android:layout_width="90.0dip" android:layout_height="wrap_content">
+        <include android:id="@id/view_right" android:focusable="false" android:layout_width="wrap_content" android:layout_height="wrap_content" layout="@layout/ice_right_view" />
+    </RelativeLayout>
+</android.support.v4.widget.DrawerLayout>

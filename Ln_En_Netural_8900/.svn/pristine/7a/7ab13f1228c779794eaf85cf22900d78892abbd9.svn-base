@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/splash_background"
+    android:baselineAligned="false"
+    android:orientation="horizontal" >
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:layout_weight="0.55"
+        android:gravity="right"
+        android:orientation="vertical"
+        android:paddingTop="50dp" >
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp" >
+
+            <CheckBox
+                android:id="@+id/rbtn_pedicure"
+                style="@style/other_speed_radiogroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/other_pedicure_background"
+                android:text="@string/pedicure" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp" >
+
+            <CheckBox
+                android:id="@+id/rbtn_thermal_method"
+                style="@style/other_speed_radiogroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/other_thermal_background"
+                android:drawableRight="@android:drawable/btn_radio"
+                android:paddingRight="1dp"
+                android:text="@string/thermal_method" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:visibility="gone" >
+
+            <!-- for 7805 -->
+            <!--
+              Switch
+            android:id="@+id/switch1"
+            style="@style/main_text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="62dp"
+            android:background="@drawable/settings_music_normal"
+            android:paddingLeft="50dp"
+            android:text="@string/music"-->
+
+            <CheckBox
+                android:id="@+id/cbox_music"
+                style="@style/other_speed_radiogroup"
+                android:background="@drawable/settings_music_background"
+                android:drawableRight="@android:drawable/btn_radio"
+                android:paddingRight="1dp"
+                android:text="@string/music" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:visibility="gone" >
+
+            <!-- for 7805 -->
+
+            <ImageView
+                android:id="@+id/rbtn_physiology_test"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="fill"
+                android:contentDescription="@string/physiology_test"
+                android:scaleType="centerInside"
+                android:src="@drawable/other_physiology_background" />
+
+            <TextView
+                android:id="@+id/tv_physiology_test"
+                style="@style/main_text_style"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="@string/physiology_test" />
+            <!--  -->
+        </FrameLayout>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/img_divider"
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:scaleType="fitXY"
+        android:src="@drawable/divider_vertical" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:layout_weight="0.45"
+        android:gravity="left"
+        android:orientation="vertical"
+        android:paddingTop="50dp" >
+
+        <FrameLayout
+            android:id="@+id/layout_strength_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:visibility="invisible" >
+
+            <!-- android:visibility="invisible" -->
+
+            <ImageView
+                android:id="@+id/img_strength_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="fill"
+                android:contentDescription="@string/pedicure"
+                android:scaleType="centerInside"
+                android:src="@drawable/other_speed_normal" />
+
+            <TextView
+                android:id="@+id/tv_strength_1"
+                style="@style/main_text_style"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|right"
+                android:layout_marginRight="1dp" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/layout_strength_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:visibility="invisible" >
+
+            <!--
+            <ImageView
+                android:id="@+id/img_strength_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="fill"
+                android:scaleType="centerInside"
+                android:src="@drawable/other_speed_normal" />
+
+            <TextView
+                android:id="@+id/tv_strength_2"
+                style="@style/main_text_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="75dp"
+                android:text="@string/fast_soft" />
+            -->
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/layout_strength_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:visibility="invisible" >
+
+            <!-- android:visibility="invisible" -->
+
+
+            <!--
+            <ImageView
+                android:id="@+id/img_strength_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:scaleType="centerInside"
+                android:src="@drawable/other_speed_normal" />
+
+            <TextView
+                android:id="@+id/tv_strength_3"
+                style="@style/main_text_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="75dp"
+                android:text="@string/fast_soft" />
+            -->
+        </FrameLayout>
+    </LinearLayout>
+
+</LinearLayout>

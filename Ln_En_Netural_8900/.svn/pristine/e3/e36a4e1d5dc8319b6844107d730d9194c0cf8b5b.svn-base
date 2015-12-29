@@ -1,0 +1,72 @@
+package com.kangtai.MassageChair;
+
+import com.kangtai.MassageChair.Protocal.RokolUtil;
+
+import android.app.Activity;
+import android.content.Context;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.View.OnClickListener;
+import android.widget.ImageView;
+
+public class FragmentMainNav extends Fragment implements OnClickListener {
+	private Context mContext;
+	private ImageView mImageAutoMassage;
+	private ImageView mImageManualMassage;
+	private ImageView mImageHolographicHandMassage;
+	private ImageView mImageOtherMassage;
+
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		View view = LayoutInflater.from(getActivity()).inflate(
+				R.layout.main_fragment, null);
+
+		mImageAutoMassage = (ImageView) view.findViewById(R.id.img_automassage);
+		mImageManualMassage = (ImageView) view
+				.findViewById(R.id.img_manualmassage);
+		mImageHolographicHandMassage = (ImageView) view
+				.findViewById(R.id.img_holographic_handmassage);
+		mImageOtherMassage = (ImageView) view
+				.findViewById(R.id.img_othermassage);
+
+		mImageAutoMassage.setOnClickListener(this);
+		mImageManualMassage.setOnClickListener(this);
+		mImageHolographicHandMassage.setOnClickListener(this);
+		mImageOtherMassage.setOnClickListener(this);
+		return view;
+	}
+
+	@Override
+	public void onAttach(Activity activity) {
+		super.onAttach(activity);
+		this.mContext = (MainActivity) activity;
+	}
+
+	@Override
+	public void onClick(View arg0) {
+		// TODO Auto-generated method stub
+		switch (arg0.getId()) {
+
+		case R.id.img_automassage:
+			((MainActivity) (mContext)).clickAutoLayout();
+			break;
+
+		case R.id.img_manualmassage:
+			((MainActivity) (mContext)).clickManualLayout();
+			break;
+		case R.id.img_holographic_handmassage:
+
+			((MainActivity) (mContext)).clickHolographicHandLayout();
+			break;
+		case R.id.img_othermassage:
+			((MainActivity) (mContext)).clickOtherLayout();
+			break;
+		}
+		//¥•√˛…˘“Ù¥¶¿Ì
+		RokolUtil.performTouchSound(mContext);
+	}
+}

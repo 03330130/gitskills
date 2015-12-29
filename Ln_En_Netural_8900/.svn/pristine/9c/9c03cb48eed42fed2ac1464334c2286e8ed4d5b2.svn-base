@@ -1,0 +1,902 @@
+package com.kangtai.MassageChair;
+
+import org.w3c.dom.Text;
+
+import com.kangtai.MassageChair.Protocal.DataFrame;
+import com.kangtai.MassageChair.Protocal.RokolUtil;
+import com.kangtai.MassageChair.Protocal.DataFrame.OPERATION;
+
+import android.R.color;
+import android.app.Activity;
+import android.content.Context;
+import android.os.Bundle;
+import android.provider.CalendarContract.Colors;
+import android.support.v4.app.Fragment;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+/**
+ *  manual massage controller
+ * 
+ * @author lmt
+ */
+public class FragmentManualMassage extends Fragment implements OnClickListener,
+		OnTouchListener {
+
+	private Context mContext;
+	// left view
+	private ImageView mImageMode;
+	private ImageView mImagePart;
+	private ImageView mImageWidth;
+	private ImageView mImageSpeed;
+	private ImageView mImage3D;
+	private TextView mTextMode;
+	private TextView mTextPart;
+	private TextView mTextWidth;
+	private TextView mTextSpeed;
+	private TextView mTextTD;
+
+	// right view
+	private LinearLayout mModeLayout;
+	private LinearLayout mPartLayout;
+	private LinearLayout mWidthLayout;
+	private LinearLayout mSpeedLayout;
+	private LinearLayout m3DLayout;
+
+	// mode view
+	private ImageView mImageKnead;
+	private ImageView mImageRap;
+	private ImageView mImagePat;
+	private ImageView mImageKneadKnock;
+	private ImageView mImageFinger;
+	private TextView mTextKnead;
+	private TextView mTextRap;
+	private TextView mTextPat;
+	private TextView mTextKneadKnock;
+	private TextView mTextFinger;
+
+	private boolean mModeKnead = false;
+	private boolean mModeRap = false;
+	private boolean mModePat = false;
+	private boolean mModeKneadKnock = false;
+	private boolean mModeFinger = false;
+
+	// part view
+	private ImageView mImageAll;
+	private ImageView mImageLocal;
+	private ImageView mImageFixed;
+	private ImageView mImageUp;
+	private ImageView mImageDown;
+	private TextView mTextAll;
+	private TextView mTextLocal;
+	private TextView mTextFixed;
+	private TextView mTextUp;
+	private TextView mTextDown;
+
+	/*
+	 * private boolean mPartAll = false; private boolean mPartLocal = false;
+	 * private boolean mPartFixed = false; private boolean mPartUp = false;
+	 * private boolean mPartDown = false;
+	 */
+
+	// width view
+	// private ImageView mImageWide;
+	private ImageView mImageCenter;
+	private TextView mTextWidthWidth;
+	// private ImageView mImageNarrow;
+	private int mClickWidthCount = 0;
+	private boolean mNarrowToWidth = true;
+
+	// speed view
+	// private ImageView mImageHigh;
+	private ImageView mImageMiddle;
+	private TextView mTextSpeedSpeed;
+	// private ImageView mImageLow;
+	private int mClickSpeedCount = 0;
+	private boolean mLowToHigh = true;
+	// 3d view
+	// private ImageView mImageStrengthen;
+	private ImageView mImageWeaken;
+	private TextView mTextTDStrength;
+	private boolean mIsWeaken;
+
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		Log.d("manual", "click manual");
+		View view = LayoutInflater.from(getActivity()).inflate(
+				R.layout.manual_massage, null);
+		// left views
+		mImageMode = (ImageView) view.findViewById(R.id.img_mode);
+		mImagePart = (ImageView) view.findViewById(R.id.img_part);
+		mImageWidth = (ImageView) view.findViewById(R.id.img_width);
+		mImageSpeed = (ImageView) view.findViewById(R.id.img_speed);
+		mImage3D = (ImageView) view.findViewById(R.id.img_3d);
+
+		mTextMode = (TextView) view.findViewById(R.id.tv_mode);
+		mTextPart = (TextView) view.findViewById(R.id.tv_part);
+		mTextWidth = (TextView) view.findViewById(R.id.tv_width);
+		mTextSpeed = (TextView) view.findViewById(R.id.tv_speed);
+		mTextTD = (TextView) view.findViewById(R.id.tv_3d);
+
+		mImageMode.setOnClickListener(this);
+		mImagePart.setOnClickListener(this);
+		mImageWidth.setOnClickListener(this);
+		mImageSpeed.setOnClickListener(this);
+		mImage3D.setOnClickListener(this);
+		// right views
+		mModeLayout = (LinearLayout) view.findViewById(R.id.layout_mode);
+		mPartLayout = (LinearLayout) view.findViewById(R.id.layout_part);
+		mWidthLayout = (LinearLayout) view.findViewById(R.id.layout_width);
+		mSpeedLayout = (LinearLayout) view.findViewById(R.id.layout_speed);
+		m3DLayout = (LinearLayout) view.findViewById(R.id.layout_3d);
+		// mode view
+		mImageKnead = (ImageView) view.findViewById(R.id.img_mode_knead);
+		mImageRap = (ImageView) view.findViewById(R.id.img_mode_rap);
+		mImagePat = (ImageView) view.findViewById(R.id.img_mode_pat);
+
+		mTextKnead = (TextView) view.findViewById(R.id.tv_mode_knead);
+		mTextRap = (TextView) view.findViewById(R.id.tv_mode_rap);
+		mTextPat = (TextView) view.findViewById(R.id.tv_mode_pat);
+		mTextKneadKnock = (TextView) view
+				.findViewById(R.id.tv_mode_kneading_knocking);
+		mTextFinger = (TextView) view.findViewById(R.id.tv_finger);
+
+		mImageKneadKnock = (ImageView) view
+				.findViewById(R.id.img_mode_kneading_knocking);
+		mImageFinger = (ImageView) view.findViewById(R.id.img_mode_finger);
+
+		mImageKnead.setOnClickListener(this);
+		mImageRap.setOnClickListener(this);
+		mImagePat.setOnClickListener(this);
+		mImageKneadKnock.setOnClickListener(this);
+		mImageFinger.setOnClickListener(this);
+
+		// part view
+		mImageAll = (ImageView) view.findViewById(R.id.img_part_all);
+		mImageLocal = (ImageView) view.findViewById(R.id.img_part_local);
+		mImageFixed = (ImageView) view.findViewById(R.id.img_part_fixed);
+		mImageUp = (ImageView) view.findViewById(R.id.img_part_up);
+		mImageDown = (ImageView) view.findViewById(R.id.img_part_down);
+
+		mTextAll = (TextView) view.findViewById(R.id.tv_part_all);
+		mTextLocal = (TextView) view.findViewById(R.id.tv_part_local);
+		mTextFixed = (TextView) view.findViewById(R.id.tv_part_fixed);
+		mTextUp = (TextView) view.findViewById(R.id.tv_part_up);
+		mTextDown = (TextView) view.findViewById(R.id.tv_part_down);
+
+		mImageAll.setOnClickListener(this);
+		mImageLocal.setOnClickListener(this);
+		mImageFixed.setOnClickListener(this);
+
+		mImageUp.setOnTouchListener(this);
+		mImageDown.setOnTouchListener(this);
+		mImageUp.setOnClickListener(this);
+		mImageDown.setOnClickListener(this);
+		// width view
+		// mImageWide = (ImageView) view.findViewById(R.id.img_width_wide);
+		mImageCenter = (ImageView) view.findViewById(R.id.img_width_center);
+		mTextWidthWidth = (TextView) view.findViewById(R.id.tv_width_width);
+		// mImageNarrow = (ImageView) view.findViewById(R.id.img_width_narrow);
+
+		// mImageWide.setOnClickListener(this);
+		mImageCenter.setOnClickListener(this);
+		// mImageNarrow.setOnClickListener(this);
+
+		// speed mode
+		// mImageHigh = (ImageView) view.findViewById(R.id.img_speed_high);
+		mTextSpeedSpeed = (TextView) view.findViewById(R.id.tv_speed_speed);
+		mImageMiddle = (ImageView) view.findViewById(R.id.img_speed_middle);
+		// mImageLow = (ImageView) view.findViewById(R.id.img_speed_low);
+
+		// mImageHigh.setOnClickListener(this);
+		mImageMiddle.setOnClickListener(this);
+		// mImageLow.setOnClickListener(this);
+
+		// 3d view
+		// mImageStrengthen = (ImageView) view
+		// .findViewById(R.id.img_3d_strengthen);
+		mImageWeaken = (ImageView) view.findViewById(R.id.img_3d_weaken);
+		mTextTDStrength = (TextView) view.findViewById(R.id.tv_td_strength);
+		// mImageStrengthen.setOnClickListener(this);
+		mImageWeaken.setOnClickListener(this);
+		view.setSaveEnabled(true);
+		return view;
+
+	}
+
+	@Override
+	public void onAttach(Activity activity) {
+		super.onAttach(activity);
+		this.mContext = (MainActivity) activity;
+	}
+
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()) {
+		// left views
+		case R.id.img_mode:
+			clickMode();
+			break;
+		case R.id.img_part:
+			clickPart();
+			break;
+		case R.id.img_width:
+			clickWidth();
+			break;
+		case R.id.img_speed:
+			clickSpeed();
+			break;
+		case R.id.img_3d:
+			click3D();
+			break;
+		// mode views
+		case R.id.img_mode_knead:
+			clickModeKnead();
+			break;
+		case R.id.img_mode_rap:
+			clickModeRap();
+			break;
+		case R.id.img_mode_pat:
+			clickModePat();
+			break;
+		case R.id.img_mode_kneading_knocking:
+			clickModeKnead_Knock();
+			break;
+		case R.id.img_mode_finger:
+			clickMode_finger();
+			break;
+		// part view
+
+		case R.id.img_part_all:
+			clickPartAll();
+			break;
+		case R.id.img_part_local:
+			clickPartLocal();
+			break;
+		case R.id.img_part_fixed:
+			clickPartFixedPoint();
+			break;
+
+		// width view
+		/*
+		 * case R.id.img_width_wide: clickWidthWide(); break;
+		 */
+		case R.id.img_width_center:
+			clickWidthCenter();
+			break;
+		/*
+		 * case R.id.img_width_narrow: clickWidthNarrow(); break;
+		 */
+		// speed view
+		/*
+		 * case R.id.img_speed_high: clickSpeedHigh(); break;
+		 */
+		case R.id.img_speed_middle:
+			clickSpeedMiddle();
+			break;
+		/*
+		 * case R.id.img_speed_low: clickSpeedLow(); break;
+		 */
+		// 3d view
+		/*
+		 * case R.id.img_3d_strengthen: click3dStrengthen(); break;
+		 */
+		case R.id.img_3d_weaken:
+			click3dWeaken();
+			break;
+		default:
+			break;
+		}
+		// handle touch sound
+		RokolUtil.performTouchSound(mContext);
+	}
+
+	/**
+	 * 
+	 * 
+	 * 
+	 */
+	/*
+	 * private void resetRightView() { mImageKnead.setSelected(false);
+	 * mImageRap.setSelected(false); mImagePat.setSelected(false);
+	 * mImageKneadKnock.setSelected(false); mImageFinger.setSelected(false);
+	 * 
+	 * mTextKnead.setSelected(false); mTextRap.setSelected(false);
+	 * mTextPat.setSelected(false); mTextKneadKnock.setSelected(false);
+	 * mTextFinger.setSelected(false);
+	 * 
+	 * mImageFinger.setSelected(false); mImageKnead.setSelected(false);
+	 * mImageRap.setSelected(false); mImagePat.setSelected(false);
+	 * mImageKneadKnock.setSelected(false);
+	 * 
+	 * mTextKnead.setSelected(false); mTextRap.setSelected(false);
+	 * mTextPat.setSelected(false); mTextKneadKnock.setSelected(false);
+	 * mTextFinger.setSelected(false);
+	 * 
+	 * mImageWeaken.setImageResource(R.drawable.manual_td_strength_normal);
+	 * mIsWeaken = false;
+	 * mImageMiddle.setImageResource(R.drawable.manual_speed_speed_normal);
+	 * mClickSpeedCount = 0;
+	 * mImageCenter.setImageResource(R.drawable.manual_width_width_normal);
+	 * mClickWidthCount = 0; }
+	 */
+
+	// 3d view
+
+	private void click3dStrengthen() {
+		((MainActivity) mContext).sendCommand(DataFrame
+				.getSendFrame(OPERATION.BACK_3D_FORWARD));
+		// mImageStrengthen.setSelected(true);
+		mImageWeaken.setSelected(false);
+	}
+
+	private void click3dWeaken() {
+		if (mIsWeaken) {
+			((MainActivity) mContext).sendCommand(DataFrame
+					.getSendFrame(OPERATION.BACK_3D_FORWARD));
+			mImageWeaken.setImageResource(R.drawable.manual_td_strengthen);
+			mTextTDStrength.setText(R.string.strengthen);
+			
+		} else {
+			((MainActivity) mContext).sendCommand(DataFrame
+					.getSendFrame(OPERATION.BACK_3D_BACKWARD));
+			mImageWeaken.setImageResource(R.drawable.manual_td_weaken);
+			mTextTDStrength.setText(R.string.weaken);
+		}
+		mIsWeaken = !mIsWeaken;
+		RokolUtil.setTextShadow(mContext, mTextTDStrength);
+		mTextTDStrength.setSelected(true);
+		// mImageStrengthen.setSelected(false);
+		mImageWeaken.setSelected(true);
+	}
+
+	// speed view
+
+	private void clickSpeedHigh() {
+
+		((MainActivity) mContext).sendCommand(DataFrame
+				.getSendFrame(OPERATION.BACK_SPEED_5));
+
+		// mImageHigh.setSelected(true);
+		mImageMiddle.setSelected(false);
+		// mImageLow.setSelected(false);
+
+	}
+
+	private void clickSpeedMiddle() {
+		switch (mClickSpeedCount) {
+		case 0:
+			((MainActivity) mContext).sendCommand(DataFrame
+					.getSendFrame(OPERATION.BACK_SPEED_1));
+			mClickSpeedCount++;
+			mLowToHigh = true;
+			mImageMiddle.setImageResource(R.drawable.manual_speed_low);
+			mTextSpeedSpeed.setText(R.string.lower);
+
+			break;
+
+		case 1:
+			((MainActivity) mContext).sendCommand(DataFrame
+					.getSendFrame(OPERATION.BACK_SPEED_2));
+			mImageMiddle.setImageResource(R.drawable.manual_speed_middle);
+			mTextSpeedSpeed.setText(R.string.middle);
+			if (mLowToHigh)
+				mClickSpeedCount++;
+			else
+				mClickSpeedCount--;
+			break;
+		case 2:
+			((MainActivity) mContext).sendCommand(DataFrame
+					.getSendFrame(OPERATION.BACK_SPEED_3));
+			mImageMiddle.setImageResource(R.drawable.manual_speed_high);
+			mTextSpeedSpeed.setText(R.string.higher);
+			mClickSpeedCount--;
+			mLowToHigh = false;
+			break;
+		}
+		RokolUtil.setTextShadow(mContext, mTextSpeedSpeed);
+
+		// mImageHigh.setSelected(false);
+		mImageMiddle.setSelected(true);
+		mTextSpeedSpeed.setSelected(true);
+		// mImageLow.setSelected(false);
+
+	}
+
+	private void clickSpeedLow() {
+
+		((MainActivity) mContext).sendCommand(DataFrame
+				.getSendFrame(OPERATION.BACK_SPEED_1));
+		// mImageHigh.setSelected(false);
+		mImageMiddle.setSelected(false);
+		// mImageLow.setSelected(true);
+
+	}
+
+	// width view
+
+	private void clickWidthWide() {
+		((MainActivity) mContext).sendCommand(DataFrame
+				.getSendFrame(OPERATION.BACK_WIDE));
+		// mImageWide.setSelected(true);
+		mImageCenter.setSelected(false);
+		// mImageNarrow.setSelected(false);
+
+	}
+
+	private void clickWidthCenter() {
+
+		switch (mClickWidthCount) {
+		case 0:
+			((MainActivity) mContext).sendCommand(DataFrame
+					.getSendFrame(OPERATION.BACK_NARROW));
+			mClickWidthCount++;
+			mNarrowToWidth = true;
+			mImageCenter.setImageResource(R.drawable.manual_width_narrow);
+			mTextWidthWidth.setText(R.string.narrow);
+			break;
+		case 1:
+			((MainActivity) mContext).sendCommand(DataFrame
+					.getSendFrame(OPERATION.BACK_CENTER));
+			mImageCenter.setImageResource(R.drawable.manual_width_center);
+			mTextWidthWidth.setText(R.string.center);
+			if (mNarrowToWidth)
+				mClickWidthCount++;
+			else
+				mClickWidthCount--;
+			break;
+		case 2:
+			((MainActivity) mContext).sendCommand(DataFrame
+					.getSendFrame(OPERATION.BACK_WIDE));
+			mImageCenter.setImageResource(R.drawable.manual_width_width);
+			mTextWidthWidth.setText(R.string.wide);
+			mClickWidthCount--;
+			mNarrowToWidth = false;
+			break;
+		}
+		RokolUtil.setTextShadow(mContext, mTextWidthWidth);
+		// mImageWide.setSelected(false);
+		mImageCenter.setSelected(true);
+		mTextWidthWidth.setSelected(true);
+		// mImageNarrow.setSelected(false);
+	}
+
+	private void clickWidthNarrow() {
+		((MainActivity) mContext).sendCommand(DataFrame
+				.getSendFrame(OPERATION.BACK_NARROW));
+		// mImageWide.setSelected(false);
+		mImageCenter.setSelected(false);
+		// mImageNarrow.setSelected(true);
+	}
+
+	// part view
+
+	private void clickPartAll() {
+		((MainActivity) mContext).sendCommand(DataFrame
+				.getSendFrame(OPERATION.BACK_ALL));
+		mImageAll.setSelected(true);
+		mImageLocal.setSelected(false);
+		mImageFixed.setSelected(false);
+
+		mTextAll.setSelected(true);
+		mTextLocal.setSelected(false);
+		mTextFixed.setSelected(false);
+
+		RokolUtil.setTextShadow(mContext, mTextAll);
+		RokolUtil.setTextNoShadow(mContext, mTextLocal);
+		RokolUtil.setTextNoShadow(mContext, mTextFixed);
+	}
+
+	private void clickPartLocal() {
+		((MainActivity) mContext).sendCommand(DataFrame
+				.getSendFrame(OPERATION.BACK_BACK));
+		mImageAll.setSelected(false);
+		mImageLocal.setSelected(true);
+		mImageFixed.setSelected(false);
+
+		mTextAll.setSelected(false);
+		mTextLocal.setSelected(true);
+		mTextFixed.setSelected(false);
+
+		RokolUtil.setTextShadow(mContext, mTextLocal);
+		RokolUtil.setTextNoShadow(mContext, mTextAll);
+		RokolUtil.setTextNoShadow(mContext, mTextFixed);
+	}
+
+	private void clickPartFixedPoint() {
+		((MainActivity) mContext).sendCommand(DataFrame
+				.getSendFrame(OPERATION.BACK_FIXED));
+		mImageAll.setSelected(false);
+		mImageLocal.setSelected(false);
+		mImageFixed.setSelected(true);
+
+		mTextAll.setSelected(false);
+		mTextLocal.setSelected(false);
+		mTextFixed.setSelected(true);
+
+		RokolUtil.setTextShadow(mContext, mTextFixed);
+		RokolUtil.setTextNoShadow(mContext, mTextAll);
+		RokolUtil.setTextNoShadow(mContext, mTextLocal);
+
+	}
+
+	private void clickPartUp(MotionEvent event) {
+		if (event.getAction() == MotionEvent.ACTION_DOWN) {
+			((MainActivity) mContext).sendCommand(DataFrame
+					.getSendFrame(OPERATION.BACK_ADJUST_UP));
+			mTextUp.setSelected(true);
+		} else if (event.getAction() == MotionEvent.ACTION_UP
+				|| event.getAction() == MotionEvent.ACTION_CANCEL) {
+			((MainActivity) mContext).sendCommand(DataFrame
+					.getSendFrame(OPERATION.BACK_ADJUST_STOP));
+			mTextUp.setSelected(false);
+		}
+		/*
+		 * mImageAll.setSelected(false); mImageLocal.setSelected(false);
+		 * mImageFixed.setSelected(false); mImageUp.setSelected(true);
+		 * mImageDown.setSelected(false);
+		 */
+	}
+
+	private void clickPartDown(MotionEvent event) {
+		if (event.getAction() == MotionEvent.ACTION_DOWN) {
+			((MainActivity) mContext).sendCommand(DataFrame
+					.getSendFrame(OPERATION.BACK_ADJUST_DOWN));
+			mTextDown.setSelected(true);
+		} else if (event.getAction() == MotionEvent.ACTION_UP
+				|| event.getAction() == MotionEvent.ACTION_CANCEL) {
+			((MainActivity) mContext).sendCommand(DataFrame
+					.getSendFrame(OPERATION.BACK_ADJUST_STOP));
+			mTextDown.setSelected(false);
+		}
+		/*
+		 * mImageAll.setSelected(false); mImageLocal.setSelected(false);
+		 * mImageFixed.setSelected(false); mImageUp.setSelected(false);
+		 * mImageDown.setSelected(true);
+		 */
+	}
+
+	// mode view
+	private void clickModeKnead() {
+		// if (!mModeKnead) {
+		((MainActivity) mContext).sendCommand(DataFrame
+				.getSendFrame(OPERATION.BACK_KNEADING_ON));
+		mImageKnead.setSelected(true);
+
+		// } else {
+		// ((MainActivity) mContext).sendCommand(DataFrame
+		// .getSendFrame(OPERATION.BACK_KNEADING_OFF));
+		// mImageKnead.setSelected(false);
+		// }
+
+		// this.mModeKnead = !this.mModeKnead;
+
+		mImageRap.setSelected(false);
+		mImagePat.setSelected(false);
+		mImageKneadKnock.setSelected(false);
+		mImageFinger.setSelected(false);
+		// ��ѡ��
+		mTextKnead.setSelected(true);
+		mTextRap.setSelected(false);
+		mTextPat.setSelected(false);
+		mTextKneadKnock.setSelected(false);
+		mTextFinger.setSelected(false);
+
+		RokolUtil.setTextShadow(mContext, mTextKnead);
+		RokolUtil.setTextNoShadow(mContext, mTextPat);
+		RokolUtil.setTextNoShadow(mContext, mTextKneadKnock);
+		RokolUtil.setTextNoShadow(mContext, mTextFinger);
+		RokolUtil.setTextNoShadow(mContext, mTextRap);
+	}
+
+	private void clickModeRap() {
+		// if (!mModeRap) {
+		((MainActivity) mContext).sendCommand(DataFrame
+				.getSendFrame(OPERATION.BACK_TAPPING_ON));
+		mImageRap.setSelected(true);
+		// }
+
+		// else {
+		// ((MainActivity) mContext).sendCommand(DataFrame
+		// .getSendFrame(OPERATION.BACK_TAPPING_OFF));
+		// mImageRap.setSelected(false);
+		// }
+
+		// this.mModeRap = !this.mModeRap;
+
+		mImageKnead.setSelected(false);
+
+		mImagePat.setSelected(false);
+		mImageKneadKnock.setSelected(false);
+		mImageFinger.setSelected(false);
+
+		mTextKnead.setSelected(false);
+		mTextRap.setSelected(true);
+		mTextPat.setSelected(false);
+		mTextKneadKnock.setSelected(false);
+		mTextFinger.setSelected(false);
+
+		RokolUtil.setTextShadow(mContext, mTextRap);
+		RokolUtil.setTextNoShadow(mContext, mTextPat);
+		RokolUtil.setTextNoShadow(mContext, mTextKneadKnock);
+		RokolUtil.setTextNoShadow(mContext, mTextFinger);
+		RokolUtil.setTextNoShadow(mContext, mTextKnead);
+	}
+
+	private void clickModePat() {
+		// if (!mModePat) {
+		((MainActivity) mContext).sendCommand(DataFrame
+				.getSendFrame(OPERATION.BACK_CLAPPING_ON));
+		mImagePat.setSelected(true);
+		// }
+
+		// else {
+		// ((MainActivity) mContext).sendCommand(DataFrame
+		// .getSendFrame(OPERATION.BACK_CLAPPING_OFF));
+		// mImagePat.setSelected(false);
+		// }
+
+		// this.mModePat = !this.mModePat;
+
+		mImageKnead.setSelected(false);
+		mImageRap.setSelected(false);
+
+		mImageKneadKnock.setSelected(false);
+		mImageFinger.setSelected(false);
+
+		mTextKnead.setSelected(false);
+		mTextRap.setSelected(false);
+		mTextPat.setSelected(true);
+		mTextKneadKnock.setSelected(false);
+		mTextFinger.setSelected(false);
+
+		RokolUtil.setTextShadow(mContext, mTextPat);
+		RokolUtil.setTextNoShadow(mContext, mTextRap);
+		RokolUtil.setTextNoShadow(mContext, mTextKneadKnock);
+		RokolUtil.setTextNoShadow(mContext, mTextFinger);
+		RokolUtil.setTextNoShadow(mContext, mTextKnead);
+	}
+
+	private void clickModeKnead_Knock() {
+		// if (!mModeKneadKnock) {
+		((MainActivity) mContext).sendCommand(DataFrame
+				.getSendFrame(OPERATION.BACK_KNEADING_TAPPING_ON));
+		mImageKneadKnock.setSelected(true);
+		// }
+
+		// else {
+		// ((MainActivity) mContext).sendCommand(DataFrame
+		// .getSendFrame(OPERATION.BACK_KNEADING_TAPPING_OFF));
+		// mImageKneadKnock.setSelected(false);
+		// }
+
+		// this.mModeKneadKnock = !this.mModeKneadKnock;
+
+		mImageKnead.setSelected(false);
+		mImageRap.setSelected(false);
+		mImagePat.setSelected(false);
+
+		mImageFinger.setSelected(false);
+
+		mTextKnead.setSelected(false);
+		mTextRap.setSelected(false);
+		mTextPat.setSelected(false);
+		mTextKneadKnock.setSelected(true);
+		mTextFinger.setSelected(false);
+
+		RokolUtil.setTextShadow(mContext, mTextKneadKnock);
+		RokolUtil.setTextNoShadow(mContext, mTextRap);
+		RokolUtil.setTextNoShadow(mContext, mTextPat);
+		RokolUtil.setTextNoShadow(mContext, mTextFinger);
+		RokolUtil.setTextNoShadow(mContext, mTextKnead);
+	}
+
+	private void clickMode_finger() {
+		// if (!mModeFinger) {
+		((MainActivity) mContext).sendCommand(DataFrame
+				.getSendFrame(OPERATION.BACK_FINGER_ON));
+		mImageFinger.setSelected(true);
+		// }
+
+		// else {
+		// ((MainActivity) mContext).sendCommand(DataFrame
+		// .getSendFrame(OPERATION.BACK_FINGER_OFF));
+		// mImageFinger.setSelected(false);
+		// }
+
+		// this.mModeFinger = !this.mModeFinger;
+
+		mImageKnead.setSelected(false);
+		mImageRap.setSelected(false);
+		mImagePat.setSelected(false);
+		mImageKneadKnock.setSelected(false);
+
+		mTextKnead.setSelected(false);
+		mTextRap.setSelected(false);
+		mTextPat.setSelected(false);
+		mTextKneadKnock.setSelected(false);
+		mTextFinger.setSelected(true);
+
+		RokolUtil.setTextShadow(mContext, mTextFinger);
+		RokolUtil.setTextNoShadow(mContext, mTextRap);
+		RokolUtil.setTextNoShadow(mContext, mTextPat);
+		RokolUtil.setTextNoShadow(mContext, mTextKneadKnock);
+		RokolUtil.setTextNoShadow(mContext, mTextKnead);
+
+	}
+
+	// left views
+	private void clickMode() {
+		if (mImageMode.isSelected())
+			return;
+		mImageMode.setSelected(true);
+		mImagePart.setSelected(false);
+		mImageWidth.setSelected(false);
+		mImageSpeed.setSelected(false);
+		mImage3D.setSelected(false);
+
+		mTextMode.setSelected(true);
+		mTextPart.setSelected(false);
+		mTextWidth.setSelected(false);
+		mTextSpeed.setSelected(false);
+		mTextTD.setSelected(false);
+
+		RokolUtil.setTextShadow(mContext, mTextMode);
+		RokolUtil.setTextNoShadow(mContext, mTextPart);
+		RokolUtil.setTextNoShadow(mContext, mTextTD);
+		RokolUtil.setTextNoShadow(mContext, mTextWidth);
+		RokolUtil.setTextNoShadow(mContext, mTextSpeed);
+
+		mModeLayout.setVisibility(View.VISIBLE);
+		mPartLayout.setVisibility(View.GONE);
+		mWidthLayout.setVisibility(View.GONE);
+		mSpeedLayout.setVisibility(View.GONE);
+		m3DLayout.setVisibility(View.GONE);
+
+		// resetRightView();
+	}
+
+	private void clickPart() {
+		if (mImagePart.isSelected())
+			return;
+		mImageMode.setSelected(false);
+		mImagePart.setSelected(true);
+		mImageWidth.setSelected(false);
+		mImageSpeed.setSelected(false);
+		mImage3D.setSelected(false);
+
+		mTextMode.setSelected(false);
+		mTextPart.setSelected(true);
+		mTextWidth.setSelected(false);
+		mTextSpeed.setSelected(false);
+		mTextTD.setSelected(false);
+
+		RokolUtil.setTextShadow(mContext, mTextPart);
+		RokolUtil.setTextNoShadow(mContext, mTextTD);
+		RokolUtil.setTextNoShadow(mContext, mTextMode);
+		RokolUtil.setTextNoShadow(mContext, mTextWidth);
+		RokolUtil.setTextNoShadow(mContext, mTextSpeed);
+
+		mModeLayout.setVisibility(View.GONE);
+		mPartLayout.setVisibility(View.VISIBLE);
+		mWidthLayout.setVisibility(View.GONE);
+		mSpeedLayout.setVisibility(View.GONE);
+		m3DLayout.setVisibility(View.GONE);
+
+		// resetRightView();
+	}
+
+	private void clickWidth() {
+		if (mImageWidth.isSelected())
+			return;
+		mImageMode.setSelected(false);
+		mImagePart.setSelected(false);
+		mImageWidth.setSelected(true);
+		mImageSpeed.setSelected(false);
+		mImage3D.setSelected(false);
+
+		mTextMode.setSelected(false);
+		mTextPart.setSelected(false);
+		mTextWidth.setSelected(true);
+		mTextSpeed.setSelected(false);
+		mTextTD.setSelected(false);
+
+		RokolUtil.setTextShadow(mContext, mTextWidth);
+		RokolUtil.setTextNoShadow(mContext, mTextTD);
+		RokolUtil.setTextNoShadow(mContext, mTextMode);
+		RokolUtil.setTextNoShadow(mContext, mTextPart);
+		RokolUtil.setTextNoShadow(mContext, mTextSpeed);
+
+		mModeLayout.setVisibility(View.GONE);
+		mPartLayout.setVisibility(View.GONE);
+		mWidthLayout.setVisibility(View.VISIBLE);
+		mSpeedLayout.setVisibility(View.GONE);
+		m3DLayout.setVisibility(View.GONE);
+
+		// resetRightView();
+	}
+
+	private void clickSpeed() {
+		if (mImageSpeed.isSelected())
+			return;
+		mImageMode.setSelected(false);
+		mImagePart.setSelected(false);
+		mImageWidth.setSelected(false);
+		mImageSpeed.setSelected(true);
+		mImage3D.setSelected(false);
+
+		mTextMode.setSelected(false);
+		mTextPart.setSelected(false);
+		mTextWidth.setSelected(false);
+		mTextSpeed.setSelected(true);
+		mTextTD.setSelected(false);
+
+		RokolUtil.setTextNoShadow(mContext, mTextTD);
+		RokolUtil.setTextShadow(mContext, mTextSpeed);
+		RokolUtil.setTextNoShadow(mContext, mTextMode);
+		RokolUtil.setTextNoShadow(mContext, mTextPart);
+		RokolUtil.setTextNoShadow(mContext, mTextWidth);
+
+		mModeLayout.setVisibility(View.GONE);
+		mPartLayout.setVisibility(View.GONE);
+		mWidthLayout.setVisibility(View.GONE);
+		mSpeedLayout.setVisibility(View.VISIBLE);
+		m3DLayout.setVisibility(View.GONE);
+
+		// resetRightView();
+	}
+
+	private void click3D() {
+		if (mImage3D.isSelected())
+			return;
+		mImageMode.setSelected(false);
+		mImagePart.setSelected(false);
+		mImageWidth.setSelected(false);
+		mImageSpeed.setSelected(false);
+		mImage3D.setSelected(true);
+
+		mTextMode.setSelected(false);
+		mTextPart.setSelected(false);
+		mTextWidth.setSelected(false);
+		mTextSpeed.setSelected(false);
+		mTextTD.setSelected(true);
+		RokolUtil.setTextShadow(mContext, mTextTD);
+		RokolUtil.setTextNoShadow(mContext, mTextMode);
+		RokolUtil.setTextNoShadow(mContext, mTextPart);
+		RokolUtil.setTextNoShadow(mContext, mTextWidth);
+		RokolUtil.setTextNoShadow(mContext, mTextSpeed);
+
+		mModeLayout.setVisibility(View.GONE);
+		mPartLayout.setVisibility(View.GONE);
+		mWidthLayout.setVisibility(View.GONE);
+		mSpeedLayout.setVisibility(View.GONE);
+		m3DLayout.setVisibility(View.VISIBLE);
+
+		// resetRightView();
+	}
+
+	@Override
+	public boolean onTouch(View v, MotionEvent event) {
+		// TODO Auto-generated method stub
+		switch (v.getId()) {
+		case R.id.img_part_up:
+			clickPartUp(event);
+			break;
+		case R.id.img_part_down:
+			clickPartDown(event);
+			break;
+		default:
+			break;
+		}
+		return false;
+	}
+}
