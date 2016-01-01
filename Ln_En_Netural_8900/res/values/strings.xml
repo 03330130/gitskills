@@ -6,7 +6,7 @@
     <string name="connected_to">Connected to</string>
     <string name="could_not_connect">Couldn\u0009 connect to the device!</string>
     <string name="connection_lost">Device connection was lost!</string>
-    <string name="slogan">RK-8900</string>
+    <string name="slogan" />
     <string name="support">"Service
 Center"</string>
     <string name="story">"Brand
@@ -28,8 +28,8 @@ Care"</string>
     <string name="decrease_c">Reduce temp</string>
     <string name="temp_display">Function of heat is not turned</string>
     <string name="preheating">Function of Preheat is turned</string>
-    <string name="insecure_connect">Connect a device - Insecure</string>
-    <string name="discoverable">Make discoverable</string>
+    <string name="insecure_connect">Connect adevice -Insecure</string>
+    <string name="discoverable">Makediscoverable</string>
     <string name="send">Send</string>
     <string name="communication_failed">communication_failed</string>
     <string name="not_connected">You are not connected to a device</string>
@@ -69,20 +69,20 @@ Care"</string>
     <string name="ydyms">Athlete mode</string>
     <string name="ysbj">Care of aged</string>
     <string name="mode">Mode</string>
-    <string name="part">Position</string>
+    <string name="part">position</string>
     <string name="width">Width</string>
     <string name="speed">Speed</string>
-    <string name="threeD">3 D</string>
+    <string name="threeD">4 D</string>
     <string name="knead">Knead</string>
     <string name="rap">Tap</string>
     <string name="pat">Knock</string>
     <string name="knead_knock">Knead+tap</string>
     <string name="finger">Shiatsu</string>
     <string name="whole">Whole</string>
-    <string name="local">Local</string>
-    <string name="fixed_point">Point</string>
-    <string name="up">Upward</string>
-    <string name="down">Downward</string>
+    <string name="local">Partial</string>
+    <string name="fixed_point">Fixed point</string>
+    <string name="up">Up</string>
+    <string name="down">Down</string>
     <string name="narrow_center_wide">"N
 M
 W"</string>
@@ -99,10 +99,10 @@ H"</string>
 W"</string>
     <string name="strengthen">Strong</string>
     <string name="weaken">Weak</string>
-    <string name="threeDstrengthen">3D Strong</string>
-    <string name="threeDweaken">3D Weak</string>
+    <string name="threeDstrengthen">Strong</string>
+    <string name="threeDweaken">Weak</string>
     <string name="state_width">   Width </string>
-    <string name="state_strength">   Strength </string>
+    <string name="state_strength">   strength </string>
     <string name="state_speed"> Speed</string>
     <string name="state_pedicure"> Foot Roller</string>
     <string name="all">Full Body</string>
@@ -110,14 +110,14 @@ W"</string>
 M
 W"</string>
     <string name="strength">strength</string>
-    <string name="hand_shoulder">Uper Body</string>
+    <string name="hand_shoulder">Upper Body</string>
     <string name="waist">Waist&amp;Back</string>
     <string name="leg_foot">Leg&amp;foot</string>
     <string name="pressure_strength">Pressure strength</string>
     <string name="pedicure">Roller</string>
     <string name="thermal_method">Heat</string>
-    <string name="thermal_heart">Motion thermal</string>
-    <string name="thermal_foot">Thermal feet</string>
+    <string name="thermal_heart">Movement</string>
+    <string name="thermal_foot">Feet</string>
     <string name="physiology_test">Heart rate detection</string>
     <string name="fast_soft">"S
 F"</string>
@@ -151,4 +151,5 @@ F"</string>
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
     <string name="wlan_not_connected">WLAN is not connected</string>
+    <string name="title_connected_to">connected to %1$s</string>
 </resources>
