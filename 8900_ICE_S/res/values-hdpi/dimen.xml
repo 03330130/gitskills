@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- air -->
+    <dimen name="air_item_item">45dp</dimen>
     <!-- position -->
     <dimen name="weizi_top_bottom_left">10dp</dimen>
-     <dimen name="bottom_height">178dp</dimen>
+     <dimen name="bottom_height">228dp</dimen>
 
     <dimen name="textsize_Large">16sp</dimen>
     <dimen name="bottom_btn_text_size">18sp</dimen>
@@ -59,10 +61,12 @@
     <dimen name="seat2_margin_bottom">62dp</dimen>
     <dimen name="seat3_margin_right">105dp</dimen>
     <dimen name="seat3_margin_bottom">60dp</dimen>
+    
     <dimen name="waist11_margin_right">88dp</dimen>
     <dimen name="waist11_margin_bottom">85dp</dimen>
     <dimen name="waist12_margin_right">52dp</dimen>
     <dimen name="waist12_margin_bottom">85dp</dimen>
+    
     <dimen name="waist21_margin_right">75dp</dimen>
     <dimen name="waist21_margin_bottom">117dp</dimen>
     <dimen name="waist22_margin_right">46dp</dimen>
@@ -71,6 +75,13 @@
     <dimen name="waist31_margin_bottom">155dp</dimen>
     <dimen name="waist32_margin_right">37dp</dimen>
     <dimen name="waist32_margin_bottom">158dp</dimen>
+    
+    <dimen name="waist_heat1_margin_right">105dp</dimen>
+    <dimen name="waist_heat1_margin_bottom">122dp</dimen>
+    
+    <dimen name="waist_heat2_margin_right">98dp</dimen>
+    <dimen name="waist_heat2_margin_bottom">158dp</dimen>
+    
     <dimen name="back11_margin_right">49dp</dimen>
     <dimen name="back11_margin_bottom">192dp</dimen>
     <dimen name="back12_margin_right">25dp</dimen>

@@ -188,6 +188,7 @@
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
          android:button="@drawable/bk_leftview_sound"
+         android:background="@drawable/bk_color_blue"
         android:textSize="@dimen/textsize_Large"
         android:textColor="#000"
         android:text="@string/touch_sound"

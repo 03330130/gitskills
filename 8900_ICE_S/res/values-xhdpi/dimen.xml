@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- air -->
+    <dimen name="air_item_item">35dp</dimen>
     <!-- position -->
     <dimen name="weizi_top_bottom_left">2dp</dimen>
     <dimen name="body_layout_top">-100dp</dimen>

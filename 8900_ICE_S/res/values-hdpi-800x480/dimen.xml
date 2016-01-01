@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- air -->
+    <dimen name="air_item_item">45dp</dimen>
     <!-- position -->
     <dimen name="weizi_top_bottom_left">10dp</dimen>
-     <dimen name="bottom_height">178dp</dimen>
+     <dimen name="bottom_height">228dp</dimen>
 
     <dimen name="textsize_Large">16sp</dimen>
     <dimen name="bottom_btn_text_size">18sp</dimen>
