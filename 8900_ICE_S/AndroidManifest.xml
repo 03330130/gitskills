@@ -17,10 +17,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.kangtai.MassageChairUI"
     android:versionCode="1"
-    android:versionName="1.1.001" >
+    android:versionName="1.0.001" >
 
     <uses-sdk
-        android:minSdkVersion="16"
+        android:minSdkVersion="15"
         android:targetSdkVersion="21" />
     <supports-screens 
         android:smallScreens="true"

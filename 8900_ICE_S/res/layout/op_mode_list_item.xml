@@ -19,6 +19,7 @@
         android:id="@+id/tv_mode_item"
         android:singleLine="true"
         android:textColor="#000"
+        android:ellipsize="marquee"
         android:layout_weight="5"
         android:layout_width="0dp"
         android:layout_height="match_parent"
