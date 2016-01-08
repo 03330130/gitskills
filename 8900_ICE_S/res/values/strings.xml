@@ -22,7 +22,7 @@
     <string name="back_toast">Press again to exit</string>
     <string name="main_page">Main page</string>
     <string name="connected_to">Connected to </string>
-    <string name="could_not_connect">Cannot connect to the device!</string>
+    <string name="could_not_connect">Can not connect to the device!</string>
     <string name="connection_lost">Device connection was lost!</string>
     <!-- first page -->
     <string name="slogan">Presidential</string>
@@ -31,9 +31,9 @@
     <string name="experience">Health\nCare</string>
     <string name="start">Start</string>
     <!-- positon adjust -->
-     <string name="sleep">Sleep</string>
+    <string name="sleep">Sleep</string>
     <string name="overall">Backrest</string>
-    <string name="stretch">LegExtend</string>
+    <string name="stretch">Leg Extend</string>
     <string name="legs">Footrest</string>
     <string name="zero">Zero</string>
     
@@ -41,6 +41,7 @@
     <string name="speed_state">Speed:</string>
     <string name="width_state">Width:</string>
     <string name="strength_state">Strength:</string>
+    <string name="back_heat_state">Back\nheating</string>
     <!-- 0530 -->
     <string name="strength_low">weak</string>
     <string name="strength_middle">Middle</string>
@@ -185,9 +186,9 @@
     <!-- settings -->
     <string name="language">Language</string>
     <string name="chinese">中文</string>
-    <string name="english">ENGLISH</string>
+    <string name="english">English</string>
     <string name="korean">한국어</string>
-    <string name="spanish">spanish</string>
+    <string name="spanish">Spanish</string>
     <string name="Vietnamese">Vietnamese</string>
     <string name="timer_0"><u>10min</u></string>
     <string name="timer_1">20min</string>

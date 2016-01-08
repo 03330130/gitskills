@@ -48,14 +48,14 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/view_top"
         android:layout_marginLeft="40dp"
-        android:layout_marginTop="25dp" 
+        android:layout_marginTop="20dp" 
         >
 
         <TableRow
             android:id="@+id/tableRow1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center" >
+            android:gravity="center|left" >
 
             <TextView
                 android:layout_width="wrap_content"
@@ -88,7 +88,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" 
                 android:layout_gravity="bottom"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="10dp"
                 >
 
                 <TextView
@@ -119,21 +119,26 @@
             android:id="@+id/tableRow3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" 
-            android:visibility="invisible"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="10dp"
             >
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="top"
-                android:layout_marginTop="-5dp"
-                android:text="Position" />
+                android:layout_gravity="bottom"
+                android:layout_marginRight="5dp"
+                android:textSize="@dimen/fudong_text_size"
+                android:text="@string/back_heat_state" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:visibility="invisible"
-                android:text="Zero Gravity" />
+            
+            <ImageView 
+                       android:id="@+id/heat_state"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_gravity="bottom"
+                       android:src="@drawable/img_back_heat_off"
+                       />
         </TableRow>
 
         <TableRow

@@ -116,17 +116,26 @@
             android:id="@+id/tableRow3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" 
-            android:visibility="invisible">
+            android:layout_gravity="bottom"
+            android:layout_marginTop="15dp"
+            >
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Accessibility:" />
+                android:layout_gravity="bottom"
+                android:layout_marginRight="5dp"
+                android:textSize="@dimen/nav_position_textview_size"
+                android:text="@string/back_heat_state" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Zero Gravity" />
+            
+            <ImageView 
+                       android:id="@+id/heat_state"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_gravity="bottom"
+                       android:src="@drawable/op_state_speed_off"
+                       />
         </TableRow>
 
         <TableRow

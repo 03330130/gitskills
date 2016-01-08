@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+     <!-- state -->
+    <string name="back_heat_state">위로\n가열</string>
+    
+    
     <string name="app_name">Presidential</string>
     <string name="back_toast">종료하려면 다시 누릅니다</string>
     <string name="main_page">돌아 가기 홈</string>

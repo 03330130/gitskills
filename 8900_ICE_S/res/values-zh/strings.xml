@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-
+    <!-- state -->
+    <string name="back_heat_state">背部\n加热</string>
+    
+    
     <string name="app_name">Presidential</string>
     <string name="back_toast">再按一次退出程序</string>
       <!-- first page -->

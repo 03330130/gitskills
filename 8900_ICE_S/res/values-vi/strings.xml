@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- state -->
+    <string name="back_heat_state">trở lại\nsưởi ấm</string>
+    
+    
     <string name="app_name">Presidential</string>
     <string name="back_toast">Press again to exit</string>
     <string name="main_page">Main page</string>

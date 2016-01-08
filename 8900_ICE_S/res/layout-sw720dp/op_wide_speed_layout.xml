@@ -44,7 +44,7 @@
 	        android:layout_weight="1"
 	        android:background="@drawable/bk_color_blue_pressed"
 	        android:text="@string/tempUp"
-	        android:drawableLeft="@drawable/bk_part_up"
+	        
 	        android:clickable="true"
 	        android:paddingLeft="7dp"
 	        android:textColor="#000"
@@ -63,7 +63,7 @@
 	        android:gravity="center"
 	        android:layout_weight="1"
 	        android:background="@drawable/bk_color_blue_pressed"
-	        android:drawableLeft="@drawable/bk_part_down"
+	        
 	        android:text="@string/tempDown"
 	        android:clickable="true"
 	        android:paddingLeft="7dp"

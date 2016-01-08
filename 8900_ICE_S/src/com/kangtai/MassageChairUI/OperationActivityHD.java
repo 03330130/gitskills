@@ -182,7 +182,7 @@ public class OperationActivityHD extends FragmentActivity implements OnTouchList
 		private String[] mSendData;
 		private String[] mReceiveData;
 		private byte[] currentSendData;
-		private int mCounter = 0,receivedataFlag=0,unkstyCount=0 ,hotRocks=0;
+		private int mCounter = 0,receivedataFlag=0,unkstyCount=0 ,hotRocks=0,mBackHeatNum=3;
 		private SharedPreferences sp,mSharedPreferences;
 		private ActionBar actionBar;
 		private ImageView imgFoot1,imgFoot2,imgLeg1,imgLeg2,imgSeat1,imgSeat2,imgSeat3,imgArm1,
@@ -190,7 +190,7 @@ public class OperationActivityHD extends FragmentActivity implements OnTouchList
 		imgWaist32,imgBack11,imgBack12,imgBack21,imgBack22,imgNeck1,imgNeck2,imgWaistHeat1,imgWaistHeat2,
 		imgup,imgdown;
 		private TextView txtTimeCount,txtstate_mode;
-		private ImageView imgHeatFeet,imgThreeD;
+		private ImageView imgHeatFeet,imgThreeD,imgBackHeatState;
 		private ImageView img_timer,img_arrow_up,img_arrow_down,img_down_arrow_other,img_up_arrow_other,
 		                  mode_list_arrow_down,mode_list_arrow_up;
 		private ImageView mImgWidth_State,mImgSpeed_State,mImgStrength_State,mImgPedicure_State;
@@ -274,6 +274,8 @@ public class OperationActivityHD extends FragmentActivity implements OnTouchList
         btn_voice_control=(Button)findViewById(R.id.btn_voice_control);
         img_timer=(ImageView)findViewById(R.id.img_timer);
         imgThreeD=(ImageView)findViewById(R.id.threeD_state);
+        imgBackHeatState=(ImageView)findViewById(R.id.heat_state);
+        
 		mTopView = findViewById(R.id.view_top);
 		mBottomView = findViewById(R.id.view_bottom);
 		btn_Auto=(Button) findViewById(R.id.btn_op_auto);
@@ -1959,10 +1961,14 @@ if(auto_ListItem.get(arg2).get("ItemTitle").equals(getString(R.string.blsbz))){
 	private void setFeetHeat(boolean isChecked){
 		
 		if(isChecked){
-			setTempWindow();//motion heat adjust
+			
+			//motion heat adjust
+			setTempWindow();  
+			
 			backHeat=true;
 			Log.d(TAG2, "other feet thermal----");
 			sendCommand(DataFrame.getSendFrame(OPERATION.THERMALFEET_ON));
+			setBackHeat(3);
 			}
 			else{
 				Log.d(TAG2, "feetthermal-unchecked---");
@@ -2143,9 +2149,12 @@ if(auto_ListItem.get(arg2).get("ItemTitle").equals(getString(R.string.blsbz))){
 				// TODO Auto-generated method stub
 				sendCommand(DataFrame
 						.getSendFrame(OPERATION.TEMP_RAISE));
+				mBackHeatNum++;
+				if(mBackHeatNum>7)mBackHeatNum=7;
+				setBackHeat(mBackHeatNum);
 				Log.d(TAG2, "tv_temp_up ++--------");
 				
-				RokolUtil.performTouchSound(getBaseContext());
+//				RokolUtil.performTouchSound(getBaseContext());
 			}
 		});
 		tv_temp_down.setOnClickListener(new OnClickListener() {
@@ -2153,10 +2162,13 @@ if(auto_ListItem.get(arg2).get("ItemTitle").equals(getString(R.string.blsbz))){
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
+				mBackHeatNum--;
+				if(mBackHeatNum<1)mBackHeatNum=1;
 				sendCommand(DataFrame
 						.getSendFrame(OPERATION.TEMP_REDUCE));
+				setBackHeat(mBackHeatNum);
 				Log.d(TAG2, "tv_temp_down-- --------");
-				RokolUtil.performTouchSound(getBaseContext());
+//				RokolUtil.performTouchSound(getBaseContext());
 			}
 			
 		});
@@ -2443,6 +2455,8 @@ if(auto_ListItem.get(arg2).get("ItemTitle").equals(getString(R.string.blsbz))){
 			mZeroGravity=false;
 			changePowerState();
 			setCheckBoxFalse();
+			setBackHeat(0);
+			
 			btn_Auto.setEnabled(false);
 			btn_manual.setEnabled(false);
 			btn_pressure.setEnabled(false);
@@ -2450,7 +2464,7 @@ if(auto_ListItem.get(arg2).get("ItemTitle").equals(getString(R.string.blsbz))){
 			txtstate_mode.setText("");
 //			LayoutInflater inflater=LayoutInflater.from(this);
 //			inflater.inflate(R.layout.op_bottom_view, null);
-			
+//			imgThreeD.setImageResource(R.drawable.op_state_speed_off);
 //			mBottomView.setVisibility(mBottomView.isShown()?View.INVISIBLE:View.VISIBLE);
 			mAutoLayout.setVisibility(mAutoLayout.isShown()?View.INVISIBLE:View.INVISIBLE);
 			mManualLayout.setVisibility(mManualLayout.isShown()?View.INVISIBLE:View.INVISIBLE);
@@ -3053,6 +3067,35 @@ if(auto_ListItem.get(arg2).get("ItemTitle").equals(getString(R.string.blsbz))){
 		case 6:
 			imgThreeD.setImageResource(R.drawable.op_state_speed_high);
 			break;}
+	}
+	protected void setBackHeat(int b){
+//		int k=((b>>4)&0x1)*1+((b>>5)&0x1)*2+((b>>6)&0x1)*4;
+		switch(b){
+		case 0:
+			imgBackHeatState.setImageResource(R.drawable.img_back_heat_off);
+			break;
+		case 1:
+			imgBackHeatState.setImageResource(R.drawable.img_back_heat_one);
+			break;
+		case 2:
+			imgBackHeatState.setImageResource(R.drawable.img_back_heat_two);
+			break;
+		case 3:
+			imgBackHeatState.setImageResource(R.drawable.img_back_heat_three);
+			break;
+		case 4:
+			imgBackHeatState.setImageResource(R.drawable.img_back_heat_four);
+			break;
+		case 5:
+			imgBackHeatState.setImageResource(R.drawable.img_back_heat_five);
+			break;
+		case 6:
+			imgBackHeatState.setImageResource(R.drawable.img_back_heat_six);
+			break;
+		case 7:
+			imgBackHeatState.setImageResource(R.drawable.img_back_heat_seven);
+			break;
+			}
 	}
 	protected void setFeetStatus(){
 		if(thermalFeetFlag & footSwingOn){

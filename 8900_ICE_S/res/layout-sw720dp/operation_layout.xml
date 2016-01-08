@@ -59,6 +59,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="19sp"
                 android:text="@string/state_timer" />
 
             <RelativeLayout
@@ -112,7 +113,31 @@
                        />
             </TableRow>
 
-        
+        <TableRow
+            android:id="@+id/tableRow3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" 
+            android:layout_gravity="bottom"
+            android:layout_marginTop="20dp"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginRight="5dp"
+                android:textSize="19sp"
+                android:text="@string/back_heat_state" />
+
+            
+            <ImageView 
+                       android:id="@+id/heat_state"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_gravity="bottom"
+                       android:src="@drawable/op_state_speed_off"
+                       />
+        </TableRow>
 
      
 

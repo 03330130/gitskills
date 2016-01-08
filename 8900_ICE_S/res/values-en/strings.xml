@@ -41,6 +41,7 @@
     <string name="speed_state">Speed:</string>
     <string name="width_state">Width:</string>
     <string name="strength_state">Strength:</string>
+    <string name="back_heat_state">Back\nHeating</string>
     <!-- 0530 -->
     <string name="strength_low">weak</string>
     <string name="strength_middle">Middle</string>
