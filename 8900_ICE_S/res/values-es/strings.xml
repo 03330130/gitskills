@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- state -->
-    <string name="back_heat_state">calefacción\nVolver</string>
-    
-    
-    <!--  -->
     <string name="app_name">Presidential</string>
     <string name="back_toast">Press again to exit</string>
     <string name="main_page">Main page</string>
@@ -24,12 +19,14 @@ Care"</string>
     <string name="stretch">Tramo</string>
     <string name="legs">Pie</string>
     <string name="zero">Cero</string>
-    <string name="strength_low">weak</string>
-    <string name="strength_middle">Middle</string>
-    <string name="strength_high">Strong</string>
     <string name="speed_state">Speed:</string>
     <string name="width_state">Width:</string>
     <string name="strength_state">Strength:</string>
+    <string name="back_heat_state">"calefacción
+Volver"</string>
+    <string name="strength_low">weak</string>
+    <string name="strength_middle">Middle</string>
+    <string name="strength_high">Strong</string>
     <string name="state_timer">minutero:</string>
     <string name="state_mode">Modo：</string>
     <string name="auto_shoulder">Escaneando el Cuerpo…</string>
@@ -38,13 +35,12 @@ Care"</string>
     <string name="decrease_c">Reduce temp</string>
     <string name="temp_display">Function of heat is not turned</string>
     <string name="preheating">Function of Preheat is turned</string>
-    <string name="insecure_connect">Connect adevice -Insecure</string>
-    <string name="discoverable">Makediscoverable</string>
     <string name="send">Send</string>
     <string name="communication_failed">la comunicación no</string>
     <string name="not_connected">Usted no está conectado a un dispositivo.</string>
     <string name="bt_not_enabled_leaving">Bluetooth was not enabled. Leaving App.</string>
     <string name="title_connecting">connecting...</string>
+    <string name="title_connected_to">conectado a%1$s</string>
     <string name="title_not_connected">no conectado</string>
     <string name="not_available">Bluetooth no está disponible</string>
     <string name="scanning">Buscar dispositivos...</string>
@@ -55,7 +51,8 @@ Care"</string>
     <string name="title_other_devices">Otros dispositivos disponibles</string>
     <string name="button_scan">Buscar dispositivos</string>
     <string name="secure_connect">Connect</string>
-    
+    <string name="insecure_connect">Connect adevice -Insecure</string>
+    <string name="discoverable">Makediscoverable</string>
     <string name="settings">Settings</string>
     <string name="service">Service</string>
     <string name="position_adjust">Position Adjust</string>
@@ -71,6 +68,7 @@ Care"</string>
     <string name="sthh">Alivio</string>
     <string name="jgsz">Estiramiento</string>
     <string name="qnty">Renovar</string>
+    <string name="hot_rock">Hot Rocks</string>
     <string name="xyfs">Calma</string>
     <string name="xsbj">Sanador</string>
     <string name="ylam">Sincronización Música</string>
@@ -87,6 +85,8 @@ Care"</string>
     <string name="width">Amplitud</string>
     <string name="speed">Velocidad</string>
     <string name="threeD">3 D</string>
+    <string name="threeD_position">"3 D 
+Posición"</string>
     <string name="knead">Amasado</string>
     <string name="rap">Tocado</string>
     <string name="pat">Golpes</string>
@@ -117,10 +117,6 @@ W"</string>
     <string name="threeDweaken">3D-</string>
     <string name="tempUp">Temp+</string>
     <string name="tempDown">Temp-</string>
-    <string name="state_width">   Amplitud </string>
-    <string name="state_strength">   Intensidad </string>
-    <string name="state_speed"> Velocidad</string>
-    <string name="state_pedicure"> Pies Rodillo</string>
     <string name="all">Cuerpo Total</string>
     <string name="strengthen_middle_weaken">"S
 M
@@ -129,8 +125,17 @@ W"</string>
     <string name="hand_shoulder">Cuerpo Superior</string>
     <string name="waist">Cintura y Sillón</string>
     <string name="leg_foot">Piernas y Pies</string>
-    <string name="pressure_strength">Pressure Strength</string>
     <string name="air_off">Apagadoa</string>
+    <string name="pressure_strength">Pressure Strength</string>
+    <string name="levlel1">Nivel 1</string>
+    <string name="levlel2">Nivel 2</string>
+    <string name="levlel3">Nivel 3</string>
+    <string name="levlel4">Nivel 4</string>
+    <string name="levlel5">Nivel 5</string>
+    <string name="state_width">   Amplitud </string>
+    <string name="state_strength">   Intensidad </string>
+    <string name="state_speed"> Velocidad</string>
+    <string name="state_pedicure"> Pies Rodillo</string>
     <string name="pedicure">Rodillo</string>
     <string name="thermal_method">Volver Sanador</string>
     <string name="thermal_waist">Cintura Sanador</string>
@@ -162,6 +167,7 @@ F"</string>
     <string name="timer_0"><u>10min</u></string>
     <string name="timer_1">20min</string>
     <string name="timer_2">30min</string>
+    <string name="timer_3">45min</string>
     <string name="timer">Time</string>
     <string name="music">Music</string>
     <string name="touch_sound">Toque sonidos</string>
@@ -171,13 +177,4 @@ F"</string>
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
     <string name="wlan_not_connected">WLAN is not connected</string>
-    <string name="title_connected_to">conectado a%1$s</string>
-    <string name="hot_rock">Hot Rocks</string>  
-    <string name="threeD_position">"3 D \nPosición"</string>
-    <string name="levlel1">Nivel 1</string>
-    <string name="levlel2">Nivel 2</string>
-    <string name="levlel3">Nivel 3</string>
-    <string name="levlel4">Nivel 4</string>
-    <string name="levlel5">Nivel 5</string>
-    <string name="timer_3">45min</string>
 </resources>

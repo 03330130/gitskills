@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- state -->
-    <string name="back_heat_state">trở lại\nsưởi ấm</string>
-    
-    
     <string name="app_name">Presidential</string>
     <string name="back_toast">Press again to exit</string>
     <string name="main_page">Main page</string>
@@ -23,12 +19,14 @@ Care"</string>
     <string name="stretch">Kéo giãn</string>
     <string name="legs">nghĩ chân</string>
     <string name="zero">số không</string>
-    <string name="strength_low">weak</string>
-    <string name="strength_middle">Middle</string>
-    <string name="strength_high">Strong</string>
     <string name="speed_state">Speed:</string>
     <string name="width_state">Width:</string>
     <string name="strength_state">Strength:</string>
+    <string name="back_heat_state">"trở lại
+sưởi ấm"</string>
+    <string name="strength_low">weak</string>
+    <string name="strength_middle">Middle</string>
+    <string name="strength_high">Strong</string>
     <string name="state_timer">hẹn giờ:</string>
     <string name="state_mode">Chế độ:</string>
     <string name="auto_shoulder">Quét qua cơ thể...</string>
@@ -37,13 +35,12 @@ Care"</string>
     <string name="decrease_c">Reduce temp</string>
     <string name="temp_display">Function of heat is not turned</string>
     <string name="preheating">Function of Preheat is turned</string>
-    <string name="insecure_connect">Connect adevice -Insecure</string>
-    <string name="discoverable">Makediscoverable</string>
     <string name="send">Send</string>
     <string name="communication_failed">thông tin liên lạc không thành công</string>
     <string name="not_connected">Bạn không được kết nối với một thiết bị.</string>
     <string name="bt_not_enabled_leaving">Bluetooth was not enabled. Leaving App.</string>
     <string name="title_connecting">connecting...</string>
+    <string name="title_connected_to">kết nối với%1$s</string>
     <string name="title_not_connected">không kết nối</string>
     <string name="not_available">Bluetooth là không có sẵn</string>
     <string name="scanning">uét cho các thiết bị...</string>
@@ -54,7 +51,8 @@ Care"</string>
     <string name="title_other_devices">Thiết bị có sẵn khác</string>
     <string name="button_scan">Quét cho các thiết bị</string>
     <string name="secure_connect">Connect</string>
-    
+    <string name="insecure_connect">Connect adevice -Insecure</string>
+    <string name="discoverable">Makediscoverable</string>
     <string name="settings">Settings</string>
     <string name="service">Service</string>
     <string name="position_adjust">Position Adjust</string>
@@ -70,6 +68,7 @@ Care"</string>
     <string name="sthh">Giảm đau</string>
     <string name="jgsz">Kéo giãn</string>
     <string name="qnty">Làm mới</string>
+    <string name="hot_rock">Đá nóng</string>
     <string name="xyfs">Dịu êm</string>
     <string name="xsbj">Chữa bệnh</string>
     <string name="ylam">Đồng bộ hóa</string>
@@ -86,6 +85,8 @@ Care"</string>
     <string name="width">Chiều rộng</string>
     <string name="speed">Tốc độ</string>
     <string name="threeD">3 D</string>
+    <string name="threeD_position">"3 D
+vị trí"</string>
     <string name="knead">Xoa bóp</string>
     <string name="rap">Nhấn</string>
     <string name="pat">Vỗ</string>
@@ -116,10 +117,6 @@ W"</string>
     <string name="threeDweaken">3D-</string>
     <string name="tempUp">NHIỆT+</string>
     <string name="tempDown">NHIỆT-</string>
-    <string name="state_width">Chiều rộng</string>
-    <string name="state_strength">Cường độ </string>
-    <string name="state_speed">Tốc độ</string>
-    <string name="state_pedicure"> Chân Con lăn</string>
     <string name="all">Toàn thân</string>
     <string name="strengthen_middle_weaken">"S
 M
@@ -128,8 +125,17 @@ W"</string>
     <string name="hand_shoulder">Thân trên</string>
     <string name="waist">Hông &amp; Môn</string>
     <string name="leg_foot">Chân&amp;Bàn chân</string>
-    <string name="pressure_strength">Pressure Strength</string>
     <string name="air_off">TẮT</string>
+    <string name="pressure_strength">Pressure Strength</string>
+    <string name="levlel1">Cấp độ 1</string>
+    <string name="levlel2">Cấp độ 2</string>
+    <string name="levlel3">Cấp độ 3</string>
+    <string name="levlel4">Cấp độ 4</string>
+    <string name="levlel5">Cấp độ 5</string>
+    <string name="state_width">Chiều rộng</string>
+    <string name="state_strength">Cường độ </string>
+    <string name="state_speed">Tốc độ</string>
+    <string name="state_pedicure"> Chân Con lăn</string>
     <string name="pedicure">Con lăn</string>
     <string name="thermal_method">Lưng Sưởi</string>
     <string name="thermal_waist">Hông Sưởi</string>
@@ -161,6 +167,7 @@ F"</string>
     <string name="timer_0"><u>10phút</u></string>
     <string name="timer_1">20phút</string>
     <string name="timer_2">30phút</string>
+    <string name="timer_3">45phút</string>
     <string name="timer">Hẹn giờ</string>
     <string name="music">Music</string>
     <string name="touch_sound">chạm âm thanh</string>
@@ -170,14 +177,4 @@ F"</string>
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
     <string name="wlan_not_connected">WLAN is not connected</string>
-    <string name="title_connected_to">kết nối với%1$s</string>
-    <string name="hot_rock">Đá nóng</string>
-    <string name="threeD_position">"3 D
-vị trí"</string>
-    <string name="levlel1">Cấp độ 1</string>
-    <string name="levlel2">Cấp độ 2</string>
-    <string name="levlel3">Cấp độ 3</string>
-    <string name="levlel4">Cấp độ 4</string>
-    <string name="levlel5">Cấp độ 5</string>
-    <string name="timer_3">45phút</string>
 </resources>

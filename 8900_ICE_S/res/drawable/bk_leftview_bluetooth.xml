@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android" >
-    <item android:state_selected="true" android:drawable="@drawable/op_bluetooth_normal"/>
-    <item android:drawable="@drawable/op_bluetooth_active"></item>
-
+<selector
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_selected="true" android:drawable="@drawable/op_bluetooth_normal" />
+    <item android:drawable="@drawable/op_bluetooth_active" />
 </selector>

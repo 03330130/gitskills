@@ -1,110 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/img_bottom_menu_background"
-    android:orientation="vertical" >
-    
-    <CheckBox 
-        android:id="@+id/ckb_air_mode"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal|center_vertical"
-        android:button="@drawable/op_manual_mode_normal"
-        android:textSize="@dimen/textsize_Large"
-        android:drawableRight="@drawable/op_manual_arrow"
-        android:paddingRight="10dp"
-        android:paddingEnd="10dp"
-        android:paddingLeft="0dp"
-        android:paddingStart="0dp"
-        android:background="@drawable/bk_color_blue"
-        android:textColor="#000"
-        android:layout_weight="1"
-        android:text="@string/mode"/>
-   			<ImageView   
-        android:layout_width="fill_parent"  
-        android:layout_height="0.5dp"  
-        android:background="#000000"  
-        />  
-      <CheckBox 
-        android:id="@+id/ckb_air_position"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal|center_vertical"
-        android:drawableRight="@drawable/op_manual_arrow"
-        android:paddingRight="10dp"
-        android:paddingEnd="10dp"
-        android:paddingLeft="0dp"
-        android:paddingStart="0dp"
-        android:textSize="@dimen/textsize_Large"
-        android:background="@drawable/bk_color_blue"
-        android:textColor="#c0c0c0"
-         android:layout_weight="1"
-        android:button="@drawable/op_manual_part_normal"
-        android:text="@string/part"/>
-       		<ImageView   
-        android:layout_width="fill_parent"  
-        android:layout_height="0.5dp"  
-        android:background="#000000"  
-        />  
-      <CheckBox 
-        android:id="@+id/ckb_air_width"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:button="@drawable/op_manual_width_normal"
-        
-         android:background="@drawable/bk_color_blue"
-        android:textColor="#c0c0c0"
-         android:layout_weight="1"
-         android:gravity="center_horizontal|center_vertical"
-         android:drawableRight="@drawable/op_manual_arrow"
-        android:paddingRight="10dp"
-        android:paddingEnd="10dp"
-        android:paddingLeft="0dp"
-        android:paddingStart="0dp"
-        android:textSize="@dimen/textsize_Large"
-        android:text="@string/width"/>
-       <ImageView   
-        android:layout_width="fill_parent"  
-        android:layout_height="0.5dp"  
-        android:background="#000000"  
-        />  
-      <CheckBox 
-        android:id="@+id/ckb_air_speed"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:button="@drawable/op_manual_speed_normal"
-        android:gravity="center_horizontal|center_vertical"
-         android:background="@drawable/bk_color_blue"
-        android:textColor="#c0c0c0"
-         android:layout_weight="1"
-         android:drawableRight="@drawable/op_manual_arrow"
-        android:paddingRight="10dp"
-        android:paddingEnd="10dp"
-        android:paddingLeft="0dp"
-        android:paddingStart="0dp"
-        android:textSize="@dimen/textsize_Large"
-        android:text="@string/speed"/>
-      		 <ImageView   
-        android:layout_width="fill_parent"  
-        android:layout_height="0.5dp"  
-        android:background="#000000"  
-        />  
-      <CheckBox 
-        android:id="@+id/ckb_air_3d"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:button="@drawable/op_manual_3d_normal"
-        android:drawableRight="@drawable/op_manual_arrow"
-        android:paddingRight="10dp"
-        android:paddingEnd="10dp"
-        android:paddingLeft="0dp"
-        android:paddingStart="0dp"
-        android:gravity="center_horizontal|center_vertical"
-         android:background="@drawable/bk_color_blue"
-        android:textColor="#c0c0c0"
-        android:textSize="@dimen/textsize_Large"
-         android:layout_weight="1"
-        android:text="@string/threeD"/>
-      
+<LinearLayout android:orientation="vertical" android:background="@drawable/img_bottom_menu_background" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <CheckBox android:textSize="@dimen/textsize_Large" android:textColor="#ff000000" android:gravity="center" android:id="@id/ckb_air_mode" android:background="@drawable/bk_color_blue" android:paddingLeft="0.0dip" android:paddingRight="10.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:button="@drawable/op_manual_mode_normal" android:text="@string/mode" android:drawableRight="@drawable/op_manual_arrow" android:layout_weight="1.0" />
+    <ImageView android:background="#ff000000" android:layout_width="fill_parent" android:layout_height="0.5dip" />
+    <CheckBox android:textSize="@dimen/textsize_Large" android:textColor="#ffc0c0c0" android:gravity="center" android:id="@id/ckb_air_position" android:background="@drawable/bk_color_blue" android:paddingLeft="0.0dip" android:paddingRight="10.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:button="@drawable/op_manual_part_normal" android:text="@string/part" android:drawableRight="@drawable/op_manual_arrow" android:layout_weight="1.0" />
+    <ImageView android:background="#ff000000" android:layout_width="fill_parent" android:layout_height="0.5dip" />
+    <CheckBox android:textSize="@dimen/textsize_Large" android:textColor="#ffc0c0c0" android:gravity="center" android:id="@id/ckb_air_width" android:background="@drawable/bk_color_blue" android:paddingLeft="0.0dip" android:paddingRight="10.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:button="@drawable/op_manual_width_normal" android:text="@string/width" android:drawableRight="@drawable/op_manual_arrow" android:layout_weight="1.0" />
+    <ImageView android:background="#ff000000" android:layout_width="fill_parent" android:layout_height="0.5dip" />
+    <CheckBox android:textSize="@dimen/textsize_Large" android:textColor="#ffc0c0c0" android:gravity="center" android:id="@id/ckb_air_speed" android:background="@drawable/bk_color_blue" android:paddingLeft="0.0dip" android:paddingRight="10.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:button="@drawable/op_manual_speed_normal" android:text="@string/speed" android:drawableRight="@drawable/op_manual_arrow" android:layout_weight="1.0" />
+    <ImageView android:background="#ff000000" android:layout_width="fill_parent" android:layout_height="0.5dip" />
+    <CheckBox android:textSize="@dimen/textsize_Large" android:textColor="#ffc0c0c0" android:gravity="center" android:id="@id/ckb_air_3d" android:background="@drawable/bk_color_blue" android:paddingLeft="0.0dip" android:paddingRight="10.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:button="@drawable/op_manual_3d_normal" android:text="@string/threeD" android:drawableRight="@drawable/op_manual_arrow" android:layout_weight="1.0" />
 </LinearLayout>

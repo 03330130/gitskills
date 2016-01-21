@@ -1,84 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/img_bottom_menu_background"
-    android:orientation="vertical" >
-    
-    <CheckBox 
-        android:id="@+id/ckb_mode_knead"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical|center_horizontal"
-        android:button="@drawable/bk_mode_knead"
-        android:textSize="15sp"
-        android:background="@drawable/bk_color_blue"
-        android:textColor="#000"
-        android:layout_weight="1"
-        android:text="@string/knead"/>
-   			<ImageView   
-        android:layout_width="fill_parent"  
-        android:layout_height="0.5dp"  
-        android:background="#000000"  
-        />  
-      <CheckBox 
-        android:id="@+id/ckb_mode_tap"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical|center_horizontal"
-        android:textSize="15sp"
-        android:background="@drawable/bk_color_blue"
-        android:textColor="#000"
-         android:layout_weight="1"
-        android:button="@drawable/bk_mode_tap"
-        android:text="@string/rap"/>
-       		<ImageView   
-        android:layout_width="fill_parent"  
-        android:layout_height="0.5dp"  
-        android:background="#000000"  
-        />  
-      <CheckBox 
-        android:id="@+id/ckb_mode_konck"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:button="@drawable/bk_mode_knock"
-        android:gravity="center_vertical|center_horizontal"
-         android:background="@drawable/bk_color_blue"
-        android:textColor="#000"
-         android:layout_weight="1"
-        android:textSize="15sp"
-        android:text="@string/pat"/>
-       <ImageView   
-        android:layout_width="fill_parent"  
-        android:layout_height="0.5dp"  
-        android:background="#000000"  
-        />  
-      <CheckBox 
-        android:id="@+id/ckb_mode_rou_kou"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:button="@drawable/bk_mode_roukou"
-        android:gravity="center_vertical|center_horizontal"
-         android:background="@drawable/bk_color_blue_pressed"
-        android:textColor="#000"
-         android:layout_weight="1"
-        android:textSize="15sp"
-        android:text="@string/knead_knock"/>
-      		 <ImageView   
-        android:layout_width="fill_parent"  
-        android:layout_height="0.5dp"  
-        android:background="#000000"  
-        />  
-      <CheckBox 
-        android:id="@+id/ckb_mode_shiatsu"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:button="@drawable/bk_mode_shiatsu"
-        android:gravity="center_vertical|center_horizontal"
-         android:background="@drawable/bk_color_blue_pressed"
-        android:textColor="#000"
-        android:textSize="15sp"
-         android:layout_weight="1"
-        android:text="@string/finger"/>
-      
+<LinearLayout android:orientation="vertical" android:background="@drawable/img_bottom_menu_background" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <CheckBox android:textSize="15.0sp" android:textColor="#ff000000" android:gravity="center" android:id="@id/ckb_mode_knead" android:background="@drawable/bk_color_blue" android:layout_width="fill_parent" android:layout_height="wrap_content" android:button="@drawable/bk_mode_knead" android:text="@string/knead" android:layout_weight="1.0" />
+    <ImageView android:background="#ff000000" android:layout_width="fill_parent" android:layout_height="0.5dip" />
+    <CheckBox android:textSize="15.0sp" android:textColor="#ff000000" android:gravity="center" android:id="@id/ckb_mode_tap" android:background="@drawable/bk_color_blue" android:layout_width="fill_parent" android:layout_height="wrap_content" android:button="@drawable/bk_mode_tap" android:text="@string/rap" android:layout_weight="1.0" />
+    <ImageView android:background="#ff000000" android:layout_width="fill_parent" android:layout_height="0.5dip" />
+    <CheckBox android:textSize="15.0sp" android:textColor="#ff000000" android:gravity="center" android:id="@id/ckb_mode_konck" android:background="@drawable/bk_color_blue" android:layout_width="fill_parent" android:layout_height="wrap_content" android:button="@drawable/bk_mode_knock" android:text="@string/pat" android:layout_weight="1.0" />
+    <ImageView android:background="#ff000000" android:layout_width="fill_parent" android:layout_height="0.5dip" />
+    <CheckBox android:textSize="15.0sp" android:textColor="#ff000000" android:gravity="center" android:id="@id/ckb_mode_rou_kou" android:background="@drawable/bk_color_blue_pressed" android:layout_width="fill_parent" android:layout_height="wrap_content" android:button="@drawable/bk_mode_roukou" android:text="@string/knead_knock" android:layout_weight="1.0" />
+    <ImageView android:background="#ff000000" android:layout_width="fill_parent" android:layout_height="0.5dip" />
+    <CheckBox android:textSize="15.0sp" android:textColor="#ff000000" android:gravity="center" android:id="@id/ckb_mode_shiatsu" android:background="@drawable/bk_color_blue_pressed" android:layout_width="fill_parent" android:layout_height="wrap_content" android:button="@drawable/bk_mode_shiatsu" android:text="@string/finger" android:layout_weight="1.0" />
 </LinearLayout>

@@ -1,36 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="35dp"
-    android:orientation="horizontal"
-    android:background="@null"
-     >
-
-    <ImageView
-        android:id="@+id/img_manual_icon"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="2"
-        android:layout_gravity="center_vertical"
-        android:layout_marginLeft="2dp" />
-
-    <TextView
-        android:gravity="center_vertical|center_horizontal" 
-        android:id="@+id/tv_manual_info"
-        android:singleLine="true"
-        android:textColor="#000"
-        
-        
-        android:layout_width="0dp"
-        android:layout_weight="5"
-       
-        android:layout_height="match_parent"
-        android:textSize="@dimen/textsize_Large"/>
-    <ImageView
-        android:id="@+id/img_manual_arrow"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:layout_gravity="center_vertical|right"
-         />
+<LinearLayout android:orientation="horizontal" android:background="@null" android:layout_width="fill_parent" android:layout_height="35.0dip"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView android:layout_gravity="center_vertical" android:id="@id/img_manual_icon" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_marginLeft="2.0dip" android:layout_weight="2.0" />
+    <TextView android:textSize="@dimen/textsize_Large" android:textColor="#ff000000" android:gravity="center" android:id="@id/tv_manual_info" android:layout_width="0.0dip" android:layout_height="fill_parent" android:singleLine="true" android:layout_weight="5.0" />
+    <ImageView android:layout_gravity="right|center" android:id="@id/img_manual_arrow" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_weight="1.0" />
 </LinearLayout>

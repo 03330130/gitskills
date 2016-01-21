@@ -1,20 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@android:color/white"
-    android:orientation="horizontal" >
-    <TextView 
-        android:id="@+id/tv_pop_speed_item"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:drawableLeft="@drawable/op_middle"
-        android:text="@string/middle"
-        android:layout_margin="7dp"
-        android:textColor="#000"
-        android:textSize="18sp"
-        />
-    
-
+<LinearLayout android:orientation="horizontal" android:background="@android:color/white" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:textSize="18.0sp" android:textColor="#ff000000" android:gravity="center" android:id="@id/tv_pop_speed_item" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_margin="7.0dip" android:text="@string/middle" android:drawableLeft="@drawable/op_middle" />
 </LinearLayout>

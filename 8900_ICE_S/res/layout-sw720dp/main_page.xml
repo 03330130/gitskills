@@ -1,146 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/hd_splash_bg" >
-
-      <RelativeLayout
-        android:id="@+id/layout_top"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true" >
-
-        <ImageView
-            android:id="@+id/iv_top"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/main_top" />
-
-        <ImageView
-            android:id="@+id/imageView1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@id/iv_top"
-            android:layout_marginBottom="20dp"
-            android:src="@drawable/main_logo" /> 
-    </RelativeLayout> 
-
-    <RelativeLayout
-        android:id="@+id/layout_bottom"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true" >
-
-        <ImageView
-            android:id="@+id/iv_bottom"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/main_bottom" />
-
-        <Button
-            android:id="@+id/btn_start"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@id/iv_bottom"
-            android:layout_centerHorizontal="true"
-            android:background="@drawable/main_start_button_background"
-            android:text="@string/start"
-            android:textSize="32sp"
-            android:textColor="#238E23"
-            android:visibility="invisible" />
+<RelativeLayout android:background="@drawable/hd_splash_bg" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout android:id="@id/layout_top" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_alignParentTop="true">
+        <ImageView android:id="@id/iv_top" android:background="@drawable/main_top" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+        <ImageView android:id="@id/imageView1" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginBottom="20.0dip" android:src="@drawable/main_logo" android:layout_alignBottom="@id/iv_top" />
     </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/layout_chairs"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/layout_top"
-        android:gravity="center_horizontal"
-        >
-
-        <FrameLayout
-            android:id="@+id/layout_chair"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/main_chair_bg" >
-        </FrameLayout>
-
-        <ImageSwitcher
-            android:id="@+id/is_chairs"
-            android:visibility="invisible" 
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true" >
-        </ImageSwitcher>
-
-        <TextView
-            android:id="@+id/textView1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/layout_chair"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="50dp"
-            android:gravity="center"
-            android:text="@string/slogan"
-            android:textSize="32sp"
-            android:textColor="@color/white"  />
+    <RelativeLayout android:id="@id/layout_bottom" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_alignParentBottom="true">
+        <ImageView android:id="@id/iv_bottom" android:background="@drawable/main_bottom" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+        <Button android:textSize="32.0sp" android:textColor="#ff238e23" android:id="@id/btn_start" android:background="@drawable/main_start_button_background" android:visibility="invisible" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/start" android:layout_alignBottom="@id/iv_bottom" android:layout_centerHorizontal="true" />
     </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="168dp"
-        android:visibility="invisible"
-        android:layout_above="@id/layout_bottom"
-        android:layout_below="@id/layout_chairs"
-        android:layout_marginTop="-10dp" >
-
-        <ImageView
-            android:id="@+id/iv_line"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:scaleType="center"
-            android:src="@drawable/main_line" />
-
-        <Button
-            android:id="@+id/btn_service_center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@id/iv_line"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="10dp"
-            android:visibility="invisible"
-            android:background="@drawable/main_service"
-            android:text="@string/support"
-            android:textSize="@dimen/fudong_text_size" />
-
-        <Button
-            android:id="@+id/btn_brand_story"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="60dp"
-            android:visibility="invisible"
-            android:layout_centerHorizontal="true"
-            android:background="@drawable/main_brandstory"
-            android:text="@string/story"
-            android:textSize="@dimen/fudong_text_size" />
-
-        <Button
-            android:id="@+id/btn_health_care"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_alignTop="@id/iv_line"
-            android:layout_marginRight="30dp"
-            android:layout_marginTop="10dp"
-            android:visibility="invisible"
-            android:background="@drawable/main_healthecare"
-            android:text="@string/experience"
-            android:textSize="@dimen/fudong_text_size" />
+    <RelativeLayout android:gravity="center_horizontal" android:id="@id/layout_chairs" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_below="@id/layout_top">
+        <FrameLayout android:id="@id/layout_chair" android:background="@drawable/main_chair_bg" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="10.0dip" android:layout_alignParentTop="true" android:layout_centerHorizontal="true" />
+        <ImageSwitcher android:id="@id/is_chairs" android:visibility="invisible" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentTop="true" android:layout_centerHorizontal="true" />
+        <TextView android:textSize="32.0sp" android:textColor="@color/white" android:gravity="center" android:id="@id/textView1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="50.0dip" android:text="@string/slogan" android:layout_below="@id/layout_chair" android:layout_centerHorizontal="true" />
     </RelativeLayout>
-
+    <RelativeLayout android:visibility="invisible" android:layout_width="fill_parent" android:layout_height="168.0dip" android:layout_marginTop="-10.0dip" android:layout_above="@id/layout_bottom" android:layout_below="@id/layout_chairs">
+        <ImageView android:id="@id/iv_line" android:layout_width="fill_parent" android:layout_height="wrap_content" android:src="@drawable/main_line" android:scaleType="center" />
+        <Button android:textSize="@dimen/fudong_text_size" android:id="@id/btn_service_center" android:background="@drawable/main_service" android:visibility="invisible" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="30.0dip" android:layout_marginTop="10.0dip" android:text="@string/support" android:layout_alignTop="@id/iv_line" />
+        <Button android:textSize="@dimen/fudong_text_size" android:id="@id/btn_brand_story" android:background="@drawable/main_brandstory" android:visibility="invisible" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="60.0dip" android:text="@string/story" android:layout_alignParentBottom="true" android:layout_centerHorizontal="true" />
+        <Button android:textSize="@dimen/fudong_text_size" android:id="@id/btn_health_care" android:background="@drawable/main_healthecare" android:visibility="invisible" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="10.0dip" android:layout_marginRight="30.0dip" android:text="@string/experience" android:layout_alignTop="@id/iv_line" android:layout_alignParentRight="true" />
+    </RelativeLayout>
 </RelativeLayout>

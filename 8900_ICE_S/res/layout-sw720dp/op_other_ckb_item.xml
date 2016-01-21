@@ -1,211 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@drawable/img_bottom_menu_background">
-<ScrollView 
-    android:id="@+id/scr_other"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/img_bottom_menu_background"
-     >
-    <LinearLayout 
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical" >
-    
-    <CheckBox 
-        android:id="@+id/ckb_other_zuliao"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:visibility="invisible"
-        android:gravity="center_horizontal|center_vertical"
-        android:button="@drawable/bk_other_zuliao"
-        android:textSize="@dimen/textsize_Large"
-        android:background="@drawable/bk_color_blue"
-        android:textColor="#000"
-        android:layout_weight="1"
-        android:text="@string/pedicure"/>
-   	  <View   
-        android:layout_width="fill_parent"  
-        android:layout_height="1px"  
-        android:background="#000000"  
-        />  
-        <CheckBox 
-        android:id="@+id/ckb_other_thermal"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:button="@drawable/bk_other_feet_thermal"
-        android:gravity="center_horizontal|center_vertical"
-         android:background="@drawable/bk_color_blue"
-        android:textColor="#000"
-         android:layout_weight="1"
-        android:textSize="@dimen/textsize_Large"
-        android:text="@string/thermal_method"/>
-       <ImageView   
-        android:layout_width="fill_parent"  
-        android:layout_height="0.5dp"  
-        android:background="#000000"  
-        />  
-            <CheckBox 
-        android:id="@+id/ckb_other_waist_thermal"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:button="@drawable/bk_other_feet_thermal"
-        android:gravity="center_horizontal|center_vertical"
-         android:background="@drawable/bk_color_blue"
-        android:textColor="#000"
-         android:layout_weight="1"
-        android:textSize="@dimen/textsize_Large"
-        android:text="@string/thermal_waist"/>
-       <ImageView   
-        android:layout_width="fill_parent"  
-        android:layout_height="0.5dp"  
-        android:background="#000000"  
-        />  
-      <CheckBox 
-        android:id="@+id/ckb_other_feet_thermal"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:gravity="center_horizontal|center_vertical"
-        android:textSize="@dimen/textsize_Large"
-        android:background="@drawable/bk_color_blue"
-        android:textColor="#000"
-         android:layout_weight="1"
-        android:button="@drawable/bk_other_feet_thermal"
-        android:text="@string/thermal_foot"/>
-       		<ImageView   
-        android:layout_width="fill_parent"
-        android:visibility="gone"
-        android:layout_height="0.5dp"  
-        android:background="#000000"  
-        />  
-      
-      <CheckBox 
-        android:id="@+id/ckb_other_music"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:button="@drawable/bk_other_music"
-        android:gravity="center_horizontal|center_vertical"
-         android:background="@drawable/bk_color_blue_pressed"
-        android:textColor="#000"
-        android:visibility="gone"
-         android:layout_weight="1"
-        android:textSize="@dimen/textsize_Large"
-        android:text="@string/music"/>
-      		 <ImageView   
-        android:layout_width="fill_parent"  
-        android:layout_height="0.5dp"  
-        android:background="#000000"  
-        />  
-          <CheckBox 
-        android:id="@+id/ckb_leftview_bluetooth"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-       
-        android:gravity="center_horizontal|center_vertical"
-        android:button="@drawable/bk_leftview_bluetooth"
-        android:textSize="@dimen/textsize_Large"
-        android:background="@drawable/bk_bluetooth"
-        android:textColor="@color/bt_text_color"
-        android:layout_weight="1"
-        android:text="@string/bluetooth"/>
-         <ImageView   
-        android:layout_width="fill_parent"  
-        android:layout_height="0.5dp"  
-        android:background="#000000"  
-        />  
-         <CheckBox 
-        android:id="@+id/ckb_leftview_language"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:gravity="center_horizontal|center_vertical"
-        android:button="@drawable/bk_leftview_language"
-        android:textSize="@dimen/textsize_Large"
-        android:background="@drawable/bk_color_blue_pressed"
-        android:textColor="#000"
-        android:layout_weight="1"
-        android:text="@string/language"/>
-          <ImageView   
-        android:layout_width="fill_parent"  
-        android:layout_height="0.5dp"  
-        android:background="#000000"  
-        />  
-        <CheckBox 
-        android:id="@+id/ckb_leftview_colorlight"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:gravity="center_horizontal|center_vertical"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:button="@drawable/bk_leftview_colorlight"
-        android:textSize="@dimen/textsize_Large"
-        android:background="@drawable/bk_color_blue"
-        android:textColor="@color/auto_text_color"
-        android:layout_weight="1"
-        android:text="@string/colored_light"/>
-         		<ImageView   
-        android:layout_width="fill_parent"  
-        android:layout_height="0.5dp"  
-        android:background="#000000"  
-        />  
-         <CheckBox 
-        android:id="@+id/ckb_leftview_sound"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:gravity="center_horizontal|center_vertical"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:button="@drawable/bk_leftview_sound"
-        android:textSize="@dimen/textsize_Large"
-        android:background="@drawable/bk_color_blue"
-        android:textColor="@color/auto_text_color"
-        android:layout_weight="1"
-        android:text="@string/touch_sound"/>
-         		<ImageView   
-        android:layout_width="fill_parent"  
-        android:layout_height="0.5dp"  
-        android:background="#000000"  
-        />  
-       
-         <CheckBox 
-        android:id="@+id/ckb_leftview_update"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:gravity="center_horizontal|center_vertical"
-        android:button="@drawable/bk_leftview_update"
-        android:textSize="@dimen/textsize_Large"
-        android:background="@drawable/bk_color_blue_pressed"
-        android:textColor="#000000"
-       
-        android:layout_weight="1"
-        android:text="@string/upgrade"/> 
-
-</LinearLayout>
-</ScrollView>
-<ImageView 
-        android:id="@+id/img_up_arrow_other"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-         android:layout_alignTop="@id/scr_other"
-        android:contentDescription="@null"
-        android:layout_centerHorizontal="true"
-        android:background="@android:color/transparent"
-        android:src="@drawable/img_auto_down_arrow"
-        android:rotation="180"
-        android:visibility="invisible"
-        />
-<ImageView 
-        android:id="@+id/img_down_arrow_other"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@id/scr_other"
-        android:contentDescription="@null"
-        android:layout_centerHorizontal="true"
-        android:background="@android:color/transparent"
-        android:src="@drawable/img_auto_down_arrow"
-        />
+<RelativeLayout android:orientation="vertical" android:background="@drawable/img_bottom_menu_background" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ScrollView android:id="@id/scr_other" android:background="@drawable/img_bottom_menu_background" android:layout_width="fill_parent" android:layout_height="fill_parent">
+        <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <CheckBox android:textSize="@dimen/textsize_Large" android:textColor="#ff000000" android:gravity="center" android:id="@id/ckb_other_zuliao" android:background="@drawable/bk_color_blue" android:visibility="invisible" android:layout_width="fill_parent" android:layout_height="0.0dip" android:button="@drawable/bk_other_zuliao" android:text="@string/pedicure" android:layout_weight="1.0" />
+            <View android:background="#ff000000" android:layout_width="fill_parent" android:layout_height="1.0px" />
+            <CheckBox android:textSize="@dimen/textsize_Large" android:textColor="#ff000000" android:gravity="center" android:id="@id/ckb_other_waist_thermal" android:background="@drawable/bk_color_blue" android:layout_width="fill_parent" android:layout_height="0.0dip" android:button="@drawable/bk_other_feet_thermal" android:text="@string/thermal_waist" android:layout_weight="1.0" />
+            <ImageView android:background="#ff000000" android:layout_width="fill_parent" android:layout_height="0.5dip" />
+            <CheckBox android:textSize="@dimen/textsize_Large" android:textColor="#ff000000" android:gravity="center" android:id="@id/ckb_other_thermal" android:background="@drawable/bk_color_blue" android:layout_width="fill_parent" android:layout_height="0.0dip" android:button="@drawable/bk_other_feet_thermal" android:text="@string/thermal_method" android:layout_weight="1.0" />
+            <ImageView android:background="#ff000000" android:layout_width="fill_parent" android:layout_height="0.5dip" />
+            <CheckBox android:textSize="@dimen/textsize_Large" android:textColor="#ff000000" android:gravity="center" android:id="@id/ckb_other_feet_thermal" android:background="@drawable/bk_color_blue" android:layout_width="fill_parent" android:layout_height="0.0dip" android:button="@drawable/bk_other_feet_thermal" android:text="@string/thermal_foot" android:layout_weight="1.0" />
+            <ImageView android:background="#ff000000" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="0.5dip" />
+            <CheckBox android:textSize="@dimen/textsize_Large" android:textColor="#ff000000" android:gravity="center" android:id="@id/ckb_other_music" android:background="@drawable/bk_color_blue_pressed" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="0.0dip" android:button="@drawable/bk_other_music" android:text="@string/music" android:layout_weight="1.0" />
+            <ImageView android:background="#ff000000" android:layout_width="fill_parent" android:layout_height="0.5dip" />
+            <CheckBox android:textSize="@dimen/textsize_Large" android:textColor="@color/bt_text_color" android:gravity="center" android:id="@id/ckb_leftview_bluetooth" android:background="@drawable/bk_bluetooth" android:layout_width="fill_parent" android:layout_height="0.0dip" android:button="@drawable/bk_leftview_bluetooth" android:text="@string/bluetooth" android:layout_weight="1.0" />
+            <ImageView android:background="#ff000000" android:layout_width="fill_parent" android:layout_height="0.5dip" />
+            <CheckBox android:textSize="@dimen/textsize_Large" android:textColor="#ff000000" android:gravity="center" android:id="@id/ckb_leftview_language" android:background="@drawable/bk_color_blue_pressed" android:paddingTop="10.0dip" android:paddingBottom="10.0dip" android:layout_width="fill_parent" android:layout_height="0.0dip" android:button="@drawable/bk_leftview_language" android:text="@string/language" android:layout_weight="1.0" />
+            <ImageView android:background="#ff000000" android:layout_width="fill_parent" android:layout_height="0.5dip" />
+            <CheckBox android:textSize="@dimen/textsize_Large" android:textColor="@color/auto_text_color" android:gravity="center" android:id="@id/ckb_leftview_colorlight" android:background="@drawable/bk_color_blue" android:paddingTop="10.0dip" android:paddingBottom="10.0dip" android:layout_width="fill_parent" android:layout_height="0.0dip" android:button="@drawable/bk_leftview_colorlight" android:text="@string/colored_light" android:layout_weight="1.0" />
+            <ImageView android:background="#ff000000" android:layout_width="fill_parent" android:layout_height="0.5dip" />
+            <CheckBox android:textSize="@dimen/textsize_Large" android:textColor="@color/auto_text_color" android:gravity="center" android:id="@id/ckb_leftview_sound" android:background="@drawable/bk_color_blue" android:paddingTop="10.0dip" android:paddingBottom="10.0dip" android:layout_width="fill_parent" android:layout_height="0.0dip" android:button="@drawable/bk_leftview_sound" android:text="@string/touch_sound" android:layout_weight="1.0" />
+            <ImageView android:background="#ff000000" android:layout_width="fill_parent" android:layout_height="0.5dip" />
+            <CheckBox android:textSize="@dimen/textsize_Large" android:textColor="#ff000000" android:gravity="center" android:id="@id/ckb_leftview_update" android:background="@drawable/bk_color_blue_pressed" android:layout_width="fill_parent" android:layout_height="0.0dip" android:button="@drawable/bk_leftview_update" android:text="@string/upgrade" android:layout_weight="1.0" />
+        </LinearLayout>
+    </ScrollView>
+    <ImageView android:id="@id/img_up_arrow_other" android:background="@android:color/transparent" android:visibility="invisible" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/img_auto_down_arrow" android:layout_alignTop="@id/scr_other" android:layout_centerHorizontal="true" android:contentDescription="@null" android:rotation="180.0" />
+    <ImageView android:id="@id/img_down_arrow_other" android:background="@android:color/transparent" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/img_auto_down_arrow" android:layout_alignBottom="@id/scr_other" android:layout_centerHorizontal="true" android:contentDescription="@null" />
 </RelativeLayout>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:gravity="center_vertical" android:id="@id/layout_nav" android:background="@drawable/op_bottom_tab_bg" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentBottom="true">
+        <Button android:enabled="false" android:textSize="@dimen/bottom_btn_text_size" android:id="@id/btn_op_auto" android:background="@null" android:layout_width="0.0dip" android:layout_height="fill_parent" android:text="@string/auto_massage" android:layout_weight="1.0" />
+        <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/op_bottom_bar_divider" />
+        <Button android:enabled="false" android:textSize="@dimen/bottom_btn_text_size" android:id="@id/btn_op_manual" android:background="@null" android:layout_width="0.0dip" android:layout_height="fill_parent" android:text="@string/manual_massage" android:layout_weight="1.0" />
+        <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/op_bottom_bar_divider" />
+        <Button android:enabled="false" android:textSize="@dimen/bottom_btn_text_size" android:id="@id/btn_op_pressure" android:background="@null" android:layout_width="0.0dip" android:layout_height="fill_parent" android:text="@string/holographic_hand_massage" android:layout_weight="1.0" />
+        <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/op_bottom_bar_divider" />
+        <Button android:textSize="@dimen/bottom_btn_text_size" android:id="@id/btn_op_other" android:background="@null" android:layout_width="0.0dip" android:layout_height="fill_parent" android:text="@string/other_massage" android:layout_weight="1.0" />
+    </LinearLayout>
+    <LinearLayout android:layout_width="wrap_content" android:layout_height="@dimen/bottom_height" android:layout_above="@id/layout_nav" android:layout_alignLeft="@id/layout_nav" android:layout_alignRight="@id/layout_nav" android:layout_alignStart="@id/layout_nav" android:layout_alignEnd="@id/layout_nav">
+        <FrameLayout android:id="@id/auto_layout" android:background="@drawable/op_auto_bg" android:visibility="invisible" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_weight="1.0">
+            <include android:id="@id/ckb_auto" android:layout_width="fill_parent" android:layout_height="wrap_content" layout="@layout/op_auto_ckb_item" />
+        </FrameLayout>
+        <FrameLayout android:id="@id/manual_layout" android:background="@drawable/op_auto_bg" android:visibility="gone" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_weight="1.0">
+            <include android:id="@id/ckb_manual" android:layout_width="fill_parent" android:layout_height="wrap_content" layout="@layout/op_ckb_manual_item" />
+        </FrameLayout>
+        <FrameLayout android:id="@id/pressure_layout" android:background="@drawable/op_auto_bg" android:visibility="gone" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_weight="1.0">
+            <ListView android:id="@id/lv_pressure" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+        </FrameLayout>
+        <FrameLayout android:id="@id/manual_mode_layout" android:background="@drawable/op_auto_bg" android:visibility="gone" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_weight="1.0">
+            <ListView android:id="@id/lv_mode" android:scrollbars="none" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+            <ImageView android:layout_gravity="top|center" android:id="@id/mode_list_down_up" android:visibility="invisible" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="-3.0dip" android:src="@drawable/img_auto_down_arrow" android:rotation="180.0" />
+            <ImageView android:layout_gravity="bottom|center" android:id="@id/mode_list_down_arrow" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="-3.0dip" android:src="@drawable/img_auto_down_arrow" />
+        </FrameLayout>
+        <FrameLayout android:id="@id/manual_part_layout" android:background="@drawable/op_auto_bg" android:visibility="gone" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_weight="1.0">
+            <include android:id="@id/ckb_part" android:layout_width="fill_parent" android:layout_height="wrap_content" layout="@layout/op_part_ckb_item" />
+        </FrameLayout>
+        <FrameLayout android:id="@id/bottom_wide_speed_layout" android:visibility="gone" android:layout_width="0.0dip" android:layout_height="fill_parent" android:layout_weight="1.0">
+            <include android:id="@id/manual_speed_width_layout" android:layout_width="fill_parent" android:layout_height="fill_parent" layout="@layout/op_wide_speed_layout" />
+        </FrameLayout>
+        <FrameLayout android:id="@id/other_layout" android:background="@drawable/op_auto_bg" android:visibility="gone" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_weight="1.0">
+            <include android:id="@id/ckb_other" android:layout_width="fill_parent" android:layout_height="wrap_content" layout="@layout/op_other_ckb_item" />
+        </FrameLayout>
+        <FrameLayout android:id="@id/pressrue_speeds_layout" android:visibility="gone" android:layout_width="0.0dip" android:layout_height="fill_parent" android:layout_weight="1.0">
+            <include android:id="@id/tv_pressure_speed" android:layout_width="fill_parent" android:layout_height="fill_parent" layout="@layout/op_pressure_speed_layout" />
+        </FrameLayout>
+    </LinearLayout>
+</RelativeLayout>

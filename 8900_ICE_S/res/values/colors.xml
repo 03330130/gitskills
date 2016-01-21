@@ -2,6 +2,4 @@
 <resources>
     <color name="black">#ff000000</color>
     <color name="white">#ffffffff</color>
-    <drawable name="normal_color">#00000000</drawable>
-    <drawable name="blue_background">#355dff</drawable>
 </resources>

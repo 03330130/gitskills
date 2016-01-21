@@ -1,48 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-     Copyright (C) 2009 The Android Open Source Project
-
-     Licensed under the Apache License, Version 2.0 (the "License");
-     you may not use this file except in compliance with the License.
-     You may obtain a copy of the License at
-
-          http://www.apache.org/licenses/LICENSE-2.0
-
-     Unless required by applicable law or agreed to in writing, software
-     distributed under the License is distributed on an "AS IS" BASIS,
-     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-     See the License for the specific language governing permissions and
-     limitations under the License.
--->
-
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-
-    
+<resources>
     <string name="app_name">Presidential</string>
     <string name="back_toast">Press again to exit</string>
     <string name="main_page">Main page</string>
-    <string name="connected_to">Connected to </string>
+    <string name="connected_to">Connected to</string>
     <string name="could_not_connect">Can not connect to the device!</string>
     <string name="connection_lost">Device connection was lost!</string>
-    <!-- first page -->
     <string name="slogan">Presidential</string>
-    <string name="support">Service\nCenter</string>
-    <string name="story">Brand\nStory</string>
-    <string name="experience">Health\nCare</string>
+    <string name="support">"Service
+Center"</string>
+    <string name="story">"Brand
+Story"</string>
+    <string name="experience">"Health
+Care"</string>
     <string name="start">Start</string>
-    <!-- positon adjust -->
     <string name="sleep">Sleep</string>
     <string name="overall">Backrest</string>
     <string name="stretch">Leg Extend</string>
     <string name="legs">Footrest</string>
     <string name="zero">Zero</string>
-    
-    <!-- state  -->
     <string name="speed_state">Speed:</string>
     <string name="width_state">Width:</string>
     <string name="strength_state">Strength:</string>
-    <string name="back_heat_state">Back\nheating</string>
-    <!-- 0530 -->
+    <string name="back_heat_state">"Back
+heating"</string>
     <string name="strength_low">weak</string>
     <string name="strength_middle">Middle</string>
     <string name="strength_high">Strong</string>
@@ -54,16 +35,14 @@
     <string name="decrease_c">Reduce temp</string>
     <string name="temp_display">Function of heat is not turned</string>
     <string name="preheating">Function of Preheat is turned</string>
-    <!-- Bluetooth -->
     <string name="send">Send</string>
     <string name="communication_failed">communication_failed</string>
     <string name="not_connected">You are not connected to a device</string>
     <string name="bt_not_enabled_leaving">Bluetooth was not enabled. Leaving App.</string>
     <string name="title_connecting">connecting...</string>
-    <string name="title_connected_to">connected to <xliff:g id="device_name">%1$s</xliff:g></string>
+    <string name="title_connected_to">connected to %1$s</string>
     <string name="title_not_connected">not connected</string>
     <string name="not_available">Bluetooth is not available</string>
-    <!-- DeviceListActivity -->
     <string name="scanning">scanning for devices...</string>
     <string name="select_device">select a device to connect</string>
     <string name="none_paired">No devices have been paired</string>
@@ -71,15 +50,12 @@
     <string name="title_paired_devices">Paired Devices</string>
     <string name="title_other_devices">Other Available Devices</string>
     <string name="button_scan">Scan for devices</string>
-
-    <!-- Options Menu -->
     <string name="secure_connect">Connect</string>
     <string name="insecure_connect">Connect adevice -Insecure</string>
     <string name="discoverable">Makediscoverable</string>
-    <!-- MainActivity -->
     <string name="settings">Settings</string>
     <string name="service">Service</string>
-    <string name="position_adjust"> Position Adjust</string>
+    <string name="position_adjust">Position Adjust</string>
     <string name="power">On/Off</string>
     <string name="stop">Emergency Off</string>
     <string name="auto_massage">Auto</string>
@@ -88,7 +64,6 @@
     <string name="other_massage">Other</string>
     <string name="status">Status</string>
     <string name="power_off_message">Massage chairs are being shut down</string>
-    <!-- Auto massage -->
     <string name="zyys">Recover</string>
     <string name="sthh">Relief</string>
     <string name="jgsz">Stretch</string>
@@ -102,17 +77,16 @@
     <string name="yjkb">Revive</string>
     <string name="ydyms">Active</string>
     <string name="ysbj">Relax</string>
-    <!-- Manual massage -->
     <string name="finger_knead">Finger Knead</string>
     <string name="Pulse_Shiatsu">Pulse Shiatsu</string>
     <string name="back_rubbing">Back Rubbing</string>
-    
     <string name="mode">Mode</string>
     <string name="part">Position</string>
     <string name="width">Width</string>
     <string name="speed">Speed</string>
     <string name="threeD">3 D</string>
-    <string name="threeD_position">3 D\nPosition</string>
+    <string name="threeD_position">"3 D
+Position"</string>
     <string name="knead">Kneading</string>
     <string name="rap">Tapping</string>
     <string name="pat">Knocking</string>
@@ -123,51 +97,53 @@
     <string name="fixed_point">Point</string>
     <string name="up">Up</string>
     <string name="down">Down</string>
-    <string name="narrow_center_wide">N\nM\nW</string>
+    <string name="narrow_center_wide">"N
+M
+W"</string>
     <string name="wide">Wide</string>
     <string name="center">Middle</string>
     <string name="narrow">Narrow</string>
-    <string name="low_middle_high">L\nM\nH</string>
+    <string name="low_middle_high">"L
+M
+H"</string>
     <string name="higher">Fast</string>
     <string name="middle">Middle</string>
     <string name="lower">Slow</string>
-    <string name="strengthen_weaken">S\nW</string>
+    <string name="strengthen_weaken">"S
+W"</string>
     <string name="strengthen">Strong</string>
     <string name="weaken">Weak</string>
     <string name="threeDstrengthen">3D+</string>
     <string name="threeDweaken">3D-</string>
     <string name="tempUp">Temp+</string>
     <string name="tempDown">Temp-</string>
-    <!-- Air pressue -->
     <string name="all">Full Body</string>
-    <string name="strengthen_middle_weaken">S\nM\nW</string>
+    <string name="strengthen_middle_weaken">"S
+M
+W"</string>
     <string name="strength">Strength</string>
     <string name="hand_shoulder">Upper Body</string>
     <string name="waist">Waist&amp;Back</string>
     <string name="leg_foot">Legs&amp;Feet</string>
     <string name="air_off">OFF</string>
     <string name="pressure_strength">Pressure Strength</string>
-    <!-- speed pressure 5 dang -->
     <string name="levlel1">Level 1</string>
     <string name="levlel2">Level 2</string>
     <string name="levlel3">Level 3</string>
     <string name="levlel4">Level 4</string>
     <string name="levlel5">Level 5</string>
-    <!-- control panel -->
-    <string name="state_width">&#160;&#160;&#160;Width&#160;</string>
-    <string name="state_strength">&#160;&#160;&#160;Strength&#160;</string>
-    <string name="state_speed">&#160;Speed</string>
-    <string name="state_pedicure">&#160;Foot Roller</string>
-    <!-- Other -->
+    <string name="state_width">   Width </string>
+    <string name="state_strength">   Strength </string>
+    <string name="state_speed"> Speed</string>
+    <string name="state_pedicure"> Foot Roller</string>
     <string name="pedicure">Roller</string>
     <string name="thermal_method">Back Heating</string>
     <string name="thermal_waist">Waist Heating</string>
-    <!-- 0530 -->
     <string name="thermal_heart">Movement</string>
     <string name="thermal_foot">Feet Heating</string>
-    
     <string name="physiology_test">Heart rate detection</string>
-    <string name="fast_soft">S\nF</string>
+    <string name="fast_soft">"S
+F"</string>
     <string name="fast">Fast</string>
     <string name="soft">Slow</string>
     <string name="play">Play</string>
@@ -177,13 +153,11 @@
     <string name="vol_increase">Vol+</string>
     <string name="vol_decrease">Vol-</string>
     <string name="install_duomi">Please install duomi music first</string>
-    <!-- Service -->
     <string name="upgrade">Update</string>
     <string name="help">Help</string>
     <string name="current_version">Ver:</string>
     <string name="is_latest_version">This is the latest version.</string>
-        <string name="found_new_version">There is an new vesion,please update now. </string>
-    <!-- settings -->
+    <string name="found_new_version">There is an new vesion,please update now.</string>
     <string name="language">Language</string>
     <string name="chinese">中文</string>
     <string name="english">English</string>
@@ -203,5 +177,4 @@
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
     <string name="wlan_not_connected">WLAN is not connected</string>
-
 </resources>

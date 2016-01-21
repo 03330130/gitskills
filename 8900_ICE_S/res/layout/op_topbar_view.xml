@@ -1,82 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/op_top_bg"
-    android:baselineAligned="false"
-    android:orientation="horizontal" >
-
-    <FrameLayout
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="0.25" >
-
-        <Button
-            android:id="@+id/btn_op_power"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right|center_vertical"
-            android:background="@drawable/op_power_background" />
-
-
+<LinearLayout android:orientation="horizontal" android:background="@drawable/op_top_bg" android:layout_width="fill_parent" android:layout_height="wrap_content" android:baselineAligned="false"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <FrameLayout android:layout_width="0.0dip" android:layout_height="fill_parent" android:layout_weight="0.25">
+        <Button android:layout_gravity="right|center" android:id="@id/btn_op_power" android:background="@drawable/op_power_background" android:layout_width="wrap_content" android:layout_height="wrap_content" />
     </FrameLayout>
-
-    <FrameLayout
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="0.6" >
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/main_start_clicked"
-            android:rotation="180"
-            android:scaleType="center" />
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="center"
-            android:src="@drawable/op_top_logo" />
-        <EditText
-             android:id="@+id/edtxt_show_words"
-            android:layout_width="100dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_height="wrap_content"
-            android:singleLine="true"
-            android:background="@android:color/transparent"
-            />
+    <FrameLayout android:layout_width="0.0dip" android:layout_height="fill_parent" android:layout_weight="0.6">
+        <ImageView android:background="@drawable/main_start_clicked" android:layout_width="fill_parent" android:layout_height="fill_parent" android:scaleType="center" android:rotation="180.0" />
+        <ImageView android:layout_width="fill_parent" android:layout_height="fill_parent" android:src="@drawable/op_top_logo" android:scaleType="center" />
+        <EditText android:layout_gravity="center_horizontal" android:id="@id/edtxt_show_words" android:background="@android:color/transparent" android:layout_width="100.0dip" android:layout_height="wrap_content" android:singleLine="true" />
     </FrameLayout>
-
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:layout_weight="0.25" >
-     <TextView 
-           android:layout_height="wrap_content"
-           android:layout_width="wrap_content"
-           android:textColor="#000"
-           
-           android:textSize="@dimen/textsize_Large"
-           android:layout_gravity="left|center_vertical"
-           android:text="@string/state_mode"
-           />
-        <TextView
-                    android:id="@+id/state_mode"
-                    android:textColor="#000"
-		            android:textSize="@dimen/textsize_Large"
-		            android:layout_gravity="left|center_vertical"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                   />
-        <Button
-            android:id="@+id/btn_op_stop"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:layout_gravity="center_vertical"
-            android:background="@drawable/op_stop_background" />
+    <LinearLayout android:orientation="horizontal" android:layout_width="0.0dip" android:layout_height="fill_parent" android:layout_weight="0.25">
+        <TextView android:textSize="@dimen/textsize_Large" android:textColor="#ff000000" android:layout_gravity="left|center" android:id="@id/state_mode" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/state_mode" />
+        <TextView android:textSize="@dimen/textsize_Large" android:textColor="#ff000000" android:layout_gravity="top|left|center" android:id="@id/state_mode1" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+        <Button android:layout_gravity="top" android:id="@id/btn_op_stop" android:background="@drawable/op_stop_background" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" />
     </LinearLayout>
-
 </LinearLayout>

@@ -1,118 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@android:color/transparent"
-    android:orientation="vertical" >
-    
-    <FrameLayout 
-        android:id="@+id/pressure_speed_layout1"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="@android:color/white"
-        android:visibility="invisible"
-        android:layout_weight="1">
-         <TextView 
-        android:id="@+id/tv_speed1"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:drawableLeft="@drawable/img_level_triple"
-        android:paddingLeft="7dp"
-        android:text="@string/levlel2"
-        android:clickable="true"
-        android:textColor="#000"
-        android:textSize="15sp"
-         />
-      </FrameLayout> 
-        <FrameLayout 
-          android:id="@+id/pressure_speed_layout2"
-          android:layout_weight="1"
-          android:layout_width="match_parent"
-          android:visibility="invisible"
-          android:layout_height="0dp"
-          android:background="@android:color/white"
-          >
-           <TextView 
-	        android:id="@+id/tv_speed2"
-	        android:layout_width="match_parent"
-	        android:layout_height="match_parent"
-	        android:gravity="center"
-	        android:drawableLeft="@drawable/img_level_triple"
-	        android:text="@string/levlel2"
-	        android:clickable="true"
-	        android:paddingLeft="7dp"
-	        android:textColor="#000"
-	        android:textSize="15sp"
-            />
-      </FrameLayout>
-  
-      <FrameLayout 
-          android:id="@+id/pressure_speed_layout3"
-          android:layout_weight="1"
-          android:layout_width="match_parent"
-          android:visibility="invisible"
-          android:layout_height="0dp"
-          android:background="@android:color/white"
-          >
-           <TextView 
-	        android:id="@+id/tv_speed3"
-	        android:layout_width="match_parent"
-	        android:layout_height="match_parent"
-	        android:gravity="center"
-	        android:drawableLeft="@drawable/img_level_triple"
-	        android:text="@string/levlel2"
-	        android:clickable="true"
-	        android:paddingLeft="7dp"
-	        android:textColor="#000"
-	        android:textSize="15sp"
-            />
-      </FrameLayout>
-      
-      <FrameLayout 
-          android:id="@+id/pressure_speed_layout4"
-          android:layout_width="match_parent"
-          android:layout_height="0dp"
-          android:layout_weight="1"
-          android:visibility="invisible"
-          android:background="@android:color/white"
-          >
-          <TextView 
-	        android:id="@+id/tv_speed4"
-	        android:layout_width="match_parent"
-	        android:layout_height="match_parent"
-	        android:gravity="center"
-	        android:drawableLeft="@drawable/img_level_triple"
-	        android:text="@string/levlel2"
-	        android:background="@drawable/bk_color_blue_pressed"
-	        android:clickable="true"
-	        android:paddingLeft="7dp"
-	        android:textColor="#000"
-	        android:textSize="15sp"
-            />
-      </FrameLayout>
-  <FrameLayout 
-          android:id="@+id/pressure_speed_layout5"
-          android:layout_width="match_parent"
-          android:layout_height="0dp"
-          android:layout_weight="1"
-          android:visibility="invisible"
-          android:background="@android:color/white"
-          >
-          <TextView 
-	        android:id="@+id/tv_speed5"
-	        android:layout_width="match_parent"
-	        android:layout_height="match_parent"
-	        android:gravity="center"
-	        android:drawableLeft="@drawable/img_level_triple"
-	        android:text="@string/levlel2"
-	        android:background="@drawable/bk_color_blue_pressed"
-	        android:clickable="true"
-	        android:paddingLeft="7dp"
-	        android:textColor="#000"
-	        android:textSize="15sp"
-            />
-      </FrameLayout>
-
-
+<LinearLayout android:orientation="vertical" android:background="@android:color/transparent" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <FrameLayout android:id="@id/pressure_speed_layout1" android:background="@android:color/white" android:visibility="invisible" android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_weight="1.0">
+        <TextView android:textSize="15.0sp" android:textColor="#ff000000" android:gravity="center" android:id="@id/tv_speed1" android:paddingLeft="7.0dip" android:clickable="true" android:layout_width="fill_parent" android:layout_height="fill_parent" android:text="@string/levlel2" android:drawableLeft="@drawable/img_level_triple" />
+    </FrameLayout>
+    <FrameLayout android:id="@id/pressure_speed_layout2" android:background="@android:color/white" android:visibility="invisible" android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_weight="1.0">
+        <TextView android:textSize="15.0sp" android:textColor="#ff000000" android:gravity="center" android:id="@id/tv_speed2" android:paddingLeft="7.0dip" android:clickable="true" android:layout_width="fill_parent" android:layout_height="fill_parent" android:text="@string/levlel2" android:drawableLeft="@drawable/img_level_triple" />
+    </FrameLayout>
+    <FrameLayout android:id="@id/pressure_speed_layout3" android:background="@android:color/white" android:visibility="invisible" android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_weight="1.0">
+        <TextView android:textSize="15.0sp" android:textColor="#ff000000" android:gravity="center" android:id="@id/tv_speed3" android:paddingLeft="7.0dip" android:clickable="true" android:layout_width="fill_parent" android:layout_height="fill_parent" android:text="@string/levlel2" android:drawableLeft="@drawable/img_level_triple" />
+    </FrameLayout>
+    <FrameLayout android:id="@id/pressure_speed_layout4" android:background="@android:color/white" android:visibility="invisible" android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_weight="1.0">
+        <TextView android:textSize="15.0sp" android:textColor="#ff000000" android:gravity="center" android:id="@id/tv_speed4" android:background="@drawable/bk_color_blue_pressed" android:paddingLeft="7.0dip" android:clickable="true" android:layout_width="fill_parent" android:layout_height="fill_parent" android:text="@string/levlel2" android:drawableLeft="@drawable/img_level_triple" />
+    </FrameLayout>
+    <FrameLayout android:id="@id/pressure_speed_layout5" android:background="@android:color/white" android:visibility="invisible" android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_weight="1.0">
+        <TextView android:textSize="15.0sp" android:textColor="#ff000000" android:gravity="center" android:id="@id/tv_speed5" android:background="@drawable/bk_color_blue_pressed" android:paddingLeft="7.0dip" android:clickable="true" android:layout_width="fill_parent" android:layout_height="fill_parent" android:text="@string/levlel2" android:drawableLeft="@drawable/img_level_triple" />
+    </FrameLayout>
 </LinearLayout>

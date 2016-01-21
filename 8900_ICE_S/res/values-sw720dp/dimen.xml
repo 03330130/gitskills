@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <dimen name="main_width_height">144dp</dimen>
-     <dimen name="textsize_Large">16sp</dimen>
-    <dimen name="bottom_btn_text_size">18sp</dimen>
-    <dimen name="fudong_text_size">32sp</dimen>
-    <dimen name="bottom_height">270dp</dimen>
-</resources>

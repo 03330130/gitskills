@@ -1,28 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="@dimen/air_item_item"
-    android:layout_marginLeft="10dp"
-    android:orientation="horizontal"
-    android:background="@null"
-     >
-
-    <ImageView
-        android:id="@+id/img_mode_item"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="2"
-         />
-
-    <TextView
-        android:gravity="center_vertical|center_horizontal" 
-        android:id="@+id/tv_mode_item"
-        android:singleLine="true"
-        android:textColor="#000"
-        android:ellipsize="marquee"
-        android:layout_weight="5"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:textSize="@dimen/textsize_Large"/>
-   
+<LinearLayout android:orientation="horizontal" android:background="@null" android:layout_width="fill_parent" android:layout_height="@dimen/air_item_item" android:layout_marginLeft="10.0dip"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView android:id="@id/img_mode_item" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_weight="2.0" />
+    <TextView android:textSize="@dimen/textsize_Large" android:textColor="#ff000000" android:ellipsize="marquee" android:gravity="center" android:id="@id/tv_mode_item" android:layout_width="0.0dip" android:layout_height="fill_parent" android:singleLine="true" android:layout_weight="5.0" />
 </LinearLayout>

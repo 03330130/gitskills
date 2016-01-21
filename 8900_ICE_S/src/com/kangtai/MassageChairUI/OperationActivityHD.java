@@ -4,6 +4,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import com.kangtai.MassageChairUI.Protocal.DataFrame;
+import com.kangtai.MassageChairUI.Protocal.DataFrame.OPERATION;
+import com.kangtai.MassageChairUI.Protocal.FucUtil;
+import com.kangtai.MassageChairUI.Protocal.RokolUtil;
+import com.kangtai.MassageChairUI.Updater.UpdateManager;
+
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -17,25 +23,22 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.PointF;
-import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
 import android.media.SoundPool;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v4.widget.DrawerLayout.DrawerListener;
-import android.text.TextUtils;
+import android.text.SpannableString;
+import android.text.style.TextAppearanceSpan;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.SparseIntArray;
@@ -63,20 +66,11 @@ import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.PopupWindow;
-import android.widget.PopupWindow.OnDismissListener;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.SimpleAdapter;
 import android.widget.TableLayout;
 import android.widget.TextView;
-
-
-import com.kangtai.MassageChairUI.Protocal.DataFrame;
-import com.kangtai.MassageChairUI.Protocal.DataFrame.OPERATION;
-import com.kangtai.MassageChairUI.Protocal.FucUtil;
-import com.kangtai.MassageChairUI.Protocal.JsonParser;
-import com.kangtai.MassageChairUI.Protocal.RokolUtil;
-import com.kangtai.MassageChairUI.Updater.UpdateManager;
 
 public class OperationActivityHD extends FragmentActivity implements OnTouchListener,OnCheckedChangeListener
 		,OnClickListener {
@@ -189,7 +183,7 @@ public class OperationActivityHD extends FragmentActivity implements OnTouchList
 		imgArm2,imgShoulder1,imgShoulder2,imgWaist11,imgWaist12,imgWasit21,imgWaist22,imgWasit31,
 		imgWaist32,imgBack11,imgBack12,imgBack21,imgBack22,imgNeck1,imgNeck2,imgWaistHeat1,imgWaistHeat2,
 		imgup,imgdown;
-		private TextView txtTimeCount,txtstate_mode;
+		private TextView txtTimeCount,txtstate_mode,txtstate_3D;
 		private ImageView imgHeatFeet,imgThreeD,imgBackHeatState;
 		private ImageView img_timer,img_arrow_up,img_arrow_down,img_down_arrow_other,img_up_arrow_other,
 		                  mode_list_arrow_down,mode_list_arrow_up;
@@ -214,7 +208,7 @@ public class OperationActivityHD extends FragmentActivity implements OnTouchList
 //		private String mEngineType = SpeechConstant.TYPE_LOCAL;
 		private  View bottomView,view1;
 		private ScrollView scroView_auto,scroView_other,scroView_mode;
-		
+		private SpannableString spanText;
 
 
 	
@@ -371,7 +365,12 @@ public class OperationActivityHD extends FragmentActivity implements OnTouchList
 
 		
 		//state init
+		txtstate_3D=(TextView)view1.findViewById(R.id.txt_3D_position);
 		txtstate_mode=(TextView)view1.findViewById(R.id.state_mode);
+		this.spanText = new SpannableString(getResources().getString(R.string.threeD_position));
+	      this.spanText.setSpan(new TextAppearanceSpan(this, R.style.ThreeD_size0), 0, 3, 33);
+	      this.spanText.setSpan(new TextAppearanceSpan(this, R.style.ThreeD_size1), 4, this.spanText.length(), 33);
+	      this.txtstate_3D.append(this.spanText);
 		txtTimeCount=(TextView)view1.findViewById(R.id.tv_time_count);
 		mImgWidth_State=(ImageView)view1.findViewById(R.id.img_width_state);
 		mImgSpeed_State=(ImageView)view1.findViewById(R.id.img_speed_state);

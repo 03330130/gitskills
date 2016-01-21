@@ -1,8 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>  
-<selector xmlns:android="http://schemas.android.com/apk/res/android">  
-    <item android:state_checked="true"   
-        android:drawable="@drawable/op_img_zhiya_active" /><!--选中时效果-->  
-    <item android:state_enabled="false"   
-        android:drawable="@drawable/op_img_zhiya_normal" /><!--未选中时效果-->  
-  <!-- 修改成你自己的图片就可以了 -->  
-</selector>  
+<?xml version="1.0" encoding="utf-8"?>
+<selector
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_checked="true" android:drawable="@drawable/op_img_zhiya_active" />
+    <item android:state_enabled="false" android:drawable="@drawable/op_img_zhiya_normal" />
+</selector>

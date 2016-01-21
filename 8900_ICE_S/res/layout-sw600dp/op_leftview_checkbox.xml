@@ -1,141 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/op_leftview_checkbox"
-    android:orientation="vertical" >
-      <CheckBox 
-        android:id="@+id/ckb_leftview_home"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:paddingLeft="20dp"
-        android:button="@drawable/bk_leftview_home"
-        android:textSize="18sp"
-        android:background="@drawable/bk_color_blue_pressed"
-        android:textColor="#000"
-        android:layout_weight="50"
-        android:text="@string/main_page"/>
-   			<ImageView   
-        android:layout_width="fill_parent"  
-        android:layout_height="0dp"  
-        android:layout_weight="1.5" 
-        android:background="#000000"  
-        />  
-         <CheckBox 
-        android:id="@+id/ckb_leftview_language"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:paddingLeft="20dp"
-        android:button="@drawable/bk_leftview_language"
-        android:textSize="18sp"
-        android:background="@drawable/bk_color_blue_pressed"
-        android:textColor="#000"
-        android:layout_weight="50"
-        android:text="@string/language"/>
-         		<ImageView   
-        android:layout_width="fill_parent"  
-        android:layout_height="0dp"  
-        android:layout_weight="1.5" 
-        android:background="#000000"  
-        />  
-         <CheckBox 
-        android:id="@+id/ckb_leftview_timer"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:paddingLeft="20dp"
-        android:button="@drawable/bk_leftview_timer"
-        android:textSize="18sp"
-        android:background="@drawable/bk_color_blue_pressed"
-        android:textColor="#000"
-        android:layout_weight="50"
-        android:text="@string/timer"/>
-         		<ImageView   
-        android:layout_width="fill_parent"  
-        android:layout_height="0dp"  
-        android:layout_weight="1.5" 
-        android:background="#000000"  
-        />  
-         <CheckBox 
-        android:id="@+id/ckb_leftview_colorlight"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:paddingLeft="20dp"
-        android:button="@drawable/bk_leftview_colorlight"
-        android:textSize="18sp"
-        android:background="@drawable/bk_color_blue"
-        android:textColor="@color/auto_text_color"
-        android:layout_weight="50"
-        android:text="@string/colored_light"/>
-         		<ImageView   
-        android:layout_width="fill_parent"  
-        android:layout_height="0dp"  
-        android:layout_weight="1.5" 
-        android:background="#000000"  
-        />  
-         <CheckBox 
-        android:id="@+id/ckb_leftview_sound"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:paddingLeft="20dp"
-        android:button="@drawable/bk_leftview_sound"
-        android:textSize="18sp"
-        android:background="@drawable/bk_color_blue"
-        android:textColor="@color/auto_text_color"
-        android:layout_weight="50"
-        android:text="@string/touch_sound"/>
-         		<ImageView   
-        android:layout_width="fill_parent"  
-        android:layout_height="0dp"  
-        android:layout_weight="1.5"
-        android:background="#000000"  
-        />  
-         <CheckBox 
-        android:id="@+id/ckb_leftview_bluetooth"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:paddingLeft="20dp"
-        android:button="@drawable/bk_leftview_bluetooth"
-        android:textSize="18sp"
-        android:background="@drawable/bk_bluetooth"
-        android:textColor="@color/bt_text_color"
-        android:layout_weight="50"
-        android:text="@string/bluetooth"/>
-         <ImageView   
-        android:layout_width="fill_parent"  
-        android:layout_height="0dp"  
-        android:layout_weight="1.5"
-        android:background="#000000"  
-        />  
-         <CheckBox 
-        android:id="@+id/ckb_leftview_update"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:paddingLeft="20dp"
-        android:button="@drawable/bk_leftview_update"
-        android:textSize="18sp"
-        android:background="@drawable/bk_color_blue_pressed"
-        android:textColor="#000"
-        android:layout_weight="50"
-        android:text="@string/upgrade"/>
-              <ImageView   
-        android:layout_width="fill_parent"  
-        android:layout_height="0dp"  
-        android:layout_weight="1.5"
-        android:background="#000000"  
-        android:visibility="invisible"
-        />  
-         <Button
-        android:id="@+id/btn_voice_control"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:paddingLeft="20dp"
-        android:button="@drawable/bk_leftview_update"
-        android:textSize="18sp"
-        android:background="@drawable/bk_color_blue_pressed"
-        android:textColor="#000"
-        android:layout_weight="50"
-        android:text="语音控制"
-        android:visibility="gone"/>
-         
-
+<LinearLayout android:orientation="vertical" android:id="@id/op_leftview_checkbox" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <CheckBox android:textSize="18.0sp" android:textColor="#ff000000" android:id="@id/ckb_leftview_home" android:background="@drawable/bk_color_blue_pressed" android:paddingLeft="20.0dip" android:layout_width="fill_parent" android:layout_height="0.0dip" android:button="@drawable/bk_leftview_home" android:text="@string/main_page" android:layout_weight="50.0" />
+    <ImageView android:background="#ff000000" android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_weight="1.5" />
+    <CheckBox android:textSize="18.0sp" android:textColor="#ff000000" android:id="@id/ckb_leftview_language" android:background="@drawable/bk_color_blue_pressed" android:paddingLeft="20.0dip" android:layout_width="fill_parent" android:layout_height="0.0dip" android:button="@drawable/bk_leftview_language" android:text="@string/language" android:layout_weight="50.0" />
+    <ImageView android:background="#ff000000" android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_weight="1.5" />
+    <CheckBox android:textSize="18.0sp" android:textColor="#ff000000" android:id="@id/ckb_leftview_timer" android:background="@drawable/bk_color_blue_pressed" android:paddingLeft="20.0dip" android:layout_width="fill_parent" android:layout_height="0.0dip" android:button="@drawable/bk_leftview_timer" android:text="@string/timer" android:layout_weight="50.0" />
+    <ImageView android:background="#ff000000" android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_weight="1.5" />
+    <CheckBox android:textSize="18.0sp" android:textColor="@color/auto_text_color" android:id="@id/ckb_leftview_colorlight" android:background="@drawable/bk_color_blue" android:paddingLeft="20.0dip" android:layout_width="fill_parent" android:layout_height="0.0dip" android:button="@drawable/bk_leftview_colorlight" android:text="@string/colored_light" android:layout_weight="50.0" />
+    <ImageView android:background="#ff000000" android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_weight="1.5" />
+    <CheckBox android:textSize="18.0sp" android:textColor="@color/auto_text_color" android:id="@id/ckb_leftview_sound" android:background="@drawable/bk_color_blue" android:paddingLeft="20.0dip" android:layout_width="fill_parent" android:layout_height="0.0dip" android:button="@drawable/bk_leftview_sound" android:text="@string/touch_sound" android:layout_weight="50.0" />
+    <ImageView android:background="#ff000000" android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_weight="1.5" />
+    <CheckBox android:textSize="18.0sp" android:textColor="@color/bt_text_color" android:id="@id/ckb_leftview_bluetooth" android:background="@drawable/bk_bluetooth" android:paddingLeft="20.0dip" android:layout_width="fill_parent" android:layout_height="0.0dip" android:button="@drawable/bk_leftview_bluetooth" android:text="@string/bluetooth" android:layout_weight="50.0" />
+    <ImageView android:background="#ff000000" android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_weight="1.5" />
+    <CheckBox android:textSize="18.0sp" android:textColor="#ff000000" android:id="@id/ckb_leftview_update" android:background="@drawable/bk_color_blue_pressed" android:paddingLeft="20.0dip" android:layout_width="fill_parent" android:layout_height="0.0dip" android:button="@drawable/bk_leftview_update" android:text="@string/upgrade" android:layout_weight="50.0" />
+    <ImageView android:background="#ff000000" android:visibility="invisible" android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_weight="1.5" />
+    <Button android:textSize="18.0sp" android:textColor="#ff000000" android:id="@id/btn_voice_control" android:background="@drawable/bk_color_blue_pressed" android:paddingLeft="20.0dip" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="0.0dip" android:button="@drawable/bk_leftview_update" android:text="语音控制" android:layout_weight="50.0" />
 </LinearLayout>

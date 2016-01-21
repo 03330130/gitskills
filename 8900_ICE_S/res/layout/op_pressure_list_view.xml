@@ -1,25 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="@dimen/air_item_item"
-    android:orientation="horizontal"
-    android:background="@null" >
-    <TextView 
-        android:gravity="center_vertical|center_horizontal" 
-        android:id="@+id/tv_pressure_info"
-        android:singleLine="true"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="5"
-        android:textColor="#000"
-        android:textSize="@dimen/textsize_Large"/>
-    <ImageView
-        android:id="@+id/img_pressure_arrow"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="1dp"
-        android:layout_weight="1"
-        android:layout_gravity="center_vertical|right"
-         />
-
+<LinearLayout android:orientation="horizontal" android:background="@null" android:layout_width="fill_parent" android:layout_height="@dimen/air_item_item"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:textSize="@dimen/textsize_Large" android:textColor="#ff000000" android:gravity="center" android:id="@id/tv_pressure_info" android:layout_width="0.0dip" android:layout_height="fill_parent" android:singleLine="true" android:layout_weight="5.0" />
+    <ImageView android:layout_gravity="right|center" android:id="@id/img_pressure_arrow" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_marginRight="1.0dip" android:layout_weight="1.0" />
 </LinearLayout>

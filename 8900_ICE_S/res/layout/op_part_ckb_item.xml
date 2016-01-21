@@ -1,84 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/img_bottom_menu_background"
-    android:orientation="vertical" >
-    
-    <CheckBox 
-        android:id="@+id/ckb_part_all"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-         android:gravity="center_horizontal|center_vertical"
-        android:button="@drawable/bk_part_all"
-        android:textSize="@dimen/textsize_Large"
-        android:background="@drawable/bk_color_blue"
-        android:textColor="#000"
-        android:layout_weight="1"
-        android:text="@string/whole"/>
-   			<View   
-        android:layout_width="fill_parent"  
-        android:layout_height="0.5dp"  
-        android:background="#000000"  
-        />  
-      <CheckBox 
-        android:id="@+id/ckb_part_part"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-         android:gravity="center_horizontal|center_vertical"
-      android:textSize="@dimen/textsize_Large"
-        android:background="@drawable/bk_color_blue"
-        android:textColor="#000"
-         android:layout_weight="1"
-        android:button="@drawable/bk_part_part"
-        android:text="@string/local"/>
-       		<ImageView   
-        android:layout_width="fill_parent"  
-        android:layout_height="0.5dp"  
-        android:background="#000000"  
-        />  
-      <CheckBox 
-        android:id="@+id/ckb_part_fixed"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-         android:gravity="center_horizontal|center_vertical"
-        android:button="@drawable/bk_part_fixedpoint"
-         android:background="@drawable/bk_color_blue"
-        android:textColor="#000"
-         android:layout_weight="1"
-        android:textSize="@dimen/textsize_Large"
-        android:text="@string/fixed_point"/>
-       <ImageView   
-        android:layout_width="fill_parent"  
-        android:layout_height="0.5dp"  
-        android:background="#000000"  
-        />  
-      <CheckBox 
-        android:id="@+id/ckb_part_up"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:button="@drawable/bk_part_up"
-         android:gravity="center_horizontal|center_vertical"
-         android:background="@drawable/bk_color_blue_pressed"
-        android:textColor="#000"
-         android:layout_weight="1"
-        android:textSize="@dimen/textsize_Large"
-        android:text="@string/up"/>
-      		 <ImageView   
-        android:layout_width="fill_parent"  
-        android:layout_height="0.5dp"  
-        android:background="#000000"  
-        />  
-      <CheckBox 
-        android:id="@+id/ckb_part_down"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:button="@drawable/bk_part_down"
-         android:gravity="center_horizontal|center_vertical"
-         android:background="@drawable/bk_color_blue_pressed"
-        android:textColor="#000"
-        android:textSize="@dimen/textsize_Large"
-         android:layout_weight="1"
-        android:text="@string/down"/>
-      
+<LinearLayout android:orientation="vertical" android:background="@drawable/img_bottom_menu_background" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <CheckBox android:textSize="@dimen/textsize_Large" android:textColor="#ff000000" android:gravity="center" android:id="@id/ckb_part_all" android:background="@drawable/bk_color_blue" android:layout_width="fill_parent" android:layout_height="0.0dip" android:button="@drawable/bk_part_all" android:text="@string/whole" android:layout_weight="1.0" />
+    <View android:background="#ff000000" android:layout_width="fill_parent" android:layout_height="0.5dip" />
+    <CheckBox android:textSize="@dimen/textsize_Large" android:textColor="#ff000000" android:gravity="center" android:id="@id/ckb_part_part" android:background="@drawable/bk_color_blue" android:layout_width="fill_parent" android:layout_height="0.0dip" android:button="@drawable/bk_part_part" android:text="@string/local" android:layout_weight="1.0" />
+    <ImageView android:background="#ff000000" android:layout_width="fill_parent" android:layout_height="0.5dip" />
+    <CheckBox android:textSize="@dimen/textsize_Large" android:textColor="#ff000000" android:gravity="center" android:id="@id/ckb_part_fixed" android:background="@drawable/bk_color_blue" android:layout_width="fill_parent" android:layout_height="0.0dip" android:button="@drawable/bk_part_fixedpoint" android:text="@string/fixed_point" android:layout_weight="1.0" />
+    <ImageView android:background="#ff000000" android:layout_width="fill_parent" android:layout_height="0.5dip" />
+    <CheckBox android:textSize="@dimen/textsize_Large" android:textColor="#ff000000" android:gravity="center" android:id="@id/ckb_part_up" android:background="@drawable/bk_color_blue_pressed" android:layout_width="fill_parent" android:layout_height="0.0dip" android:button="@drawable/bk_part_up" android:text="@string/up" android:layout_weight="1.0" />
+    <ImageView android:background="#ff000000" android:layout_width="fill_parent" android:layout_height="0.5dip" />
+    <CheckBox android:textSize="@dimen/textsize_Large" android:textColor="#ff000000" android:gravity="center" android:id="@id/ckb_part_down" android:background="@drawable/bk_color_blue_pressed" android:layout_width="fill_parent" android:layout_height="0.0dip" android:button="@drawable/bk_part_down" android:text="@string/down" android:layout_weight="1.0" />
 </LinearLayout>
